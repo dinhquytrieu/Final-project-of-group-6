@@ -26,6 +26,7 @@ struct student{
     string Class;
     int gender; // 0 is female, 1 is male
     date dob;
+    bool **enrolledSession;
     course *pCourse = nullptr;
     student *pStudentNext = nullptr;
 };
