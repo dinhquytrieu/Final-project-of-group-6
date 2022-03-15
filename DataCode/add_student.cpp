@@ -7,12 +7,13 @@ using namespace std;
 
 void input_student(student *&new_student) {
 	cin.get();
+	
 	cout << "Please input the information of student!" << endl;
 	cout << "Enter the student's name: ";
-	cin << new_student -> name;
+	getline(cin, new_student -> name);
 	
 	cout << "Enter the student's ID number ";
-	cin << new_student -> id;
+	getline(cin, new_student -> id)
 
 	cout << "Enter the student's date of birth.\n";
 	cout << "Enter year: ";
@@ -66,7 +67,7 @@ void add_NewStudent(student *&pStu, string* yearName, string* className, student
 
 	if (pStu == nullptr) {
 		pStu = new_student;
-		if (add)
+		if (add != 0)
 			fileout << pStu -> id << ',' << pStu -> name << ',' << pStu -> dob.year << "-" << pStu -> dob.month << "-" << pStu -> dob.day << ',' << pStu -> gender << '\n';
 	}
 	else {
@@ -77,7 +78,7 @@ void add_NewStudent(student *&pStu, string* yearName, string* className, student
 				fileout << pcur -> id << ',' << pcur -> name << ',' << pcur -> dob.year << "-" << pcur -> dob.month << "-" << pcur -> dob.day << ',' << pcur -> gender << '\n';
 		}
 		if (add)
-				fileout << pcur -> id << ',' << pcur -> name << ',' << pcur -> dob.year << "-" << pcur -> dob.month << "-" << pcur -> dob.day << ',' << pcur -> gender << '\n';
+			fileout << pcur -> id << ',' << pcur -> name << ',' << pcur -> dob.year << "-" << pcur -> dob.month << "-" << pcur -> dob.day << ',' << pcur -> gender << '\n';
 		pcur -> pStudentNext = new_student;
 		pcur = pcur -> pStudentNext;
 		if (add)
