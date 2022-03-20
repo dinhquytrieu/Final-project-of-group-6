@@ -1,0 +1,22 @@
+cs10002
+Ky Thuat Lap Trinh
+Dinh Ba Tien
+4
+50
+wed
+7
+30
+sa
+9
+30
+cf20001
+Vat li dai cuong
+Vu Thi Hanh Thu
+4
+50
+monday
+7
+30
+monday
+9
+30
