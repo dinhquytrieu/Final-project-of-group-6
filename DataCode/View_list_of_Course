@@ -4,14 +4,15 @@
 
 using namespace std;
 
-void viewListOfCourse (Course *pCourse) {
-	Course * pCur = pCourse;
+void viewListOfCourse (course *pCourseHead) {
+	course * pCur = pCourseHead;
     while (pCur != nullptr) {
         cout << "Course ID: " << pCur -> IDcourse << '\n';
         cout << "Course Name: " << pCur -> NAMEcourse << '\n';
         cout << "Lecturer Name: " << pCur -> teacherName << '\n';
-		    cout << "Number of Credit: " << pCur -> numberOfCredits << '\n';
-        cout << "Occur in: " << pCur -> date.d1 << " " << pCur -> date.s1 << " and " << pCur -> date.d2 << " " << pCur -> date.s2 << '\n';
+		    cout << "Number of Credit: " << pCur ->sumCredit << '\n';
+        cout << "Occur in: " << pCur ->performDate.d1<< " at " << pCur ->performDate.TIME1.hour << ":" << pCur ->performDate.TIME1.min  
+	<< " and " << pCur -> performDate.d2 << " at " << performDate.TIME2.hour << ":" << pCur ->performDate.TIME2.min << endl;
         int cnt = 0;
         Student* stuInCourse = pCur -> pStudent;
         while (stuInCourse != nullptr) {
@@ -22,7 +23,7 @@ void viewListOfCourse (Course *pCourse) {
 		cout << '\n';
 
         // move to next course
-        pCur = pCur -> courseNext;
+        pCur = pCur -> pCourseNext;
     }
     system("pause");
     system("cls");
