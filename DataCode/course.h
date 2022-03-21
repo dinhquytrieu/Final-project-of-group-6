@@ -21,7 +21,7 @@
 
 // Delete Course
 
-deleteCourse(Year * pYear, course *&courseHead, string IDcourse);
+//deleteCourse(Year * pYear, course *&courseHead, string IDcourse);
 
 // Update Course
 
