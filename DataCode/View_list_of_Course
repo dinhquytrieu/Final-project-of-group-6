@@ -21,6 +21,7 @@ void viewListOfCourse (course *pCourseHead) {
         }
 		cout << "Number of students registered: " << cnt << " / " << pCur -> maxStudent << '\n';
 		cout << '\n';
+		cout <<endl;
 
         // move to next course
         pCur = pCur -> pCourseNext;
