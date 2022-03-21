@@ -8,7 +8,7 @@ using namespace std;
 void createNewYear(Year* &pYear, string* yearName, int add) {
 	Year* pCur = pYear;
 	while (pCur != nullptr) {
-		if (strcmp(pCur -> YearName, yearName) == 0) {
+		if (pCur -> YearName == yearName)) {
 			cout << "Failed to create a new year!!\n";
 			cout << "The year you are about to create has already existed!!\n";
 			system("pause");
