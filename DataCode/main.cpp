@@ -2,6 +2,7 @@
 #include "registerCourse_time.cpp"
 #include "addSemester.cpp"
 #include "addCourse.cpp"
+#include "delete_course.cpp"
 
 
 void load_data(semester *&pSemHead, course *&pcourseHead, ifstream &filein){
@@ -53,24 +54,24 @@ void loadData3(course *&pcourHead, ifstream &filein){
     while(filein.eof() == 0){
         course *courseNew = new course;
         filein.ignore();
-       // fflush(stdin);
         getline(filein, courseNew->IDcourse);
+        cout << courseNew->IDcourse;
+      
 
-      //  filein >> courseNew->IDcourse;
-     //   cout << courseNew->IDcourse << endl;
-       // filein.ignore(1, '\n');
-
-      //  filein >> courseNew->NAMEcourse;
-       // filein.ignore(1, '\n');
+     
         getline(filein, courseNew->NAMEcourse);
-      //  filein.ignore();
-        getline(filein, courseNew->teacherName);
+        cout << courseNew->NAMEcourse;
 
-       // cout << courseNew->NAMEcourse;
-     //   filein >> courseNew->teacherName;
+        getline(filein, courseNew->teacherName);
+        cout << courseNew->teacherName;
+
+
         filein >> courseNew->sumCredit;
+                cout << courseNew->sumCredit;
+
         filein >> courseNew->maxStudent;
-      //  filein >> courseNew->performDate.d1;
+            //    cout << courseNew->maxStudent;
+
         filein.ignore();
         getline(filein, courseNew->performDate.d1);
         filein >> courseNew->performDate.TIME1.hour;
@@ -78,7 +79,6 @@ void loadData3(course *&pcourHead, ifstream &filein){
         filein.ignore();
         getline(filein, courseNew->performDate.d2);
 
-    //    filein >> courseNew->performDate.d2;
         filein >> courseNew->performDate.TIME2.hour;
         filein >> courseNew->performDate.TIME2.min;
 
@@ -166,13 +166,14 @@ int main(){
 
    // register_course(pSemHead, fileout);
    // add_semester(pSemHead, fileout);
-  // menu(pSemHead, pcourseHead, fileout);
+    // menu(pSemHead, pcourseHead, fileout);
  //  load_data(pSemHead, pcourseHead, filein);
   // loadData2(pSemHead, filein);
   // output(pSemHead);
 
     loadData3(pcourseHead, filein);
     output_descriptionCourse(pcourseHead);
+    deleteCourse(pcourseHead, "ps10003");
 
     return 0;
 }
