@@ -72,7 +72,7 @@ struct perform{
     
 };
 
-struct course{
+struct Course{
     string IDcourse;
     string teacherName;
     string NAMEcourse;
