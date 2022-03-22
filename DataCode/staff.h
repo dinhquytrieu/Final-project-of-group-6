@@ -4,7 +4,7 @@
 #include "header.h"
 
 //void viewListOfCLasses(Year* pYear);
-
+void ViewListOfCLasses(Year* pYear);
 //void viewStudentInfo(Student student);
 //void viewListOfStudentsInClass(Year* pYear, char* className);
 //void viewScoreBoardOfClass(Student * pStudent, Semester * pSemester);
