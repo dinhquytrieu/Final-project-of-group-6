@@ -17,11 +17,11 @@
 
 
 //View list of all course available
-
+//void viewListOfCourse (course *pCourseHead);         //amen asuo hi vogn dc
 
 // Delete Course
 
-deleteCourse(Year * pYear, course *&courseHead, string IDcourse);
+//deleteCourse(Year * pYear, course *&courseHead, string IDcourse);
 
 // Update Course
 
