@@ -1,12 +1,12 @@
 #include <iostream>
 #include <iomanip>
 #include <string.h>
-#include "Staff.h"
-#include "Header.h"
+#include "staff.h"
+#include "header.h"
 
 using namespace std;
 
-void viewListOfStudentsInCourse (Student *pStu, char *courseID) {
+void view_listOfStudents_inCourse (Student *pStu, char *IDcourse) {
 	while (1) {
 		student *pStuRegister = pStu;
 	    while (pStuRegister != NULL) {
@@ -18,7 +18,7 @@ void viewListOfStudentsInCourse (Student *pStu, char *courseID) {
 	        pStuRegister = pStuRegister -> pStudentNext;
     	}
     	cout << endl;
-		cout << "HERE IS THE LIST OF STUDENT IN - ID: " << courseID << endl;
+		cout << "HERE IS THE LIST OF STUDENT IN - ID: " << IDcourse << endl;
     	cout << "Would you like to export the list of students to a CSV file?\n";
     	cout << "0: No\n";
     	cout << "1: Yes\n\n";
