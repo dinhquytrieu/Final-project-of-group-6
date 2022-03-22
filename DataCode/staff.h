@@ -9,12 +9,12 @@
 //void viewListOfStudentsInClass(Year* pYear, char* className);
 //void viewScoreBoardOfClass(Student * pStudent, Semester * pSemester);
 
-void viewListOfStudentsInCourse(Student *pStu, char *courseID);
+void view_listOfStudents_inCourse(Student *pStu, char *IDcourse);
 //void viewScoreboardOfCourse (Course *pCourse);
 //
 //void inputScoreboardCSV(Scoreboard *& newScr , char *s);
 //void addScoreBoardCSV(Scoreboard *& pScore, char * yearName, char * semesterName, char * courseName);
-//void exportStudentToCsv(Student* pStuInCourse, char *courseID);
+void export_student_toCsv(student* pStuRegister, char *IDcourse);
 //void updateScoreBoardStudent(Scoreboard *& pScr, char *yearName, char* semesterName, char *courseID, char* studentID);
 
 #endif
