@@ -1,0 +1,2 @@
+
+        filein >> courseNew->maxStudent;
