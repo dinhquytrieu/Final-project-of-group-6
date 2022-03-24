@@ -10,8 +10,7 @@ void ViewListOfCLasses(Year* pYear);
 //void viewScoreBoardOfClass(Student * pStudent, Semester * pSemester);
 
 void view_listOfStudents_inCourse(Student *pStu, char *IDcourse);
-//void viewScoreboardOfCourse (Course *pCourse);
-//
+void view_scoreBoardOf_acourse(course *pCurCourse);
 //void inputScoreboardCSV(Scoreboard *& newScr , char *s);
 //void addScoreBoardCSV(Scoreboard *& pScore, char * yearName, char * semesterName, char * courseName);
 void export_student_toCsv(student* pStuRegister, char *IDcourse);
