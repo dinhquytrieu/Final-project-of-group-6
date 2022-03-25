@@ -1,6 +1,7 @@
 #include <iostream>
 #include <string>
 #include <Windows.h>
+#include <conio.h>
 using namespace std;
 
 struct account {
@@ -11,6 +12,11 @@ struct account {
 struct listOfAcc {
 	account acc;
 	listOfAcc* pNext;
+};
+struct cursorLocation
+{
+	int x;
+	int y;
 };
 bool checkWord(string s1, string s2)
 {
@@ -116,7 +122,28 @@ void visibleCursor()
 	Info.dwSize = 20;
 	SetConsoleCursorInfo(GetStdHandle(STD_OUTPUT_HANDLE), &Info);
 }
-void mainMenuConsole()
+void drawBox(int x, int y, int k)
+{
+	gotoXY(x, y); cout << char(201);
+	for (int i = 0; i < k; i++)
+	{
+		cout << char(205);
+	}
+	cout << char(187);
+	gotoXY(x, y + 1); cout << char(186);
+	for (int j = 0; j < k; j++)
+	{
+		cout << " ";
+	}
+	cout << char(186);
+	gotoXY(x, y + 2); cout << char(200);
+	for (int i = 0; i < k; i++)
+	{
+		cout << char(205);
+	}
+	cout << char(188);
+}
+void loginConsole()
 {
 	setConsoleWindow(1000, 600);
 	fixConsoleWindow();
@@ -185,139 +212,161 @@ void mainMenuConsole()
 	textColor(7);
 	x = 40; y = 8;
 	int k = 19;
-	gotoXY(x, y); cout << char(201);
-	for (int i = 0; i < k; i++)
-	{
-		cout << char(205);
-	}
-	cout << char(187);
-	gotoXY(x, y+1); cout << char(186);
-	for (int j = 0; j < k; j++)
-	{
-		cout << " ";
-	}
-	cout << char(186);
-	gotoXY(x, y+2); cout << char(200);
-	for (int i = 0; i < k; i++)
-	{
-		cout << char(205);
-	}
-	cout << char(188);
+	drawBox(x, y, k);
 	gotoXY(x + 7, y + 1); cout << "TEACHER";
 	x = 70; y = 8;
-	gotoXY(x, y); cout << char(201);
-	for (int i = 0; i < k; i++)
-	{
-		cout << char(205);
-	}
-	cout << char(187);
-	gotoXY(x, y + 1); cout << char(186);
-	for (int j = 0; j < k; j++)
-	{
-		cout << " ";
-	}
-	cout << char(186);
-	gotoXY(x, y + 2); cout << char(200);
-	for (int i = 0; i < k; i++)
-	{
-		cout << char(205);
-	}
-	cout << char(188);
+	drawBox(x, y, k);
 	gotoXY(x + 7, y + 1); cout << "STUDENT";
 	x = 39; y = 14;
 	k = 51;
 	gotoXY(x, y - 1); cout << "Username:";
-	gotoXY(x, y); cout << char(201);
-	for (int i = 0; i < k; i++)
-	{
-		cout << char(205);
-	}
-	cout << char(187);
-	gotoXY(x, y + 1); cout << char(186);
-	for (int j = 0; j < k; j++)
-	{
-		cout << " ";
-	}
-	cout << char(186);
-	gotoXY(x, y + 2); cout << char(200);
-	for (int i = 0; i < k; i++)
-	{
-		cout << char(205);
-	}
-	cout << char(188);
+	drawBox(x, y, k);
 	x = 39; y = 19;
 	k = 51;
 	gotoXY(x, y - 1); cout << "Password:";
-	gotoXY(x, y); cout << char(201);
-	for (int i = 0; i < k; i++)
-	{
-		cout << char(205);
-	}
-	cout << char(187);
-	gotoXY(x, y + 1); cout << char(186);
-	for (int j = 0; j < k; j++)
-	{
-		cout << " ";
-	}
-	cout << char(186);
-	gotoXY(x, y + 2); cout << char(200);
-	for (int i = 0; i < k; i++)
-	{
-		cout << char(205);
-	}
-	cout << char(188);
+	drawBox(x, y, k);
 	x = 55; y = 24;
 	k = 19;
-	
-	gotoXY(x, y); cout << char(201);
-	for (int i = 0; i < k; i++)
-	{
-		cout << char(205);
-	}
-	cout << char(187);
-	gotoXY(x, y + 1); cout << char(186);
-	for (int j = 0; j < k; j++)
-	{
-		cout << " ";
-	}
-	cout << char(186);
-	gotoXY(x, y + 2); cout << char(200);
-	for (int i = 0; i < k; i++)
-	{
-		cout << char(205);
-	}
-	cout << char(188);
+	drawBox(x, y, k);
 	textColor(14);
 	gotoXY(x + 8, y + 1); cout << "LOGIN";
-	/*for (int i = 8; i <= 30; i += 4)
-	{
-		gotoXY(60, i);
-		cout << char(201);
-		for (int i = 0; i < 10; i++)
-		{
-			cout << char(205);
-		}
-		cout << char(187);
-		gotoXY(60, i + 1);
-		cout << char(186);
-		for (int j = 0; j < 10; j++)
-		{
-			cout << " ";
-		}
-		cout << char(186);
-		cout << endl;
-		gotoXY(60, i + 2);
-		cout << char(200);
-		for (int i = 0; i < 10; i++)
-		{
-			cout << char(205);
-		}
-		cout << char(188);
-	}*/
+	textColor(7);
+	x = 55; y = 27;
+	k = 19;
+	drawBox(x, y, k);
+	textColor(14);
+	gotoXY(x + 8, y + 1); cout << "QUIT";
 	gotoXY(1, 35);
+
 }
+void deleteArrow(cursorLocation pos)
+{
+	gotoXY(pos.x, pos.y);
+	cout << " ";
+}
+void moveUp(cursorLocation& pos)
+{
+	invisibleCursor();
+	if (pos.y == 15)
+	{
+		pos.x = 54;
+		pos.y = 28;
+	}
+	else if (pos.y == 20)
+	{
+		pos.x = 38;
+		pos.y = 15;
+	}
+	else if (pos.y == 25)
+	{
+		pos.x = 38;
+		pos.y = 20;
+	}
+	else if (pos.y == 28)
+	{
+		pos.x = 54;
+		pos.y = 25;
+	}
+	gotoXY(pos.x, pos.y);
+	cout << char(26);
+}
+void moveDown(cursorLocation& pos)
+{
+	invisibleCursor();
+	 if (pos.y == 15)
+	{
+		pos.x = 38;
+		pos.y = 20;
+	}
+	else if (pos.y == 20)
+	{
+		pos.x = 54;
+		pos.y = 25;
+	}
+	else if (pos.y == 25)
+	{
+		pos.x = 54;
+		pos.y = 28;
+	}
+	else if (pos.y == 28)
+	{
+		pos.x = 38;
+		pos.y = 15;
+	}
+	gotoXY(pos.x, pos.y);
+	cout << char(26);
+}
+void moveLeftRight(bool &func)
+{
+	if (func)
+		func = 0;
+	else func = 1;
+	if (func)
+	{
+		textColor(14);
+		int x = 40, y = 8;
+		int k = 19;
+		drawBox(x, y, k);
+		gotoXY(x + 7, y + 1); cout << "TEACHER";
+		textColor(7);
+		x = 70, y = 8;
+		k = 19;
+		drawBox(x, y, k);
+		gotoXY(x + 7, y + 1); cout << "STUDENT";
+	}
+	else
+	{
+		textColor(14);
+		int x = 70, y = 8;
+		int k = 19;
+		drawBox(x, y, k);
+		gotoXY(x + 7, y + 1); cout << "STUDENT";
+		textColor(7);
+		x = 40, y = 8;
+		k = 19;
+		drawBox(x, y, k);
+		gotoXY(x + 7, y + 1); cout << "TEACHER";
+	}
+}
+
+void loginSystem()
+{
+	bool func = 1;
+	cursorLocation pos;
+	pos.x = 38;
+	pos.y = 15;
+	loginConsole();
+	char ch;
+	do
+	{
+		ch = _getch();
+		if (ch == -32)
+		{
+			ch = _getch();
+			if (ch == 75)
+			{
+				moveLeftRight(func);
+			}
+			else if (ch == 77)
+			{
+				moveLeftRight(func);
+			}
+			else if (ch == 72)
+			{
+				deleteArrow(pos);
+				moveUp(pos);
+			}
+			else if (ch == 80)
+			{
+				deleteArrow(pos);
+				moveDown(pos);
+			}
+		}
+
+	} while (ch != 27);
+}
+
 int main()
 {
-	mainMenuConsole();
-
+	loginSystem();
 }
