@@ -8,7 +8,7 @@ using namespace std;
 void createNewYear(Year* &pYear, string* yearName, int add) {
 	Year* pCur = pYear;
 	while (pCur != nullptr) {
-		if (pCur -> YearName == yearName)) {
+		if (pCur -> nameYear == yearName)) {
 			cout << "Failed to create a new year!!\n";
 			cout << "The year you are about to create has already existed!!\n";
 			system("pause");
@@ -25,29 +25,29 @@ void createNewYear(Year* &pYear, string* yearName, int add) {
 	pCur = pYear;
 	if (pYear == nullptr) {
 		pYear = new Year;
-		pYear -> YearName = yearName;
+		pYear -> nameYear = yearName;
 		if (add)
-			fout << pYear -> YearName;
+			fout << pYear -> nameYear;
 	}
 	else {
 		while (pCur -> yearNext != nullptr) {
 			if (add)
-				fout << pCur -> YearName << '\n';
+				fout << pCur -> nameYear << '\n';
 			pCur = pCur -> yearNext;
 		}
 		if (add)
-			fout << pCur -> YearName << '\n';
+			fout << pCur -> nameYear << '\n';
 		pCur -> yearNext = new Year;
 		pCur = pCur -> yearNext;
-		pCur -> YearName = yearName;
+		pCur -> nameYear = yearName;
 		if (add)
-			fout << pCur -> YearName;
+			fout << pCur -> nameYear;
 	}
 	if (add)
 		fout.close();
 
-	string dirD = "C:\\GitHub\\Final-project-of-group-6\\datafile\\";
-	string c = "";
+	char dirD[] = "C:\\GitHub\\Final-project-of-group-6\\datafile\\";
+	string c[500] = "";
 	strcat(c, "mkdir ");
 	strcat(c, dirD);
 	strcat(c, yearName);
