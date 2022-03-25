@@ -8,14 +8,14 @@ using namespace std;
 void createNewYear(Year* &pYear, string* yearName, int add) {
 	Year* pCur = pYear;
 	while (pCur != nullptr) {
-		if (pCur -> YearName == yearName)) {
+		if (pCur -> nameYear == yearName)) {
 			cout << "Failed to create a new year!!\n";
 			cout << "The year you are about to create has already existed!!\n";
 			system("pause");
 			system("cls");
 			return;
 		}
-		pCur = pCur -> yearNext;
+		pCur = pCur -> pYearNext;
 	}
 
 	ofstream fout;
@@ -25,29 +25,29 @@ void createNewYear(Year* &pYear, string* yearName, int add) {
 	pCur = pYear;
 	if (pYear == nullptr) {
 		pYear = new Year;
-		pYear -> YearName = yearName;
+		pYear -> nameYear = yearName;
 		if (add)
-			fout << pYear -> YearName;
+			fout << pYear -> nameYear;
 	}
 	else {
-		while (pCur -> yearNext != nullptr) {
+		while (pCur -> pYearNext != nullptr) {
 			if (add)
-				fout << pCur -> YearName << '\n';
-			pCur = pCur -> yearNext;
+				fout << pCur -> nameYear << '\n';
+			pCur = pCur -> pYearNext;
 		}
 		if (add)
-			fout << pCur -> YearName << '\n';
-		pCur -> yearNext = new Year;
-		pCur = pCur -> yearNext;
-		pCur -> YearName = yearName;
+			fout << pCur -> nameYear << '\n';
+		pCur -> pYearNext = new Year;
+		pCur = pCur -> pYearNext;
+		pCur -> nameYear = yearName;
 		if (add)
-			fout << pCur -> YearName;
+			fout << pCur -> nameYear;
 	}
 	if (add)
 		fout.close();
 
-	string dirD = "C:\\GitHub\\Final-project-of-group-6\\datafile\\";
-	string c = "";
+	char dirD[] = "C:\\GitHub\\Final-project-of-group-6\\datafile\\";
+	string c[500] = "";
 	strcat(c, "mkdir ");
 	strcat(c, dirD);
 	strcat(c, yearName);
