@@ -3,7 +3,8 @@
 #include "addSemester.cpp"
 #include "addCourse.cpp"
 #include "delete_course.cpp"
-
+#include "View_list_of_Courses.cpp"
+#include "enroll_course.cpp"
 
 void load_data(semester *&pSemHead, course *&pcourseHead, ifstream &filein){
     filein.open("C:\\GitHub\\Final-project-of-group-6\\datafile\\time_ofSemester.txt", ios_base::in);
@@ -134,12 +135,24 @@ void output_descriptionCourse(course *pcourHead){
     }
 }
 
-void menu(semester *&pSemHead, course *&pcourseHead, ofstream &fileout){
+void output_studentID(student *pstudent){
+    if(pstudent == nullptr) return;
+    student *pcur = pstudent;
+    while(pcur != nullptr){
+        cout << pcur->id << endl;
+        pcur = pcur->pStudentNext;
+    }
+}
+
+void menu(semester *&pSemHead, course *&pcourseHead, ofstream &fileout, student *&pstudent){
     while(true){
         system("cls");
         cout << "1. add courses" << endl;
         cout << "2. add courses'description: " << endl;
         cout << "3. output" << endl;
+        cout << "4. Enroll courses: " << endl;
+        cout << "5. add student: " << endl;
+        cout << "6. cout list students: " << endl;
 
 
         cout << "0. Exit" << endl;
@@ -154,26 +167,65 @@ void menu(semester *&pSemHead, course *&pcourseHead, ofstream &fileout){
             describe_course(pcourseHead, fileout);
         }
         else if(choice == 3) output_descriptionCourse(pcourseHead);
+        else if(choice == 4){
+            system("cls");
+            cout << "Enter student'id: ";
+            string id;
+            cin.ignore();
+            getline(cin, id);
+            cout << "\nWhich course do you want to enroll: ";
+            string nameCourse;
+            cin.ignore();
+            getline(cin, nameCourse);
+            enrollCourse(pstudent, id, nameCourse, pcourseHead, fileout);
+        }
+        else if( choice == 5){
+            student *pnew = new student;
+            cout << "\nInput student'ID: ";
+            cin.ignore();
+            getline(cin, pnew->id);
+            if(pstudent == nullptr){
+                pstudent = pnew;
+                pnew->pStudentNext = nullptr;
+            }
+            else{
+                student *pcur = pstudent;
+                while(pcur->pStudentNext != nullptr){
+                    pcur = pcur->pStudentNext;
+                }
 
+                pcur->pStudentNext = pnew;
+                pnew->pStudentNext = nullptr;
+            }
+        }
+
+        else if(choice == 6){
+            output_studentID(pstudent);
+            system("pause");
+        } 
     }
 }
 
 int main(){
     semester *pSemHead = nullptr;
     course *pcourseHead = nullptr;
+    student *pstudent = nullptr;
     ifstream filein;
     ofstream fileout;
 
    // register_course(pSemHead, fileout);
    // add_semester(pSemHead, fileout);
-    // menu(pSemHead, pcourseHead, fileout);
+    loadData3(pcourseHead, filein);
+
+     menu(pSemHead, pcourseHead, fileout, pstudent);
  //  load_data(pSemHead, pcourseHead, filein);
   // loadData2(pSemHead, filein);
   // output(pSemHead);
 
-    loadData3(pcourseHead, filein);
-    output_descriptionCourse(pcourseHead);
-    deleteCourse(pcourseHead, "ps10003");
+  //  viewListOfCourse(pcourseHead);
+    // output_descriptionCourse(pcourseHead);
+    // deleteCourse(pcourseHead, "cs10002", fileout);
+
 
     return 0;
 }
