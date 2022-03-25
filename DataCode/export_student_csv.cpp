@@ -5,9 +5,8 @@
 #include <string.h>
 
 void export_student_toCsv(student* pStuRegister, char *IDcourse) {
-	char csvfile[] = "C:\\Github\\Final-project-of-group-6\\datafile\\csvfile\\csv_studentincourse\\csv_studentin_";
+	char csvfile[] = "C:\\Github\\Final-project-of-group-6\\datafile\\csvfile\\csv_studentincourse\\";
 	char csv[505];
-	strcat(csv, csvfile);
 	strcat(csv, IDcourse);
 	strcat(csv, ".csv");
 	ofstream fileout;
@@ -23,7 +22,7 @@ void export_student_toCsv(student* pStuRegister, char *IDcourse) {
 		}
 		cout << "...Done! The list of students has been exported." << endl;
 		cout << "If you want to find the location, please open " << endl;
-		cout << "Final-project-of-group-6\\datafile\\csvfile\\csv_studentincourse\\csv_studentin_" << IDcourse << ".csv\n\n";
+		cout << "Final-project-of-group-6\\datafile\\csvfile\\csv_studentincourse" << IDcourse << ".csv\n\n";
 		system("pause");
 		system("cls");
 	}
