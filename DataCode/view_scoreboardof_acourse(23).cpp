@@ -17,8 +17,8 @@ void view_scoreBoardOf_acourse(course *pCurCourse) {
     cout << "|";
     cout << setw(30) << left << "Bonus's Mark";
     cout << "|";
-    cout << setw(30) << left << "Total's Mark |" << '\n';
-    cout << '\n';
+    cout << setw(30) << left << "Total's Mark |" << endl;
+    cout << endl;
 
     while (cur!=NULL) {
         cout << setw(30) << left << cur->stuHead->id;
