@@ -15,7 +15,7 @@ void createNewYear(Year* &pYear, string* yearName, int add) {
 			system("cls");
 			return;
 		}
-		pCur = pCur -> yearNext;
+		pCur = pCur -> pYearNext;
 	}
 
 	ofstream fout;
@@ -30,15 +30,15 @@ void createNewYear(Year* &pYear, string* yearName, int add) {
 			fout << pYear -> nameYear;
 	}
 	else {
-		while (pCur -> yearNext != nullptr) {
+		while (pCur -> pYearNext != nullptr) {
 			if (add)
 				fout << pCur -> nameYear << '\n';
-			pCur = pCur -> yearNext;
+			pCur = pCur -> pYearNext;
 		}
 		if (add)
 			fout << pCur -> nameYear << '\n';
-		pCur -> yearNext = new Year;
-		pCur = pCur -> yearNext;
+		pCur -> pYearNext = new Year;
+		pCur = pCur -> pYearNext;
 		pCur -> nameYear = yearName;
 		if (add)
 			fout << pCur -> nameYear;
