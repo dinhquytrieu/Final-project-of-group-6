@@ -6,10 +6,10 @@
 #include "Course.h"
 
 using namespace std;
-void updateCourse(course*& pCourse, string nameYear, string nameSemester, string IDcourse) {
+void updateCourse(course*& pCourse, string nameYear, string nameSemester, string courseID) {
     course* pCur = pCourse;
-    while (pCur && strcmp(pCur->id, courseID) != 0) {
-        pCur = pCur->courseNext;
+    while (pCur && pCur->IDcourse !=courseID) ) {
+        pCur = pCur->pCourseNext;
     }
     
     int x;
@@ -42,21 +42,21 @@ void updateCourse(course*& pCourse, string nameYear, string nameSemester, string
     if (x == 1) {
         cout << "New course's ID: ";
         cin.ignore(1001, '\n');
-        cin.get(pCur->id, 101, '\n');
+        cin.get(pCur->IDcourse, 101, '\n');
     }
     else if (x == 2) {
         cout << "New course's name: ";
         cin.ignore(1001, '\n');
-        cin.get(pCur->name, 101, '\n');
+        cin.get(pCur->NAMEcourse, 101, '\n');
     }
     else if (x == 3) {
         cout << "New lecturer's name: ";
         cin.ignore(1001, '\n');
-        cin.get(pCur->lecturerName, 101, '\n');
+        cin.get(pCur->teacherName, 101, '\n');
     }
     else if (x == 4) {
         cout << "New number of credits: ";
-        cin >> pCur->numberOfCredits;
+        cin >> pCur->sumCredit;
     }
     else if (x == 5) {
         cout << "New max students: ";
@@ -72,7 +72,7 @@ void updateCourse(course*& pCourse, string nameYear, string nameSemester, string
     system("pause");
     system("cls");
 
-    char dirD[] = "C:\\Github\\CS162FinalProject\\Data\\";
+    char dirD[] = "C:\\GitHub\\Final-project-of-group-6\\datafile\\";
     char c[500] = "";
     strcat(c, dirD);
     strcat(c, yearName);
@@ -84,14 +84,14 @@ void updateCourse(course*& pCourse, string nameYear, string nameSemester, string
 
     pCur = pCourse;
     while (pCur != nullptr) {
-        fout << pCur -> id << '\n';
-        fout << pCur -> name << '\n';
-        fout << pCur -> lecturerName << '\n';
-        fout << pCur -> numberOfCredits << '\n';
+        fout << pCur ->IDcourse<< '\n';
+        fout << pCur ->NAMEcourse << '\n';
+        fout << pCur ->teacherName << '\n';
+        fout << pCur -> sumCredit << '\n';
         fout << pCur -> maxStudent << '\n';
         fout << pCur -> date.d1 << '\n' << pCur->date.s1 << '\n';
 	    fout << pCur -> date.d2 << '\n' << pCur->date.s2 << '\n';
-    	pCur = pCur -> courseNext;
+    	pCur = pCur -> pCourseNext;
 	}
 	fout.close();
 }
