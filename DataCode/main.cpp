@@ -56,19 +56,19 @@ void loadData3(course *&pcourHead, ifstream &filein){
         course *courseNew = new course;
         filein.ignore();
         getline(filein, courseNew->IDcourse);
-        cout << courseNew->IDcourse;
+        // cout << courseNew->IDcourse;
       
 
      
         getline(filein, courseNew->NAMEcourse);
-        cout << courseNew->NAMEcourse;
+        // cout << courseNew->NAMEcourse;
 
         getline(filein, courseNew->teacherName);
-        cout << courseNew->teacherName;
+        // cout << courseNew->teacherName;
 
 
         filein >> courseNew->sumCredit;
-                cout << courseNew->sumCredit;
+                // cout << courseNew->sumCredit;
 
         filein >> courseNew->maxStudent;
             //    cout << courseNew->maxStudent;
@@ -144,7 +144,7 @@ void output_studentID(student *pstudent){
     }
 }
 
-void menu(semester *&pSemHead, course *&pcourseHead, ofstream &fileout, student *&pstudent){
+void menu(semester *&pSemHead, course *&pcourseHead, ofstream &fileout, student *&pstudent, ofstream &fout){
     while(true){
         system("cls");
         cout << "1. add courses" << endl;
@@ -153,6 +153,7 @@ void menu(semester *&pSemHead, course *&pcourseHead, ofstream &fileout, student 
         cout << "4. Enroll courses: " << endl;
         cout << "5. add student: " << endl;
         cout << "6. cout list students: " << endl;
+        cout << "7. Output description courses: " << endl;
 
 
         cout << "0. Exit" << endl;
@@ -177,7 +178,7 @@ void menu(semester *&pSemHead, course *&pcourseHead, ofstream &fileout, student 
             string nameCourse;
             cin.ignore();
             getline(cin, nameCourse);
-            enrollCourse(pstudent, id, nameCourse, pcourseHead, fileout);
+            enrollCourse(pstudent, id, nameCourse, pcourseHead, fout);
         }
         else if( choice == 5){
             student *pnew = new student;
@@ -203,6 +204,11 @@ void menu(semester *&pSemHead, course *&pcourseHead, ofstream &fileout, student 
             output_studentID(pstudent);
             system("pause");
         } 
+        else if(choice == 7){
+            output_descriptionCourse(pcourseHead);
+            system("pause");
+        }      
+
     }
 }
 
@@ -212,18 +218,18 @@ int main(){
     student *pstudent = nullptr;
     ifstream filein;
     ofstream fileout;
+    ofstream fout;
 
    // register_course(pSemHead, fileout);
    // add_semester(pSemHead, fileout);
     loadData3(pcourseHead, filein);
 
-     menu(pSemHead, pcourseHead, fileout, pstudent);
+    menu(pSemHead, pcourseHead, fileout, pstudent, fout);
  //  load_data(pSemHead, pcourseHead, filein);
   // loadData2(pSemHead, filein);
   // output(pSemHead);
 
   //  viewListOfCourse(pcourseHead);
-    // output_descriptionCourse(pcourseHead);
     // deleteCourse(pcourseHead, "cs10002", fileout);
 
 
