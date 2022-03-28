@@ -63,10 +63,16 @@ void updateCourse(course*& pCourse, string nameYear, string nameSemester, string
         cin >> pCur->maxStudent;
     }
     else {
-        cout << "New day 1 and shift 1: ";
-        cin >> pCur->date.d1 >> pCur->date.s1;
-        cout << "New day 2 and shift 2: ";
-        cin >> pCur->date.d2 >> pCur->date.s2;
+        cout << "New day 1 and time: ";
+	cin.ignore()
+	getline(cin, pCur->performDate.d1);
+	cout << "Time of day 1(hour-minute): "<<endl;
+        cin >> pCur->performDate.TIME1.hour >> pCur->performDate.TIME1.min;
+        cout << "New day 2 and time: ";
+	cin.ignore()
+	getline(cin, pCur->performDate.d2);
+	cout << "Time of day 2(hour-minute): "<<endl;
+        cin >> pCur->performDate.TIME2.hour >> pCur->performDate.TIME2.min;
     }
     cout << "Update successfully!!\n";
     system("pause");
@@ -80,18 +86,23 @@ void updateCourse(course*& pCourse, string nameYear, string nameSemester, string
     strcat(c, semesterName);
     strcat(c, "\\Course.txt");
 
-    ofstream fout(c);
+    ofstream fileout(c);
 
     pCur = pCourse;
     while (pCur != nullptr) {
-        fout << pCur ->IDcourse<< '\n';
-        fout << pCur ->NAMEcourse << '\n';
-        fout << pCur ->teacherName << '\n';
-        fout << pCur -> sumCredit << '\n';
-        fout << pCur -> maxStudent << '\n';
-        fout << pCur -> date.d1 << '\n' << pCur->date.s1 << '\n';
-	    fout << pCur -> date.d2 << '\n' << pCur->date.s2 << '\n';
+        fileout << pCur ->IDcourse<< '\n';
+        fileout << pCur ->NAMEcourse << '\n';
+        fileout << pCur ->teacherName << '\n';
+        fileout << pCur -> sumCredit << '\n';
+        fileout << pCur -> maxStudent << '\n';
+        fileout << pCur ->performDate.d1 << endl;
+	fileout << pCur->performDate.TIME1.hour << endl;
+    	fileout << pCur->performDate.TIME1.min << endl;
+    	fileout << pCur->performDate.d2<< endl;
+    	fileout << pCur->performDate.TIME2.hour << endl;
+    	fileout << pCur->performDate.TIME2.min;
+    
     	pCur = pCur -> pCourseNext;
 	}
-	fout.close();
+	fileout.close();
 }
