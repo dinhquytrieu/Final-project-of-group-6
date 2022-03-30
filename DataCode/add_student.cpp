@@ -10,10 +10,12 @@ void input_student(student *&new_student) {
 	
 	cout << "Please input the information of student!" << endl;
 	cout << "Enter the student's name: ";
+	cin.ignore();
 	getline(cin, new_student -> name);
 	
 	cout << "Enter the student's ID number ";
-	getline(cin, new_student -> id)
+	cin.ignore();
+	getline(cin, new_student -> id);
 
 	cout << "Enter the student's date of birth.\n";
 	cout << "Enter year: ";
