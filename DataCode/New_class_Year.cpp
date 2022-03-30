@@ -20,7 +20,7 @@ void createNewYear(Year* &pYear, string yearName, int add) {
 
 	ofstream fout;
 	if (add)
-		fout.open("C:\\GitHub\\Final-project-of-group-6\\datafile\\Year.txt");
+		fout.open("C:\\GitHub\\Final-project-of-group-6\\datafile\\Year.txt", ios_base::app);
 
 	pCur = pYear;
 	if (pYear == nullptr) {
