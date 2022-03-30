@@ -5,7 +5,7 @@
 
 using namespace std;
 
-void createNewYear(Year* &pYear, string* yearName, int add) {
+void createNewYear(Year* &pYear, string yearName, int add) {
 	Year* pCur = pYear;
 	while (pCur != nullptr) {
 		if (pCur -> nameYear == yearName)) {
@@ -47,7 +47,7 @@ void createNewYear(Year* &pYear, string* yearName, int add) {
 		fout.close();
 
 	char dirD[] = "C:\\GitHub\\Final-project-of-group-6\\datafile\\";
-	string c[500] = "";
+	char c[500] = "";
 	strcat(c, "mkdir ");
 	strcat(c, dirD);
 	strcat(c, yearName);
