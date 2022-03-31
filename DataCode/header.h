@@ -8,6 +8,7 @@
 #include <cstring>
 using namespace std;
 
+struct Time;
 struct date;
 struct student;
 struct CLASS;
@@ -17,7 +18,7 @@ struct scoreboard;
 struct semester;
 struct year;
 
-struct time{
+struct Time{
     int hour, min;
 };
 
@@ -47,7 +48,7 @@ struct CLASS{
     CLASS *pClassNext = nullptr;
 };
 
-struct Year{
+struct year{
     string nameYear;
     CLASS *pClassHead = nullptr;
     semester *psemHead = nullptr;
@@ -67,8 +68,8 @@ struct perform{
     string d1;
     string d2;
     //time
-    time TIME1;
-    time TIME2;
+    Time TIME1;
+    Time TIME2;
     
 };
 
