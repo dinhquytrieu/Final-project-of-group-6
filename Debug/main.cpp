@@ -461,7 +461,6 @@ void addNewCourse(Course*& pCourse, char* semesterName, char* yearName, Course *
    	Course * pCur = pCourse;
    	while (pCur != nullptr) {
    		if (strcmp(pCur -> id, newCourse -> id) == 0) {
-			cout << "Failed to add a new course!!\n";
 			cout << "The course you are about to add has already existed!!\n";
 			system("pause");
 			system("cls");
@@ -469,7 +468,7 @@ void addNewCourse(Course*& pCourse, char* semesterName, char* yearName, Course *
    		}
    		pCur = pCur -> courseNext;
    	}
-    char dirD[] = "C:\\Github\\CS162FinalProject\\Data\\";
+    char dirD[] = "C:\\Github\\Final-project-of-group-6\\DataProject\\";
     char c[505] = "";
     strcat(c, dirD);
     strcat(c, yearName);
@@ -567,7 +566,7 @@ void inputScoreboardCSV(Scoreboard *& newScr , char *s) {
 
 
 void addScoreBoardCSV(Scoreboard *& pScore, char* yearName, char* semesterName, char* courseName) {
-	char dirOut[] = { "C:\\Github\\CS162FinalProject\\Data\\" };
+	char dirOut[] = { "C:\\Github\\Final-project-of-group-6\\DataProject\\" };
 
 	
 	char dc[201] = "";
@@ -586,7 +585,7 @@ void addScoreBoardCSV(Scoreboard *& pScore, char* yearName, char* semesterName, 
 
 	ofstream fOut(ddd);
 
-	char dirIn[] = { "C:\\Github\\CS162FinalProject\\Data\\Scoreboard_csv\\" };
+	char dirIn[] = { "C:\\Github\\Final-project-of-group-6\\DataProject\\Scoreboard_csv\\" };
 	char dd[505] = "";
 	strcat(dd, dirIn);
 	strcat(dd, courseName);
@@ -625,16 +624,17 @@ void addScoreBoardCSV(Scoreboard *& pScore, char* yearName, char* semesterName, 
 	}
 	fOut.close();
 	delete[] s;
-}void inputStudent(Student *&newStu) {
+}
+void inputStudent(Student *&newStu) {
 	cin.get();
 
 	cout << "Input the student's ID: ";
-	newStu -> studentID = new char[51];
-	cin.getline(newStu -> studentID, 50);
+	newStu -> studentID = new char[69];
+	cin.getline(newStu -> studentID, 68);
 
 	cout << "Input the student's name: ";
-	newStu -> Name = new char[51];
-	cin.getline(newStu -> Name, 50);
+	newStu -> Name = new char[69];
+	cin.getline(newStu -> Name, 68);
 
 	cout << "Input the student's date of birth.\n";
 	cout << "Year? ";
@@ -655,7 +655,7 @@ void addStudent(Student*& pStudent, char* yearName, char* className, Student *& 
 	Student * cur = pStudent;
 	while (cur != nullptr) {
 		if  (strcmp(cur -> studentID, newStu -> studentID) == 0) {
-			cout << "Failed to add a new student!!\n";
+			
 			cout << "The student you are about to add has already existed!!\n";
 			system("pause");
 			system("cls");
@@ -663,7 +663,7 @@ void addStudent(Student*& pStudent, char* yearName, char* className, Student *& 
 		}
 		cur = cur -> studentNext;
 	}
-	char dirD[] = { "C:\\Github\\CS162FinalProject\\Data\\" };
+	char dirD[] = { "C:\\Github\\Final-project-of-group-6\\DataProject\\" };
 	char d[505] = "";
 	strcat(d, dirD);
 	strcat(d, yearName);
@@ -748,7 +748,7 @@ void inputStudentCSV(Student *&newStu, char *s) {
 }
 
 void addStudentCSV(Student*& pStudent, char* CSV_Student_File, char* yearName, char* className, int add) {
-	char dirOut[] = { "C:\\Github\\CS162FinalProject\\Data\\" };
+	char dirOut[] = { "C:\\Github\\Final-project-of-group-6\\DataProject\\" };
 	char d[505] = "";
 	strcat(d, dirOut);
 	strcat(d, yearName);
@@ -759,7 +759,7 @@ void addStudentCSV(Student*& pStudent, char* CSV_Student_File, char* yearName, c
 
 	ofstream fOut(d);
 
-	char dirIn[] = { "C:\\Github\\CS162FinalProject\\Data\\Class_csv\\" };
+	char dirIn[] = { "C:\\Github\\Final-project-of-group-6\\DataProject\\Class_csv\\" };
 	char dd[505] = "";
 	strcat(dd, dirIn);
 	strcat(dd, CSV_Student_File);
@@ -820,7 +820,7 @@ void courseRegistration(Semester *& pSemester, Semester * totSemester, char * ye
 	system("pause");
 	system("cls");
 
-	char dirD[] = "C:\\Github\\CS162FinalProject\\Data\\";
+	char dirD[] = "C:\\Github\\Final-project-of-group-6\\DataProject\\";
 	char c[500] = "";
 	strcat(c, dirD);
 	strcat(c, yearName);
@@ -843,9 +843,9 @@ void courseRegistration(Semester *& pSemester, Semester * totSemester, char * ye
 void changePassword(int t, char * userName) {
 	ifstream fIn;
 	if (t == 1)
-		fIn.open("C:\\Github\\CS162FinalProject\\Data\\Account_staff.txt");
+		fIn.open("C:\\Github\\Final-project-of-group-6\\DataProject\\Account_staff.txt");
 	else if (t == 2)
-		fIn.open("C:\\Github\\CS162FinalProject\\Data\\Account_student.txt");
+		fIn.open("C:\\Github\\Final-project-of-group-6\\DataProject\\Account_student.txt");
 	char user[101], pass[101];
 	while (fIn >> user && fIn >> pass) {
 		if (strcmp(user, userName) == 0) {
@@ -871,12 +871,12 @@ void changePassword(int t, char * userName) {
 					fIn.close();
 					ofstream fOut;
 					if (t == 1) {
-						fIn.open("C:\\Github\\CS162FinalProject\\Data\\Account_staff.txt");
-						fOut.open("C:\\Github\\CS162FinalProject\\Data\\tmp.txt");
+						fIn.open("C:\\Github\\Final-project-of-group-6\\DataProject\\Account_staff.txt");
+						fOut.open("C:\\Github\\Final-project-of-group-6\\DataProject\\tmp.txt");
 					}
 					else if (t == 2) {
-						fIn.open("C:\\Github\\CS162FinalProject\\Data\\Account_student.txt");
-						fOut.open("C:\\Github\\CS162FinalProject\\Data\\tmp.txt");					
+						fIn.open("C:\\Github\\Final-project-of-group-6\\DataProject\\Account_student.txt");
+						fOut.open("C:\\Github\\Final-project-of-group-6\\DataProject\\tmp.txt");					
 					}	
 					char userOut[101], passOut[101];
 					while (fIn >> userOut && fIn >> passOut) {
@@ -889,12 +889,12 @@ void changePassword(int t, char * userName) {
 					fIn.close();
 					fOut.close();
 					if (t == 1) {
-						system("del C:\\Github\\CS162FinalProject\\Data\\Account_staff.txt");
-						system("ren C:\\Github\\CS162FinalProject\\Data\\tmp.txt Account_staff.txt");
+						system("del C:\\Github\\Final-project-of-group-6\\DataProject\\Account_staff.txt");
+						system("ren C:\\Github\\Final-project-of-group-6\\DataProject\\tmp.txt Account_staff.txt");
 					}
 					else if (t == 2) {
-						system("del C:\\Github\\CS162FinalProject\\Data\\Account_student.txt");
-						system("ren C:\\Github\\CS162FinalProject\\Data\\tmp.txt Account_student.txt");
+						system("del C:\\Github\\Final-project-of-group-6\\DataProject\\Account_student.txt");
+						system("ren C:\\Github\\Final-project-of-group-6\\DataProject\\tmp.txt Account_student.txt");
 					}
 					system("cls");
 					cout << "Password changed successfully\n\n";
@@ -926,7 +926,7 @@ void deleteCourse(Year * pYear, Course*& pCourse, char* yearName, char* semester
             delete pDel;
         }
     }
-	char dirD[] = "C:\\Github\\CS162FinalProject\\Data\\";
+	char dirD[] = "C:\\Github\\Final-project-of-group-6\\DataProject\\";
     char c[500] = "";
     strcat(c, dirD);
     strcat(c, yearName);
@@ -952,7 +952,7 @@ void deleteCourse(Year * pYear, Course*& pCourse, char* yearName, char* semester
 
 
 void exportStudentToCsv(Student* pStuInCourse, char *courseID) {
-	char dirD[] = "C:\\Github\\CS162FinalProject\\Data\\Student_csv\\";
+	char dirD[] = "C:\\Github\\Final-project-of-group-6\\DataProject\\Student_csv\\";
 	char c[505];
 	strcat(c, dirD);
 	strcat(c, courseID);
@@ -975,10 +975,10 @@ void exportStudentToCsv(Student* pStuInCourse, char *courseID) {
 }
 
 void loadData(Year *& pYear) {
-	ifstream yearIn("C:\\Github\\CS162FinalProject\\Data\\Year.txt");
-	char *yearStr = new char[51];
+	ifstream yearIn("C:\\Github\\Final-project-of-group-6\\DataProject\\Year.txt");
+	char *yearStr = new char[69];
 	while (yearIn >> yearStr) { // Load Years
-		char *yearName = new char[51];
+		char *yearName = new char[69];
 		strcpy(yearName, yearStr);
 		createNewYear(pYear, yearName, 0);
 
@@ -987,14 +987,14 @@ void loadData(Year *& pYear) {
 			curYear = curYear -> yearNext;
 		}
 
-		char dir_c[501] = "C:\\Github\\CS162FinalProject\\Data\\";
+		char dir_c[501] = "C:\\Github\\Final-project-of-group-6\\DataProject\\";
 		strcat(dir_c, yearName);
 		strcat(dir_c, "\\Class.txt");
 
  		ifstream classIn(dir_c);
-		char *classStr = new char[51];
+		char *classStr = new char[69];
  		while (classIn >> classStr) { // Load Classes                                
- 			char *className = new char[51];
+ 			char *className = new char[69];
  			strcpy(className, classStr);
  			createNewClass(curYear -> pClass, yearName, className, 0);
 		
@@ -1002,7 +1002,7 @@ void loadData(Year *& pYear) {
 		    while(strcmp(curClass -> ClassName, className) != 0)
 		    	curClass = curClass -> classNext;
 					    	    
-			char dir[501] = "C:\\Github\\CS162FinalProject\\Data\\";
+			char dir[501] = "C:\\Github\\Final-project-of-group-6\\DataProject\\";
 			strcat(dir, yearName);
 			strcat(dir, "\\");
 			strcat(dir, className);
@@ -1069,7 +1069,7 @@ void loadData(Year *& pYear) {
  		}
  		classIn.close();
 
-		char dir_s[501] = "C:\\Github\\CS162FinalProject\\Data\\";
+		char dir_s[501] = "C:\\Github\\Final-project-of-group-6\\DataProject\\";
 		strcat(dir_s, yearName);
 		strcat(dir_s, "\\Semester\\Semester.txt");
 
@@ -1077,10 +1077,10 @@ void loadData(Year *& pYear) {
 		char* semesterStr = new char[501];
 		while (semesterIn.getline(semesterStr, 500)) { // Load Semester
 			istringstream iss(semesterStr);
-			char * semesterName = new char[51];
+			char * semesterName = new char[69];
 			Date startDate, endDate;
 			for (int _ = 0; _ < 7; _++) {				
-				char * tmp = new char[51];
+				char * tmp = new char[69];
 				iss >> tmp;				
 				if (_ == 0)
 					semesterName = tmp;
@@ -1104,7 +1104,7 @@ void loadData(Year *& pYear) {
 				curSemester = curSemester -> semesterNext;
 
 			for (int _ = 7; _ < 13; _++) {
-				char * tmp = new char[51];
+				char * tmp = new char[69];
 				iss >> tmp;				
 				if (_ == 7)
 					curSemester -> startReg.year = atoi(tmp);
@@ -1120,7 +1120,7 @@ void loadData(Year *& pYear) {
 					curSemester -> endReg.day = atoi(tmp);	
 			}
 
-			char dir[501] = "C:\\Github\\CS162FinalProject\\Data\\";
+			char dir[501] = "C:\\Github\\Final-project-of-group-6\\DataProject\\";
 			strcat(dir, yearName);
 			strcat(dir, "\\Semester\\");
 			strcat(dir, semesterName);
@@ -1167,7 +1167,7 @@ void loadData(Year *& pYear) {
 						curCourse = curCourse -> courseNext;
 	
 					// Load Students to current Course					
-					char dir_stu[501] = "C:\\Github\\CS162FinalProject\\Data\\";
+					char dir_stu[501] = "C:\\Github\\Final-project-of-group-6\\DataProject\\";
 					strcat(dir_stu, yearName);
 					strcat(dir_stu, "\\Semester\\");
 					strcat(dir_stu, semesterName);
@@ -1196,7 +1196,7 @@ void loadData(Year *& pYear) {
 					fIn.close();
 
 					// Load Scoreboard of current Course
-					char dir_sco[501] = "C:\\Github\\CS162FinalProject\\Data\\";
+					char dir_sco[501] = "C:\\Github\\Final-project-of-group-6\\DataProject\\";
 					strcat(dir_sco, yearName);
 					strcat(dir_sco, "\\Semester\\");
 					strcat(dir_sco, semesterName);
@@ -1236,9 +1236,9 @@ bool LogIn(int t, char *& UN){
 	bool StillLog = true;
 
 	if (t == 1)
-		strcat(ad, "C:\\Github\\CS162FinalProject\\Data\\Account_staff.txt");
+		strcat(ad, "C:\\Github\\Final-project-of-group-6\\DataProject\\Account_admin.txt");
 	else if (t == 2)
-		strcat(ad, "C:\\Github\\CS162FinalProject\\Data\\Account_student.txt");			
+		strcat(ad, "C:\\Github\\Final-project-of-group-6\\DataProject\\Account_student.txt");			
 	
 	while(!login || StillLog) {
 		cout << "Do you want to log in as a " << ((t == 1) ? "Staff" : "Student") << "?\n\n";
@@ -1304,7 +1304,7 @@ void createNewClass(Class*& pClass, char* yearName, char* className, int add) {
 		cur = cur -> classNext;
 	}
 
-	char dirD[] = "C:\\Github\\CS162FinalProject\\Data\\";
+	char dirD[] = "C:\\Github\\Final-project-of-group-6\\DataProject\\";
 	char c[500] = "";
 	strcat(c, dirD);
 	strcat(c, yearName);
@@ -1365,7 +1365,7 @@ void createNewYear(Year*& pYear, char* yearName, int add) {
 
 	ofstream fout;
 	if (add)
-		fout.open("C:\\GitHub\\CS162FinalProject\\Data\\Year.txt");
+		fout.open("C:\\Github\\Final-project-of-group-6\\DataProject\\Year.txt");
 
 	pCur = pYear;
 	if (pYear == nullptr) {
@@ -1391,7 +1391,7 @@ void createNewYear(Year*& pYear, char* yearName, int add) {
 	if (add)
 		fout.close();
 
-	char dirD[] = "C:\\GitHub\\CS162FinalProject\\Data\\";
+	char dirD[] = "C:\\Github\\Final-project-of-group-6\\DataProject\\";
 	char c[500] = "";
 	strcat(c, "mkdir ");
 	strcat(c, dirD);
@@ -1414,7 +1414,7 @@ void createNewSemester(Semester*& pSemester, char* semesterName, char* yearName,
 		cur = cur -> semesterNext;
 	}
 
-	char dirD[] = "C:\\Github\\CS162FinalProject\\Data\\";
+	char dirD[] = "C:\\Github\\Final-project-of-group-6\\DataProject\\";
 	char c[500] = "";
 	strcat(c, dirD);
 	strcat(c, yearName);
@@ -1522,7 +1522,7 @@ void removeCourseInEnrollList(Course*& pCourse, Student*& pStudent, char *yearNa
 		delete pDel;
 	}
 
-	char dir[] = "C:\\Github\\CS162FinalProject\\Data\\";
+	char dir[] = "C:\\Github\\Final-project-of-group-6\\DataProject\\";
 	char c[505] = "";
 	strcat(c, dir);
 	strcat(c, yearName);
@@ -1574,9 +1574,9 @@ int yearScreen() {
 		cout << "0: Logout\n";
 		cout << "1: Change password\n\n";
 		cout << "2: Create a new school year\n\n";
-		char *s = new char[51];
+		char *s = new char[69];
 		int cnt = 3;
-		ifstream fIn("C:\\Github\\CS162FinalProject\\Data\\Year.txt");
+		ifstream fIn("C:\\Github\\Final-project-of-group-6\\DataProject\\Year.txt");
 		while(fIn >> s)
 			cout << cnt++ << ": Access year " << s << '\n';
 		delete[] s;
@@ -1607,7 +1607,7 @@ void createYearScreen(Year *& pYear) {
 }
 
 int classScreen(char* yearName) {
-	char dir[101] = "C:\\Github\\CS162FinalProject\\Data\\";
+	char dir[101] = "C:\\Github\\Final-project-of-group-6\\DataProject\\";
 	strcat(dir, yearName);
 	strcat(dir, "\\Class.txt");
 	while(1) {
@@ -1617,7 +1617,7 @@ int classScreen(char* yearName) {
 		cout << "0: Go back\n\n";
 		cout << "1: Check all semesters and edit courses\n\n";
 		cout << "2: Create a new class\n\n";
-		char *s = new char[51];
+		char *s = new char[69];
 		int cnt = 3;
 		ifstream fIn(dir);
 		while(fIn >> s)
@@ -1651,7 +1651,7 @@ void createClassScreen(Class *& pClass, char * yearName) {
 
 int studentScreen(Student * pStudent, char* yearName, char* className) {
 	while(1) {
-		char *s = new char[51];
+		char *s = new char[69];
 		cout << "Class: " << className << "\n\n";
 
 		Student * curStudent = pStudent;
@@ -1737,7 +1737,7 @@ int semesterScreen(Semester *& pSemester) {
 
 void createSemesterScreen(Semester *& pSemester, char *yearName) {
 	cout << "Please input the new semester name: \n";
-	char *semesterName = new char[51];
+	char *semesterName = new char[69];
 	cin >> semesterName;
 
 	cout << "Please input the start date of the semester: \n";
@@ -1796,15 +1796,15 @@ void addCourseScreen(Course *& pCourse, char* yearName, char* semesterName) {
 	cin.get();
     cout << "Please input the course ID: ";
     newCourse -> id = new char[101];
-	cin.getline(newCourse -> id, 50);
+	cin.getline(newCourse -> id, 68);
     
     cout << "Please input the course name: ";
     newCourse -> name = new char[101];
-	cin.getline(newCourse -> name, 50);
+	cin.getline(newCourse -> name, 68);
 
     cout << "Please input the course lecturer's name: ";
     newCourse -> lecturerName = new char[101];
-	cin.getline(newCourse -> lecturerName, 50);
+	cin.getline(newCourse -> lecturerName, 68);
 
     cout << "Please input the number of credits: ";
     cin >> newCourse->numberOfCredits;
@@ -2080,7 +2080,7 @@ void viewOrAddScoreBoard(Course *curCourse, char * yearName, char * semesterName
       			continue;
       		}	
       		if (x == 0) return;
-			cout << "Please drag the scoreboard of the course in the format " << curCourse -> id << ".csv file into the folder C:\\Github\\CS162FinalProject\\Data\\Scoreboard_csv\\ \n\n";
+			cout << "Please drag the scoreboard of the course in the format " << curCourse -> id << ".csv file into the folder C:\\Github\\Final-project-of-group-6\\DataProject\\Scoreboard_csv\\ \n\n";
 			system("pause");
 			system("cls");
    			addScoreBoardCSV(curCourse -> pScoreboard, yearName, semesterName, curCourse -> id);
@@ -2117,7 +2117,7 @@ void viewOrAddScoreBoard(Course *curCourse, char * yearName, char * semesterName
 		if (x == 0)
 			break;
 		else if (x == 1) {
-			char *studentID = new char[51]; 
+			char *studentID = new char[69]; 
 			cout << "Please input the Student's ID: ";
 			cin >> studentID;
 			updateScoreBoardStudent(curCourse -> pScoreboard, yearName, semesterName, curCourse -> id, studentID);
@@ -2206,23 +2206,23 @@ void enrollStudent(Course *& pCourse, Student *& pStudent, char* CourseID, char*
 		enrollCourse = enrollCourse -> courseNext;
 	}
 
-	enrollCourse -> id = new char[51];
+	enrollCourse -> id = new char[69];
 	strcpy(enrollCourse -> id, curCourse -> id);
-	enrollCourse -> name = new char[51];
+	enrollCourse -> name = new char[69];
 	strcpy(enrollCourse -> name, curCourse -> name);
-	enrollCourse -> lecturerName = new char[51];
+	enrollCourse -> lecturerName = new char[69];
 	strcpy(enrollCourse -> lecturerName, curCourse -> lecturerName);
 	enrollCourse -> numberOfCredits = curCourse -> 	numberOfCredits;
 	enrollCourse -> maxStudent = curCourse -> maxStudent;
-	enrollCourse -> date.d1 = new char[51]; 
+	enrollCourse -> date.d1 = new char[69]; 
 	strcpy(enrollCourse -> date.d1, curCourse -> date.d1);
-	enrollCourse -> date.s1 = new char[51]; 
+	enrollCourse -> date.s1 = new char[69]; 
 	strcpy(enrollCourse -> date.s1, curCourse -> date.s1);
-	enrollCourse -> date.d2 = new char[51]; 
+	enrollCourse -> date.d2 = new char[69]; 
 	strcpy(enrollCourse -> date.d2, curCourse -> date.d2);
-	enrollCourse -> date.s2 = new char[51]; 
+	enrollCourse -> date.s2 = new char[69]; 
 	strcpy(enrollCourse -> date.s2, curCourse -> date.s2);
-	enrollCourse -> sSemester = new char[51];
+	enrollCourse -> sSemester = new char[69];
 	strcpy(enrollCourse -> sSemester, semesterName);
 
 	stuInCourse = curCourse -> pStudent;
@@ -2237,12 +2237,12 @@ void enrollStudent(Course *& pCourse, Student *& pStudent, char* CourseID, char*
 		stuInCourse = stuInCourse -> studentNext;
 	}
 
-	stuInCourse -> studentID = new char[51];
+	stuInCourse -> studentID = new char[69];
 	strcpy(stuInCourse -> studentID, curStudent -> studentID);
-	stuInCourse -> Name = new char[51];
+	stuInCourse -> Name = new char[69];
 	strcpy(stuInCourse -> Name, curStudent -> Name);
 	stuInCourse -> DOB = curStudent -> DOB;
-	stuInCourse -> sClass = new char[51];
+	stuInCourse -> sClass = new char[69];
 	strcpy(stuInCourse -> sClass, curStudent -> sClass);
 	stuInCourse -> gender = curStudent -> gender;
 
@@ -2250,7 +2250,7 @@ void enrollStudent(Course *& pCourse, Student *& pStudent, char* CourseID, char*
 	cout << "Enroll successfully!\n\n";
 
 	if (add == 1) {
-		char dir[] = "C:\\Github\\CS162FinalProject\\Data\\";
+		char dir[] = "C:\\Github\\Final-project-of-group-6\\DataProject\\";
 		char c[505] = "";
 		strcat(c, dir);
 		strcat(c, yearName);
@@ -2336,7 +2336,7 @@ void updateCourse(Course*& pCourse, char* yearName, char* semesterName, char* co
     system("pause");
     system("cls");
 
-    char dirD[] = "C:\\Github\\CS162FinalProject\\Data\\";
+    char dirD[] = "C:\\Github\\Final-project-of-group-6\\DataProject\\";
     char c[500] = "";
     strcat(c, dirD);
     strcat(c, yearName);
@@ -2378,7 +2378,7 @@ void updateScoreBoardStudent(Scoreboard *& pScr, char *yearName, char * semester
 	system("pause");
 	system("cls");
 
-	char dirOut[] = { "C:\\Github\\CS162FinalProject\\Data\\" };
+	char dirOut[] = { "C:\\Github\\Final-project-of-group-6\\DataProject\\" };
 	char ddd[505] = "";
 	strcat(ddd, dirOut);
 	strcat(ddd, yearName);
