@@ -365,8 +365,60 @@ void loginSystem()
 
 	} while (ch != 27);
 }
+void box()
+{
+	fixConsoleWindow();
+	int x = 0, y = 25, k = 118;
+	gotoXY(x, y); cout << char(201);
+	for (int i = 0; i < k; i++)
+	{
+		if (i == 43 || i == 58 || i == 73 || i == 88 || i == 103)
+			cout << char(203);
+		else
+			cout << char(205);
+	}
+	cout << char(187);
+	gotoXY(x, y + 1); cout << char(186);
+	for (int i = 0; i < k; i++)
+	{
+		if (i == 43 || i == 58 || i == 73 || i == 88 || i == 103)
+			cout << char(186);
+		else
+			cout << " ";
+	}
+	cout << char(186);
+	gotoXY(x, y + 2); cout << char(186);
+	for (int i = 0; i < k; i++)
+	{
+		if (i == 43 || i == 58 || i == 73 || i == 88 || i == 103)
+			cout << char(186);
+		else
+			cout << " ";
+	}
+	cout << char(186);
+	gotoXY(x, y + 3); cout << char(186);
+	for (int i = 0; i < k; i++)
+	{
+		if (i == 43 || i == 58 || i == 73 || i == 88 || i == 103)
+			cout << char(186);
+		else
+			cout << " ";
+	}
+	cout << char(186);
+	gotoXY(x, y + 4); cout << char(200);
+	for (int i = 0; i < k; i++)
+	{
+		if (i == 43 || i == 58 || i == 73 || i == 88 || i == 103)
+			cout << char(202);
+		else
+			cout << char(205);
+	}
+	cout << char(188);
+	char ch = _getch();
+}
 
 int main()
 {
-	loginSystem();
+	//loginSystem();
+	box();
 }
