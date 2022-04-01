@@ -808,13 +808,19 @@ void addStudentCSV(Student*& pStudent, char* CSV_Student_File, char* yearName, c
 void courseRegistration(Semester *& pSemester, Semester * totSemester, char * yearName){ 		//edit simply
 
 	cout << "Please input the start date of the registration session: \n";
-	cout << "Year: "; cin >> pSemester -> startReg.year;
-	cout << "Month: "; cin >> pSemester -> startReg.month;
-	cout << "Day: "; cin >> pSemester -> startReg.day;
+	cout << "Year: ";
+	cin >> pSemester -> startReg.year;
+	cout << "Month: ";
+	 cin >> pSemester -> startReg.month;
+	cout << "Day: ";
+	 cin >> pSemester -> startReg.day;
 	cout << "Please input the end date of the registration session: \n";	
-	cout << "Year: "; cin >> pSemester -> endReg.year;
-	cout << "Month: "; cin >> pSemester -> endReg.month;
-	cout << "Day: "; cin >> pSemester -> endReg.day;
+	cout << "Year: ";
+	 cin >> pSemester -> endReg.year;
+	cout << "Month: ";
+	 cin >> pSemester -> endReg.month;
+	cout << "Day: ";
+	 cin >> pSemester -> endReg.day;
 	cout << "Finish, The registration session for this semester is from " << pSemester -> startReg.year << '/' << pSemester -> startReg.month << '/' << pSemester -> startReg.day << " to "
 			<< pSemester -> endReg.year << '/' << pSemester -> endReg.month << '/' << pSemester -> endReg.day << '\n';
 	system("pause");
@@ -1354,7 +1360,7 @@ void createNewYear(Year*& pYear, char* yearName, int add) {
 	Year* pCur = pYear;
 	while (pCur != nullptr) {
 		if (strcmp(pCur -> YearName, yearName) == 0) {
-			cout << "Failed to create a new year!!\n";
+		
 			cout << "The year you are about to create has already existed!!\n";
 			system("pause");
 			system("cls");
@@ -1470,28 +1476,28 @@ void createNewSemester(Semester*& pSemester, char* semesterName, char* yearName,
 
 void removeCourseInEnrollList(Course*& pCourse, Student*& pStudent, char *yearName, char *semesterName, char* CourseID, char* studentID) {  		//edit simply
 	
-	int d1, d2, s1, s2;
+//	int d1, d2, s1, s2;
 
-	if (strcmp(pCourse -> date.d1, "MON") == 0) d1 = 2;
-	else if (strcmp(pCourse -> date.d1, "TUE") == 0) d1 = 3;
-	else if (strcmp(pCourse -> date.d1, "WED") == 0) d1 = 4;
-	else if (strcmp(pCourse -> date.d1, "THU") == 0) d1 = 5;
-	else if (strcmp(pCourse -> date.d1, "FRI") == 0) d1 = 6;
-	else if (strcmp(pCourse -> date.d1, "SAT") == 0) d1 = 7;
-	s1 = (pCourse -> date.s1)[1] - '0';
+//	if (strcmp(pCourse -> date.d1, "MON") == 0) d1 = 2;
+//	else if (strcmp(pCourse -> date.d1, "TUE") == 0) d1 = 3;                   check trung lich
+//	else if (strcmp(pCourse -> date.d1, "WED") == 0) d1 = 4;
+//	else if (strcmp(pCourse -> date.d1, "THU") == 0) d1 = 5;
+//	else if (strcmp(pCourse -> date.d1, "FRI") == 0) d1 = 6;
+//	else if (strcmp(pCourse -> date.d1, "SAT") == 0) d1 = 7;
+//	s1 = (pCourse -> date.s1)[1] - '0';
+		
+//	if (strcmp(pCourse -> date.d2, "MON") == 0) d2 = 2;
+//	else if (strcmp(pCourse -> date.d2, "TUE") == 0) d2 = 3;
+//	else if (strcmp(pCourse -> date.d2, "WED") == 0) d2 = 4;
+//	else if (strcmp(pCourse -> date.d2, "THU") == 0) d2 = 5;
+//	else if (strcmp(pCourse -> date.d2, "FRI") == 0) d2 = 6;
+//	else if (strcmp(pCourse -> date.d2, "SAT") == 0) d2 = 7;
+//	s2 = (pCourse -> date.s2)[1] - '0';
 
-	if (strcmp(pCourse -> date.d2, "MON") == 0) d2 = 2;
-	else if (strcmp(pCourse -> date.d2, "TUE") == 0) d2 = 3;
-	else if (strcmp(pCourse -> date.d2, "WED") == 0) d2 = 4;
-	else if (strcmp(pCourse -> date.d2, "THU") == 0) d2 = 5;
-	else if (strcmp(pCourse -> date.d2, "FRI") == 0) d2 = 6;
-	else if (strcmp(pCourse -> date.d2, "SAT") == 0) d2 = 7;
-	s2 = (pCourse -> date.s2)[1] - '0';
+//	pStudent -> enrolledSession[d1][s1] = false;
+//	pStudent -> enrolledSession[d2][s2] = false;
 
-	pStudent -> enrolledSession[d1][s1] = false;
-	pStudent -> enrolledSession[d2][s2] = false;
-
-	Course *& pEnrollCourse = pStudent -> pCourse;
+	Course * &pEnrollCourse = pStudent -> pCourse;
 	Student *& pStuInCourse = pCourse -> pStudent;
 
     if (strcmp(pEnrollCourse -> id, CourseID) == 0) {
