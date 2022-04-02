@@ -414,11 +414,262 @@ void box()
 			cout << char(205);
 	}
 	cout << char(188);
+}
+void mainMenuScreen()
+{
+	box();
+	textColor(14);
+	gotoXY(50, 26);
+	cout << "MAIN";
+	gotoXY(50, 27);
+	cout << "MENU";
+	gotoXY(45, 28);
+	cout << "--------------";
+	textColor(7);
+	gotoXY(65, 27);
+	cout << "YEAR";
+	gotoXY(79, 26);
+	cout << "CHANGE";
+	gotoXY(78, 27);
+	cout << "PASSWORD";
+	gotoXY(94, 27);
+	cout << "LOGOUT";
+	gotoXY(107, 27);
+	cout << "----------";
 	char ch = _getch();
 }
+void yearScreen()//truyen year vao
+{
+	box();
+	textColor(14);
+	gotoXY(50, 27);
+	cout << "YEAR";
+	gotoXY(45, 28);
+	cout << "--------------";
+	textColor(7);
+	gotoXY(65, 27);
+	cout << "NEW";
+	gotoXY(79, 26);
+	cout << "ACCESS";
+	gotoXY(80, 27);
+	cout << "YEAR";
+	gotoXY(95, 27);
+	cout << "BACK";
+	gotoXY(107, 27);
+	cout << "----------";
+	char ch = _getch();
+}
+void accessYearScreen()
+{
+	box();
+	textColor(14);
+	gotoXY(50, 26);
+	cout << "YEAR";
+	gotoXY(47, 27);
+	cout << "2021-2022";
+	gotoXY(45, 28);
+	cout << "--------------";
+	textColor(7);
+	gotoXY(64, 27);
+	cout << "CLASS";
+	gotoXY(78, 27);
+	cout << "SEMESTER";
+	gotoXY(95, 27);
+	cout << "BACK";
+	gotoXY(107, 27);
+	cout << "----------";
+	char ch = _getch();
+}
+void classScreen()
+{
+	box();
+	textColor(14);
+	gotoXY(50, 27);
+	cout << "CLASS";
+	gotoXY(45, 28);
+	cout << "--------------";
+	textColor(7);
+	gotoXY(65, 27);
+	cout << "NEW";
+	gotoXY(79, 26);
+	cout << "ACCESS";
+	gotoXY(80, 27);
+	cout << "CLASS";
+	gotoXY(95, 27);
+	cout << "BACK";
+	gotoXY(107, 27);
+	cout << "----------";
+	char ch = _getch();
+}
+void accessClassScreen()//truyen 1 class vao
+{
+	box();
+	textColor(14);
+	gotoXY(50, 26);
+	cout << "CLASS";
+	gotoXY(47, 27);
+	cout << "21CLC10";
+	gotoXY(45, 28);
+	cout << "--------------";
+	textColor(7);
+	gotoXY(65, 27);
+	cout << "ADD";
+	gotoXY(63, 27);
+	cout << "STUDENT";
+	gotoXY(79, 26);
+	cout << "SCORE";
+	gotoXY(79, 27);
+	cout << "BOARD";
+	gotoXY(95, 27);
+	cout << "BACK";
+	gotoXY(107, 27);
+	cout << "----------";
+	char ch = _getch();
+}
+void accessSemesterScreen()
+{
+	box();
+	textColor(14);
+	gotoXY(48, 26);
+	cout << "SEMESTER";
+	gotoXY(51, 27);
+	cout << "1";
+	gotoXY(45, 28);
+	cout << "--------------";
+	textColor(7);
+	gotoXY(61, 26);
+	cout << "REGISTRATION";
+	gotoXY(63, 27);
+	cout << "SESSION";
+	gotoXY(78, 27);
+	cout << "COURSES";
+	gotoXY(95, 27);
+	cout << "BACK";
+	gotoXY(107, 27);
+	cout << "----------";
+	char ch = _getch();
+}
+void semesterScreen() 
+{
+	box();
+	textColor(14);
+	gotoXY(48, 27);
+	cout << "SEMESTER";
+	gotoXY(45, 28);
+	cout << "--------------";
+	textColor(7);
+	gotoXY(65, 27);
+	cout << "NEW";
+	gotoXY(79, 26);
+	cout << "ACCESS";
+	gotoXY(78, 27);
+	cout << "SEMESTER";
+	gotoXY(95, 27);
+	cout << "BACK";
+	gotoXY(107, 27);
+	cout << "----------";
+	char ch = _getch();
+}
+void coursesScreen()
+{
+	box();
+	textColor(14);
+	gotoXY(48, 27);
+	cout << "COURSES";
+	gotoXY(45, 28);
+	cout << "--------------";
+	textColor(7);
+	gotoXY(64, 26);
+	cout << "ACCESS";
+	gotoXY(64, 27);
+	cout << "COURSES";
+	gotoXY(81, 27);
+	cout << "ADD";
+	gotoXY(95, 27);
+	cout << "VIEW";
+	gotoXY(110, 27);
+	cout << "BACK";
+	char ch = _getch();
+}
+void accessCoursesScreen()
+{
+	box();
+	textColor(14);
+	gotoXY(48, 26);
+	cout << "COURSES";
+	gotoXY(49, 27);//fix
+	cout << "CS162";
+	gotoXY(45, 28);
+	cout << "--------------";
+	textColor(7);
+	gotoXY(64, 27);
+	cout << "UPDATE";
+	gotoXY(80, 27);
+	cout << "INFO";
+	gotoXY(94, 27);
+	cout << "DELETE";
+	gotoXY(110, 27);
+	cout << "BACK";
+	char ch = _getch();
+}
+void infoScreen()
+{
+	box();
+	textColor(14);
+	gotoXY(50, 27);
+	cout << "INFO";
+	gotoXY(45, 28);
+	cout << "--------------";
+	textColor(7);
+	gotoXY(63, 27);
+	cout << "STUDENT";
+	gotoXY(79, 26);
+	cout << "SCORE";
+	gotoXY(79, 27);
+	cout << "BOARD";
+	gotoXY(95, 27);
+	cout << "BACK";
+	gotoXY(107, 27);
+	cout << "----------";
+	char ch = _getch();
+}
+void move_left(int range, int &cur)
+{
+	if (cur == 0)
+	{
+		cur = range - 1;
+	}
+	else
+		cur--;
+	if (cur == 0)
+	{
+		gotoXY(61, 27);
+		cout << "---------";
+		gotoXY(77, 27);
+		cout << "         ";        
+	}
+	else if (cur == 1)
+	{
 
+	}
+	else if (cur == 2)
+	{
+
+	}
+	else if (cur == 3)
+	{
+
+	}
+}
+void move_right(int range, int &cur)
+{
+
+}
 int main()
 {
 	//loginSystem();
-	box();
+	//accessClassScreen();
+	//semesterScreen();
+	//accessCoursesScreen();
+	infoScreen();
 }
