@@ -423,8 +423,6 @@ void mainMenuScreen()
 	cout << "MAIN";
 	gotoXY(50, 27);
 	cout << "MENU";
-	gotoXY(45, 28);
-	cout << "--------------";
 	textColor(7);
 	gotoXY(65, 27);
 	cout << "YEAR";
@@ -444,8 +442,6 @@ void yearScreen()//truyen year vao
 	textColor(14);
 	gotoXY(50, 27);
 	cout << "YEAR";
-	gotoXY(45, 28);
-	cout << "--------------";
 	textColor(7);
 	gotoXY(65, 27);
 	cout << "NEW";
@@ -467,8 +463,6 @@ void accessYearScreen()
 	cout << "YEAR";
 	gotoXY(47, 27);
 	cout << "2021-2022";
-	gotoXY(45, 28);
-	cout << "--------------";
 	textColor(7);
 	gotoXY(64, 27);
 	cout << "CLASS";
@@ -486,8 +480,6 @@ void classScreen()
 	textColor(14);
 	gotoXY(50, 27);
 	cout << "CLASS";
-	gotoXY(45, 28);
-	cout << "--------------";
 	textColor(7);
 	gotoXY(65, 27);
 	cout << "NEW";
@@ -508,9 +500,7 @@ void accessClassScreen()//truyen 1 class vao
 	gotoXY(50, 26);
 	cout << "CLASS";
 	gotoXY(47, 27);
-	cout << "21CLC10";
-	gotoXY(45, 28);
-	cout << "--------------";
+	cout << "21CLC10";//fix
 	textColor(7);
 	gotoXY(65, 27);
 	cout << "ADD";
@@ -534,8 +524,6 @@ void accessSemesterScreen()
 	cout << "SEMESTER";
 	gotoXY(51, 27);
 	cout << "1";
-	gotoXY(45, 28);
-	cout << "--------------";
 	textColor(7);
 	gotoXY(61, 26);
 	cout << "REGISTRATION";
@@ -555,8 +543,6 @@ void semesterScreen()
 	textColor(14);
 	gotoXY(48, 27);
 	cout << "SEMESTER";
-	gotoXY(45, 28);
-	cout << "--------------";
 	textColor(7);
 	gotoXY(65, 27);
 	cout << "NEW";
@@ -576,8 +562,6 @@ void coursesScreen()
 	textColor(14);
 	gotoXY(48, 27);
 	cout << "COURSES";
-	gotoXY(45, 28);
-	cout << "--------------";
 	textColor(7);
 	gotoXY(64, 26);
 	cout << "ACCESS";
@@ -599,8 +583,6 @@ void accessCoursesScreen()
 	cout << "COURSES";
 	gotoXY(49, 27);//fix
 	cout << "CS162";
-	gotoXY(45, 28);
-	cout << "--------------";
 	textColor(7);
 	gotoXY(64, 27);
 	cout << "UPDATE";
@@ -618,8 +600,6 @@ void infoScreen()
 	textColor(14);
 	gotoXY(50, 27);
 	cout << "INFO";
-	gotoXY(45, 28);
-	cout << "--------------";
 	textColor(7);
 	gotoXY(63, 27);
 	cout << "STUDENT";
@@ -632,6 +612,7 @@ void infoScreen()
 	gotoXY(107, 27);
 	cout << "----------";
 	char ch = _getch();
+	
 }
 void move_left(int range, int &cur)
 {
@@ -643,27 +624,85 @@ void move_left(int range, int &cur)
 		cur--;
 	if (cur == 0)
 	{
-		gotoXY(61, 27);
-		cout << "---------";
-		gotoXY(77, 27);
-		cout << "         ";        
+		gotoXY(61, 28);
+		cout << "------------";
+		gotoXY(76, 28);
+		cout << "            ";        
 	}
 	else if (cur == 1)
 	{
-
+		gotoXY(76, 28);
+		cout << "------------";
+		gotoXY(91, 28);
+		cout << "            ";
 	}
 	else if (cur == 2)
 	{
-
+		gotoXY(91, 28);
+		cout << "------------";
+		if (range == 3)
+		{
+			gotoXY(106, 28);
+			cout << "            ";
+		}
+		if (range == 2)
+		{
+			gotoXY(61, 28);
+			cout << "            ";
+		}
 	}
 	else if (cur == 3)
 	{
-
+		gotoXY(106, 28);
+		cout << "------------";
+		gotoXY(61, 28);
+		cout << "            ";
 	}
 }
 void move_right(int range, int &cur)
 {
-
+	if (cur == range)
+	{
+		cur = 0;
+	}
+	else
+		cur++;
+	if (cur == 0)
+	{
+		gotoXY(61, 28);
+		cout << "------------";
+		if (range == 3)
+		{
+			gotoXY(106, 28);
+			cout << "            ";
+		}
+		if (range == 2)
+		{
+			gotoXY(91, 28);
+			cout << "            ";
+		}
+	}
+	else if (cur == 1)
+	{
+		gotoXY(76, 28);
+		cout << "------------";
+		gotoXY(61, 28);
+		cout << "            ";
+	}
+	else if (cur == 2)
+	{
+		gotoXY(91, 28);
+		cout << "------------";
+		gotoXY(76, 28);
+		cout << "            ";
+	}
+	else if (cur == 3)
+	{
+		gotoXY(106, 28);
+		cout << "------------";
+		gotoXY(91, 28);
+		cout << "            ";
+	}
 }
 int main()
 {
