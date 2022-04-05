@@ -79,7 +79,10 @@ void readFile(ifstream& accFile, listOfAcc*& pHead)
 		pCur = pCur->pNext;
 	}
 }
+void loginScreen()
+{
 
+}
 bool changePass(account x, listOfAcc* pHead)
 {
 	listOfAcc* pCur = pHead;
@@ -743,13 +746,6 @@ int main()
 	getline(cin, x.username);
 	cout << "Password: ";
 	getline(cin, x.password);
-	listOfAcc* pCur = pHead;
-	while (pCur->pNext)
-	{
-		cout << pCur->acc.username << endl;
-		cout << pCur->acc.password << endl;
-		pCur = pCur->pNext;
-	}
 	if (checkPassword(x, pHead))
 		cout << "Success";
 	else
