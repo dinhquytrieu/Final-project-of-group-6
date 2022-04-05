@@ -393,6 +393,29 @@ void loginSystem()
 				moveDown(pos);
 			}
 		}
+		if (ch == 13)
+		{
+			if (pos.y == 15)
+			{
+				//enter username
+			}
+			else if (pos.y == 20)
+			{
+				//enter password
+			}
+			else if (pos.y == 25)
+			{
+				//login
+				//check password
+				//check staff or student
+
+			}
+			else if (pos.y == 28)
+			{
+				//quit
+				break;
+			}
+		}
 
 	} while (ch != 27);
 }
