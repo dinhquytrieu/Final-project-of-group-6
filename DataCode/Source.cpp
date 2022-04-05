@@ -79,10 +79,6 @@ void readFile(ifstream& accFile, listOfAcc*& pHead)
 		pCur = pCur->pNext;
 	}
 }
-void loginScreen()
-{
-
-}
 bool changePass(account x, listOfAcc* pHead)
 {
 	listOfAcc* pCur = pHead;
@@ -408,7 +404,7 @@ void loginSystem()
 				//login
 				//check password
 				//check staff or student
-
+				// and then go to main menu screen
 			}
 			else if (pos.y == 28)
 			{
