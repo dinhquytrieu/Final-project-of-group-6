@@ -2,6 +2,7 @@
 #include <string>
 #include <Windows.h>
 #include <conio.h>
+#include <fstream>
 using namespace std;
 
 struct account {
@@ -11,7 +12,7 @@ struct account {
 
 struct listOfAcc {
 	account acc;
-	listOfAcc* pNext;
+	listOfAcc* pNext = nullptr;
 };
 struct cursorLocation
 {
@@ -50,6 +51,33 @@ bool checkPassword(account x, listOfAcc* pHead)
 			pCur = pCur->pNext;
 	}
 	return false;
+}
+listOfAcc* createNode(account x)
+{
+	listOfAcc* p = new listOfAcc;
+	p->acc = x;
+	p->pNext = nullptr;
+	return p;
+}
+void readFile(ifstream& accFile, listOfAcc*& pHead)
+{
+	pHead = NULL;
+	account x;
+	getline(accFile, x.username);
+	getline(accFile, x.password);
+	if (accFile.eof())
+		return;
+	listOfAcc* p = createNode(x);
+	pHead = p;
+	listOfAcc* pCur = pHead;
+	while (!accFile.eof())
+	{
+		getline(accFile, x.username);
+		getline(accFile, x.password);
+		p = createNode(x);
+		pCur->pNext = p;
+		pCur = pCur->pNext;
+	}
 }
 
 bool changePass(account x, listOfAcc* pHead)
@@ -706,9 +734,24 @@ void move_right(int range, int &cur)
 }
 int main()
 {
-	//loginSystem();
-	//accessClassScreen();
-	//semesterScreen();
-	//accessCoursesScreen();
-	infoScreen();
+	account x;
+	listOfAcc* pHead = nullptr;
+	ifstream accFile;
+	accFile.open("acc.txt", ios::in);
+	readFile(accFile, pHead);
+	cout << "Username: ";
+	getline(cin, x.username);
+	cout << "Password: ";
+	getline(cin, x.password);
+	listOfAcc* pCur = pHead;
+	while (pCur->pNext)
+	{
+		cout << pCur->acc.username << endl;
+		cout << pCur->acc.password << endl;
+		pCur = pCur->pNext;
+	}
+	if (checkPassword(x, pHead))
+		cout << "Success";
+	else
+		cout << "Try again";
 }
