@@ -364,6 +364,7 @@ void loginSystem()
 	pos.y = 15;
 	loginConsole();
 	char ch;
+	account x;
 	do
 	{
 		ch = _getch();
@@ -394,10 +395,16 @@ void loginSystem()
 			if (pos.y == 15)
 			{
 				//enter username
+				visibleCursor();
+				gotoXY(40, 15);
+				getline(cin, x.username);
 			}
 			else if (pos.y == 20)
 			{
 				//enter password
+				visibleCursor();
+				gotoXY(40, 20);
+				getline(cin, x.password);
 			}
 			else if (pos.y == 25)
 			{
@@ -756,7 +763,7 @@ void move_right(int range, int &cur)
 }
 int main()
 {
-	account x;
+	/*account x;
 	listOfAcc* pHead = nullptr;
 	ifstream accFile;
 	accFile.open("acc.txt", ios::in);
@@ -768,5 +775,6 @@ int main()
 	if (checkPassword(x, pHead))
 		cout << "Success";
 	else
-		cout << "Try again";
+		cout << "Try again";*/
+	loginSystem();
 }
