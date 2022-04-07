@@ -557,7 +557,7 @@ void accessClassScreen()//truyen 1 class vao
 	gotoXY(50, 26);
 	cout << "CLASS";
 	gotoXY(47, 27);
-	cout << "21CLC10";//fix
+	cout << "21CLC07";//fix
 	textColor(7);
 	gotoXY(65, 27);
 	cout << "ADD";
@@ -639,7 +639,7 @@ void accessCoursesScreen()
 	gotoXY(48, 26);
 	cout << "COURSES";
 	gotoXY(49, 27);//fix
-	cout << "CS162";
+	cout << "CS0162";
 	textColor(7);
 	gotoXY(64, 27);
 	cout << "UPDATE";
