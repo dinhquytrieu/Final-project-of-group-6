@@ -776,5 +776,6 @@ int main()
 		cout << "Success";
 	else
 		cout << "Try again";*/
-	loginSystem();
+	//loginSystem();
+	accessClassScreen();
 }
