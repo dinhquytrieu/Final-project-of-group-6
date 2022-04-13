@@ -484,7 +484,9 @@ int main() {
      										cntSemester++;
      									}
      									if (curSemester == nullptr || cntSemester < respondSemester) {
-     										cout << "Invalid, please try again\n\n";
+     										textColor(4);
+											gotoXY(32,1);cout << "Invalid, please try again";
+											textColor(7);
      										continue; 
      									}
 
@@ -2166,17 +2168,17 @@ void createYearScreen(Year *& pYear) {
 }
 
 int classScreen(char* yearName) {
+	visibleCursor();
 	char dir[101] = "C:\\Github\\Final-project-of-group-6\\DataProject\\";
 	strcat(dir, yearName);
 	strcat(dir, "\\Class.txt");
 	while(1) {
 		drawBox(0,0,15);
 		gotoXY(1,1);
-		cout << "YEAR: " << yearName << "\n\n";
-
 		textColor(14);
+		cout << "YEAR: " << yearName << "\n\n";
+		textColor(3);
 		cout<<" MENU";
-		textColor(7);
 		textColor(7);
 		drawBox(0,5,2);
 		gotoXY(1,6);cout<<"0";
@@ -2222,7 +2224,7 @@ int classScreen(char* yearName) {
 }
 
 void createClassScreen(Class *& pClass, char * yearName) {
-	cout << "Please input the new class name: \n";
+	cout << "Input the new class name: \n";
 	char *className = new char[101];
 	cin >> className;
 	createNewClass(pClass, yearName, className, 1);
@@ -2284,25 +2286,44 @@ void createStudentCSVScreen(Student *& pStudent, char* yearName, char* className
 }
 
 int semesterScreen(Semester *& pSemester) {
+	visibleCursor();
 	while(1) {
-		cout << "Please input your choice: \n\n";
-
-		cout << "0: Go back\n\n";
-		cout << "1: Create a new semester\n\n";
-
+		drawBox(0,0,8);
+		gotoXY(1,1);
+		textColor(14);
+		cout << "SEMESTER" << "\n\n";
+		textColor(3);
+		cout<<" MENU";
+		textColor(7);
+		drawBox(0,5,2);
+		gotoXY(1,6);cout<<"0";
+		gotoXY(5,6);cout<<"Back"<<endl<<endl;
+		drawBox(0,8,2);
+		gotoXY(1,9);cout<<"1";
+		gotoXY(5,9);cout<<"New Semester"<<endl<<endl;
+		textColor(3);
+		cout<<"ACCESS SEMESTER"<<endl<<endl;
+		textColor(7);
 		int cnt = 2;
+		int xb=0,yb=12;
+		
 		Semester * pCur = pSemester;
 		while (pCur != nullptr) {
-			cout << cnt++ << ": Access semester " << pCur -> SemesterName << " (From " << pCur->startDate.month << '/' << pCur->startDate.day << '/' << pCur->startDate.year <<
+			drawBox(xb,yb,2);
+			gotoXY(xb+1,yb+1);cout<<cnt++;
+			gotoXY(xb+5,yb+1);cout <<"Semester "<< pCur -> SemesterName << " (From " << pCur->startDate.month << '/' << pCur->startDate.day << '/' << pCur->startDate.year <<
 				" to " << pCur->endDate.month << '/' << pCur->endDate.day << '/' << pCur->endDate.year << ")" << '\n';
 			pCur = pCur -> semesterNext;
+					yb+=3;
 		}
-
-		cout << "Your input: ";
-		char *respond = new char[101]; cin >> respond;
+cout<<endl;
+		gotoXY(12,1);cout << "Your input: ";
+		char *respond = new char[101]; gotoXY(24,1);cin >> respond;
 		system("cls");
 		if (strlen(respond) > 2 || (respond[0] < '0' || '9' < respond[0]) || (strlen(respond) == 2 && (respond[1] < '0' || '9' < respond[1]))) {
-			cout << "Invalid, please try again\n\n";
+		textColor(4);
+		gotoXY(32,1);	cout << "Invalid, please try again\n\n";
+		textColor(7);
 			continue;
 		}
 		int x;
