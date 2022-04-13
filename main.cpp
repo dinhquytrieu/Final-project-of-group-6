@@ -456,7 +456,9 @@ int main() {
 							cntYear++;
 						}
 						if (curYear == nullptr || cntYear < respondYear) {
-							cout << "Invalid, please try again\n\n";
+							textColor(4);
+							gotoXY(32,1);cout << "Invalid, please try again";
+							textColor(7);
 							continue;
 						}	
 
@@ -552,7 +554,9 @@ int main() {
 									cntClass++;
 								}
 								if (curClass == nullptr || cntClass < respondClass) {
-									cout << "Invalid, please try again\n\n";
+									textColor(4);
+						gotoXY(45,1);cout << "Invalid, please try again\n\n";
+						textColor(7);
 									continue;
 								}
 
@@ -696,6 +700,7 @@ int main() {
 			cout << "Invalid, please try again\n\n";
 	}
 	
+	yearScreen();
 }
 
 
@@ -1682,6 +1687,7 @@ bool LogIn(int t, char *& UN)
 				gotoXY(40, 15);
 				cin>>Username;
 				invisibleCursor();
+				continue;
 			}
 			else if (pos.y == 20)
 			{
@@ -1690,6 +1696,7 @@ bool LogIn(int t, char *& UN)
 				gotoXY(40, 20);
 			cin>>Password;
 				invisibleCursor();
+				continue;
 			}
 			else if (pos.y == 25)
 			{
@@ -1700,7 +1707,6 @@ bool LogIn(int t, char *& UN)
 				UN = new char[101];
 				strcpy(UN, name);
 				system("cls");
-				cout << "You have logged in!\n\n";
 				login = true;
 				break;
 			}
@@ -2096,23 +2102,46 @@ int chooseRoleScreen() {
 }
 
 int yearScreen() {
+visibleCursor();
 	while(1) {
-		cout << "Please input your choice Staff: \n\n";
-		cout << "0: Logout\n";
-		cout << "1: Change password\n\n";
-		cout << "2: Create a new school year\n\n";
+		drawBox(0,0,5);
+		textColor(14);
+		gotoXY(1,1);cout<<"STAFF"<<endl<<endl;
+		textColor(3);
+		cout<<" MENU";
+		textColor(7);
+		drawBox(0,5,2);
+		gotoXY(1,6);cout<<"0";
+		gotoXY(5,6);cout<<"Logout"<<endl<<endl;
+		drawBox(0,8,2);
+		gotoXY(1,9);cout<<"1";
+		gotoXY(5,9);cout<<"Change Password"<<endl<<endl;
+		drawBox(0,11,2);
+		gotoXY(1,12);cout<<"2";
+		gotoXY(5,12);cout<<"New school year"<<endl<<endl;
+		textColor(3);
+		cout<<" ACCESS YEAR"<<endl<<endl;
+		textColor(7);
 		char *s = new char[51];
 		int cnt = 3;
 		ifstream fIn("C:\\Github\\Final-project-of-group-6\\DataProject\\Year.txt");
+		int xb=0,yb=16;
 		while(fIn >> s)
-			cout << cnt++ << ": Access year " << s << '\n';
+		{
+			drawBox(xb,yb,2);
+			gotoXY(xb+1,yb+1);cout<<cnt++;
+			gotoXY(xb+5,yb+1);cout<<s<<endl;
+		yb+=3;
+		}
 		delete[] s;
-	
-		cout << "Your input: ";
-		char *respond = new char[101]; cin >> respond;
+	cout<<endl;
+		gotoXY(12,1);cout << "Your input: ";
+		char *respond = new char[101];gotoXY(24,1) ;cin >> respond;
 		system("cls");
 		if (strlen(respond) > 2 || (respond[0] < '0' || '9' < respond[0]) || (strlen(respond) == 2 && (respond[1] < '0' || '9' < respond[1]))) {
-			cout << "Invalid, please try again\n\n";
+			textColor(4);
+			gotoXY(32,1);cout << "Invalid, please try again";
+			textColor(7);
 			continue;
 		}
 		int x;
@@ -2124,6 +2153,8 @@ int yearScreen() {
 		delete[] respond;
 		return x;	
 	}
+
+	
 }
 
 void createYearScreen(Year *& pYear) {
@@ -2139,24 +2170,45 @@ int classScreen(char* yearName) {
 	strcat(dir, yearName);
 	strcat(dir, "\\Class.txt");
 	while(1) {
-		cout << "Year: " << yearName << "\n\n";
+		drawBox(0,0,15);
+		gotoXY(1,1);
+		cout << "YEAR: " << yearName << "\n\n";
 
-		cout << "Please input your choice: \n\n";
-		cout << "0: Go back\n\n";
-		cout << "1: Check all semesters and edit courses\n\n";
-		cout << "2: Create a new class\n\n";
+		textColor(14);
+		cout<<" MENU";
+		textColor(7);
+		textColor(7);
+		drawBox(0,5,2);
+		gotoXY(1,6);cout<<"0";
+		gotoXY(5,6);cout<<"Back"<<endl<<endl;
+		drawBox(0,8,2);
+		gotoXY(1,9);cout<<"1";
+		gotoXY(5,9);cout<<"Semester"<<endl<<endl;
+		drawBox(0,11,2);
+		gotoXY(1,12);cout<<"2";
+		gotoXY(5,12);cout<<"New class"<<endl<<endl;
+		textColor(3);
+		cout<<" ACCESS CLASS"<<endl<<endl;
+		textColor(7);
 		char *s = new char[51];
 		int cnt = 3;
 		ifstream fIn(dir);
+		int xb=0,yb=16;
 		while(fIn >> s)
-			cout << cnt++ << ": Access class " << s << '\n';
+			//cout << cnt++ << ": Access class " << s << '\n';
+			drawBox(xb,yb,2);
+			gotoXY(xb+1,yb+1);cout<<cnt++;
+			gotoXY(xb+5,yb+1);cout<<s<<endl;
+		yb+=3;
 		delete[] s;
 	
-		cout << "Your input: ";
-		char *respond = new char[101]; cin >> respond;
+		gotoXY(25,1);cout << "Your input: ";
+		char *respond = new char[101]; gotoXY(37,1);cin >> respond;
 		system("cls");
 		if (strlen(respond) > 2 || (respond[0] < '0' || '9' < respond[0]) || (strlen(respond) == 2 && (respond[1] < '0' || '9' < respond[1]))) {
-			cout << "Invalid, please try again\n\n";
+			textColor(4);
+						gotoXY(45,1);cout << "Invalid, please try again\n\n";
+						textColor(7);
 			continue;
 		}
 		int x;
