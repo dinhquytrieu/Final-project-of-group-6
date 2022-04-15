@@ -609,7 +609,12 @@ int main() {
 										viewScoreBoardOfClass(curClass -> pStudent, curYear -> pSemester);
 									}
 									else
-										cout << "Invalid, please try again\n\n";
+										{
+												gotoXY(37,1);
+			textColor(4);
+			cout << "Invalid, please try again\n\n";
+			textColor(7);
+										}
 								}
 							}
 						}	
@@ -668,7 +673,10 @@ int main() {
        						cntSemester++;
        					}
        					if (curSemester == nullptr || cntSemester < respondSemester) {
-       						cout << "Invalid, please try again\n\n";
+       							gotoXY(62,1);
+       							textColor(4);
+       							cout<<"Invalid, please try again";
+       							textColor(7);
        						continue; 
        					}
 
@@ -688,7 +696,9 @@ int main() {
        							if (RegisterDate.year == curSemester -> endReg.year && RegisterDate.month == curSemester -> endReg.month && RegisterDate.day < curSemester -> endReg.day) ok_l = true;
 
 								if (!ok_s || !ok_l) {
+									textColor(4);
                             		cout << "The registration phase has expired or not exist, cannot enrolled\n\n";
+                            		textColor(7);
                             		continue;
 								}
 
@@ -705,7 +715,10 @@ int main() {
 											curCourse = curCourse -> courseNext;
 										}
 										if (curCourse == nullptr || cntCourse < respondChooseCourse) {
-											cout << "Invalid, please try again\n\n";
+											gotoXY(62,2);
+       							textColor(4);
+       							cout<<"Invalid, please try again";
+       							textColor(7);
 											continue;
 										}
 										enrollStudent(curSemester -> pCourse, curClass -> pStudent, curCourse -> id, curStudent -> studentID, curYear -> YearName, curSemester -> SemesterName, 1);
@@ -725,7 +738,13 @@ int main() {
        							viewScoreBoard(curSemester -> pCourse, curStudent -> studentID);
        						}
        						else
-       							cout << "Invalid, please try again\n\n";
+       						{
+							   
+       							gotoXY(34,1);
+       							textColor(4);
+       							cout<<"Invalid, please try again";
+       							textColor(7);
+       						}
        					}
     				}
 				}
@@ -1144,6 +1163,7 @@ void courseRegistration(Semester *& pSemester, Semester * totSemester, char * ye
 			char *respond = new char[101]; cin >> respond;
 			system("cls");
 			if (strlen(respond) > 1 || (respond[0] < '0' || '1' < respond[0])) {
+				gotoXY(62,1);
 				textColor(4);
 				cout << "Invalid, please try again\n\n";
 				textColor(7);
@@ -1259,7 +1279,10 @@ void changePassword(int t, char * userName) {
 						system("ren C:\\Github\\Final-project-of-group-6\\DataProject\\tmp.txt Account_student.txt");
 					}
 					system("cls");
+					if(t==1)
 					gotoXY(30,1);
+					if(t==2)
+					gotoXY(62,1);
 					textColor(10);
 					cout << "Password changed successfully\n\n";
 					textColor(7);
@@ -2614,28 +2637,39 @@ int enrollSemesterScreen(Year *& pYear, char * studentID) {
 
 
 	while(1) {
-		cout << "Student's ID: " << curStudent -> studentID << '\n';
-		cout << "Student's Name: " << curStudent -> Name << '\n';
-		cout << "Student's Gender: " << ((curStudent -> gender) ? "Female" : "Male") << '\n';
-		cout << "Student's Day of Birth: " << curStudent -> DOB.month << '/' << curStudent -> DOB.day << '/' << curStudent -> DOB.year << "\n\n";
+		drawBox(0,0,40,4);
+		gotoXY(1,1);textColor(10);cout << "Student's ID: ";textColor(7);cout << curStudent -> studentID << '\n';
+		gotoXY(1,2);textColor(9);cout << "Student's Name: ";textColor(7);cout << curStudent -> Name << '\n';
+		gotoXY(1,3);textColor(13);cout << "Student's Gender: " ;textColor(7);cout<< ((curStudent -> gender) ? "Female" : "Male") << '\n';
+		gotoXY(1,4);textColor(14);cout << "Student's Day of Birth: "; textColor(7);cout<< curStudent -> DOB.month << '/' << curStudent -> DOB.day << '/' << curStudent -> DOB.year << "\n\n";
 
-		cout << "Please input your choice: \n\n";
-
-		cout << "0: Logout\n";   
-		cout << "1: Change password\n\n";
+		textColor(3);cout<<" MENU"<<endl<<endl;
+textColor(7);
+drawBox(0,8,2);
+gotoXY(1,9);cout << "0";   
+		gotoXY(5,9);cout<<"Log out";
+		drawBox(0,11,2);
+gotoXY(1,12);cout << "1";   
+		gotoXY(5,12);cout<<"Change Password";
+int xb=0,yb=14;
 		int cnt = 2;
 		Semester * pCur = pYear -> pSemester;
 		while (pCur != nullptr) {
-			cout << cnt++ << ": Access semester " << pCur -> SemesterName << " (From " << pCur->startDate.month << '/' << pCur->startDate.day << '/' << pCur->startDate.year <<
+			drawBox(xb,yb,2);
+			gotoXY(xb+1,yb+1);cout << cnt++ ;
+			gotoXY(xb+5,yb+1);cout<< "Access semester " << pCur -> SemesterName << " (From " << pCur->startDate.month << '/' << pCur->startDate.day << '/' << pCur->startDate.year <<
 				" to " << pCur->endDate.month << '/' << pCur->endDate.day << '/' << pCur->endDate.year << ")" << '\n';
 			pCur = pCur -> semesterNext;
+			yb+=3;
 		}
 
-		cout << "Your input: ";
-		char *respond = new char[101]; cin >> respond;
+		gotoXY(45,1);cout << "Your input: ";
+		char *respond = new char[101];gotoXY(57,1); cin >> respond;
 		system("cls");
 		if (strlen(respond) > 2 || (respond[0] < '0' || '9' < respond[0]) || (strlen(respond) == 2 && (respond[1] < '0' || '9' < respond[1]))) {
-			cout << "Invalid, please try again\n\n";
+			textColor(4);
+		gotoXY(62,1);	cout << "Invalid, please try again\n\n";
+			textColor(7);
 			continue;
 		}
 		int x;
@@ -2650,19 +2684,33 @@ int enrollSemesterScreen(Year *& pYear, char * studentID) {
 
 int enrollCourseScreen(char *semesterName) {
 	while(1) {
-		cout << "Semester: " << semesterName << "\n\n";
+		drawBox(0,0,12);
+		textColor(14);
+	gotoXY(1,1);	cout << "Semester: " << semesterName << "\n\n";
+textColor(3);
+cout << " MENU";
+textColor(7);
+  		drawBox(0,5,2);
+  		gotoXY(1,6);cout << "0";
+gotoXY(5,6);cout<<"Back";
+drawBox(0,8,2);
+  		gotoXY(1,9);cout << "1";
+gotoXY(5,9);cout<<"Enroll courses";
+drawBox(0,11,2);
+  		gotoXY(1,12);cout << "2";
+gotoXY(5,12);cout<<"Courses list";
+drawBox(0,14,2);
+  		gotoXY(1,15);cout << "3";
+gotoXY(5,15);cout<<"Scoreboard";
 
-		cout << "Please input your choice: \n\n";
-		cout << "0: Go back\n\n";
-		cout << "1: Enroll in a course\n";
-		cout << "2: View list of your enrolled courses in this semester\n";
-		cout << "3: View your scoreboard in this semester\n";
-
-		cout << "Your input: ";
-		char *respond = new char[101]; cin >> respond;
+	gotoXY(17,1);	cout << "Your input: ";
+		char *respond = new char[101];gotoXY(29,1); cin >> respond;
 		system("cls");
 		if (strlen(respond) > 2 || (respond[0] < '0' || '9' < respond[0]) || (strlen(respond) == 2 && (respond[1] < '0' || '9' < respond[1]))) {
+			gotoXY(34,1);
+			textColor(4);
 			cout << "Invalid, please try again\n\n";
+			textColor(7);
 			continue;
 		}
 		int x;
@@ -2678,41 +2726,56 @@ int enrollCourseScreen(char *semesterName) {
 int chooseCourse(Course *& pCourse) {
 	while (1) {
 		Course * pCur = pCourse;
+		int xb=0,yb=1,kb=40,nb=6;
 	    while (pCur != nullptr) {
+	drawBox(xb,yb,kb,nb);
+        gotoXY(xb+1,yb+1);textColor(3);cout << "Course ID: ";textColor(7);cout << pCur -> id << '\n';
+         gotoXY(xb+1,yb+2);textColor(5);cout << "Course Name: " ;textColor(7);cout << pCur -> name << '\n';
+        gotoXY(xb+1,yb+3);textColor(9); cout << "Lecturer Name: ";textColor(7);cout  << pCur -> lecturerName << '\n';
+		 gotoXY(xb+1,yb+4);textColor(10);cout << "Number of Credit: ";textColor(7);cout  << pCur -> numberOfCredits << '\n';
+        gotoXY(xb+1,yb+5); textColor(14);cout << "Occur in: ";textColor(7);cout  << pCur -> date.d1 << " " << pCur -> date.s1 << " & " << pCur -> date.d2 << " " << pCur -> date.s2 << '\n';textColor(7);
+        int cnt = 0;
+        Student* stuInCourse = pCur -> pStudent;
+        while (stuInCourse != nullptr) {
+        	cnt++;
+        	stuInCourse = stuInCourse -> studentNext;
+        }
+		 gotoXY(xb+1,yb+6);textColor(12);cout << "Number of students registered: ";textColor(7);cout  << cnt << " / " << pCur -> maxStudent << '\n';
+		cout << '\n';
 
-	        cout << "Course ID: " << pCur -> id << '\n';
-	        cout << "Course Name: " << pCur -> name << '\n';
-	        cout << "Lecturer Name: " << pCur -> lecturerName << '\n';
-			cout << "Number of Credit: " << pCur -> numberOfCredits << '\n';
-	        cout << "Occur in: " << pCur -> date.d1 << " " << pCur -> date.s1 << " and " << pCur -> date.d2 << " " << pCur -> date.s2 << '\n';
-	        int cnt = 0;
-	        Student* stuInCourse = pCur -> pStudent;
-	        while (stuInCourse != nullptr) {
-	        	cnt++;
-	        	stuInCourse = stuInCourse -> studentNext;
-	        }
-			cout << "Number of students registered: " << cnt << " / " << pCur -> maxStudent << '\n';
-			cout << '\n';
-	
-	        // move to next course
-	        pCur = pCur -> courseNext;
+        // move to next course
+        pCur = pCur -> courseNext;
+        yb+=8;
 	    }
-
-	    cout << "Please input your choice: \n\n";
-	    cout << "0: Go back\n\n";
-
+yb+=2;
+	    textColor(3);
+	    cout<<" MENU";
+	    textColor(7);
+	    drawBox(0,yb,2);
+	    	 gotoXY(xb+1,yb+1);
+	    cout<<"0";
+	    gotoXY(xb+5,yb+1);
+	    cout << "Back\n\n";
+yb+=3;
 	    int cnt = 1;
 	    pCur = pCourse;
 	    while (pCur != nullptr) {
-	    	cout << cnt++ << ": Enroll in course " << pCur -> id << '\n';
+	    	drawBox(0,yb,2);
+	    	gotoXY(1,yb+1);
+	    	cout << cnt++ ;
+		gotoXY(5,yb+1);cout	<< "Enroll in course " << pCur -> id << '\n';
 	    	pCur = pCur -> courseNext;
+	    	yb+=3;
 	    }
 
-		cout << "Your input: ";
-		char *respond = new char[101]; cin >> respond;
+		gotoXY(45,2);cout << "Your input: ";
+		char *respond = new char[101]; gotoXY(57,2);cin >> respond;
 		system("cls");
 		if (strlen(respond) > 2 || (respond[0] < '0' || '9' < respond[0]) || (strlen(respond) == 2 && (respond[1] < '0' || '9' < respond[1]))) {
+			gotoXY(62,2);
+			textColor(4);
 			cout << "Invalid, please try again\n\n";
+			textColor(7);
 			continue;
 		}
 		int x;
@@ -2728,16 +2791,25 @@ int chooseCourse(Course *& pCourse) {
 int viewAndDeleteCourseScreen(Course *& pCourse, char *semesterName) {
     while(1) {
 		viewEnrollList(pCourse, semesterName);
-		
-		cout << "Please input your choice: \n\n";
-		cout << "0: Go back\n\n";
-		cout << "1: Unenroll a course\n";
-
+		cout<<endl;
+		textColor(3);
+		gotoXY(50,1);cout << " MENU";
+		textColor(7);
+		drawBox(49,3,2);
+		gotoXY(50,4);cout << "0";
+		gotoXY(54,4);cout << "Back";
+		drawBox(49,6,2);
+		gotoXY(50,7);cout << "1";
+		gotoXY(54,7);cout << "Unenroll course";
+		gotoXY(49,9);
 		cout << "Your input: ";
-		char *respond = new char[101]; cin >> respond;
+		char *respond = new char[101];gotoXY(61,9); cin >> respond;
 		system("cls");
 		if (strlen(respond) > 2 || (respond[0] < '0' || '9' < respond[0]) || (strlen(respond) == 2 && (respond[1] < '0' || '9' < respond[1]))) {
+			gotoXY(66,8);
+			textColor(4);
 			cout << "Invalid, please try again\n\n";
+			textColor(7);
 			continue;
 		}
 		int x;
@@ -2763,7 +2835,9 @@ void deleteCourseScreen(Course * pCourse, Student * pStudent, char * yearName, c
 	}
 
 	if (tmpCourse == nullptr) {
+		textColor(4);
 		cout << "There are no courses that match the course ID you just input!\n";
+		textColor(7);
 		system("pause");
 		system("cls");
 		return;
@@ -2779,7 +2853,9 @@ void deleteCourseScreen(Course * pCourse, Student * pStudent, char * yearName, c
 void viewOrAddScoreBoard(Course *curCourse, char * yearName, char * semesterName) {
    	if (!curCourse -> pScoreboard) {
    		while (1) {
+   			textColor(4);
    			cout << "There is no scoreboard in this course yet.\n";
+   			textColor(7);
    			cout << "Do you want to import a scoreboard into this semester?\n\n";
 
    			cout << "Please input your choice: \n\n";
@@ -2882,7 +2958,9 @@ void enrollStudent(Course *& pCourse, Student *& pStudent, char* CourseID, char*
 	Course * tmpCourse = curStudent -> pCourse;
 	while (tmpCourse) {
 		if (strcmp(tmpCourse -> id, CourseID) == 0) {
+			textColor(4);
 			cout << "The student has already enrolled in this course, cannot enrolled!\n\n";
+			textColor(7);
 			return;
 		}
 		tmpCourse = tmpCourse -> courseNext;
@@ -2907,7 +2985,9 @@ void enrollStudent(Course *& pCourse, Student *& pStudent, char* CourseID, char*
 	s2 = (curCourse -> date.s2)[1] - '0';
 
 	if (curStudent -> enrolledSession[d1][s1] || curStudent -> enrolledSession[d2][s2]) {
+			textColor(4);
 		cout << "The current course has sessions that are conflict with existing enrolled course sessions, cannot enrolled!\n\n";
+			textColor(7);
 		return;
 	}
 
@@ -2918,7 +2998,9 @@ void enrollStudent(Course *& pCourse, Student *& pStudent, char* CourseID, char*
 		enrollCourse = enrollCourse -> courseNext;
 	}
 	if (sz_enroll >= 5) {
+			textColor(4);
 		cout << "The student has already enrolled in 5 courses, cannot enrolled!\n\n";
+			textColor(7);
 		return;
 	}
 
@@ -2929,7 +3011,9 @@ void enrollStudent(Course *& pCourse, Student *& pStudent, char* CourseID, char*
 		stuInCourse = stuInCourse -> studentNext;
 	}
 	if (sz_student >= curCourse -> maxStudent) {
+			textColor(4);
 		cout << "The course is already full, cannot enrolled!\n\n";
+			textColor(7);
 		return;
 	}
 
@@ -2989,9 +3073,9 @@ void enrollStudent(Course *& pCourse, Student *& pStudent, char* CourseID, char*
 	strcpy(stuInCourse -> sClass, curStudent -> sClass);
 	stuInCourse -> gender = curStudent -> gender;
 
-
+textColor(10);
 	cout << "Enroll successfully!\n\n";
-
+	textColor(7);
 	if (add == 1) {
 		char dir[] = "C:\\Github\\Final-project-of-group-6\\DataProject\\";
 		char c[505] = "";
@@ -3173,13 +3257,15 @@ void updateScoreBoardStudent(Scoreboard *& pScr, char *yearName, char * semester
 void viewEnrollList(Course* pEnrollCourse, char *semesterName){
 	Course * pCur = pEnrollCourse;
 	while(pCur != nullptr){
+		int xb=0,yb=0,kb=40,nb=5;
 		if (strcmp(semesterName, pCur -> sSemester) == 0) {
-		    cout << "Course ID: " << pCur -> id << '\n';
-		    cout << "Course Name: " << pCur -> name << '\n';
-		    cout << "Lecturer Name: " << pCur -> lecturerName << '\n';
-			cout << "Number of Credit: " << pCur -> numberOfCredits << '\n';
-		    cout << "Occur in: " << pCur -> date.d1 << " " << pCur -> date.s1 << " and " << pCur -> date.d2 << " " << pCur -> date.s2 << '\n';
-			cout << '\n';        
+			drawBox(xb,yb,kb,nb);
+        gotoXY(xb+1,yb+1);textColor(3);cout << "Course ID: ";textColor(7);cout << pCur -> id << '\n';
+         gotoXY(xb+1,yb+2);textColor(5);cout << "Course Name: " ;textColor(7);cout << pCur -> name << '\n';
+        gotoXY(xb+1,yb+3);textColor(9); cout << "Lecturer Name: ";textColor(7);cout  << pCur -> lecturerName << '\n';
+		 gotoXY(xb+1,yb+4);textColor(10);cout << "Number of Credit: ";textColor(7);cout  << pCur -> numberOfCredits << '\n';
+        gotoXY(xb+1,yb+5); textColor(14);cout << "Occur in: ";textColor(7);cout  << pCur -> date.d1 << " " << pCur -> date.s1 << " & " << pCur -> date.d2 << " " << pCur -> date.s2 << '\n';textColor(7);
+        yb+=7;
 		}	
 		pCur = pCur -> courseNext;
 	}
@@ -3285,7 +3371,9 @@ void viewScoreBoardOfClass(Student * pStudent, Semester * pSemester) {
 		cin >> semesterName;
 		if (strlen(semesterName) > 1 || semesterName[0] < '0' || '3' < semesterName[0]) {
 			system("cls");
+			textColor(4);
 			cout << "Invalid, please try again\n\n";
+			textColor(7);
 			continue;
 		}
 		break;
