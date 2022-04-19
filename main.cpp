@@ -869,42 +869,7 @@ void inputScoreboardCSV(Scoreboard *& newScr , char *s) {
 
 
 void addScoreBoardCSV(Scoreboard *& pScore, char* yearName, char* semesterName, char* courseName) {
-	char dirOut[] = { "C:\\Github\\Final-project-of-group-6\\DataProject\\" };
-
-	/* The course has already been chosen in courseName so we don't need this part
-	char d[505] = "";
-	strcat(d, dirOut);
-	strcat(d, yearName);
-	strcat(d, "\\Semester\\");
-	strcat(d, semesterName);
-	strcat(d, "\\");
-	strcat(d, "Course.txt");
-
-	ifstream fin;
-	
-	fin.open(d);
-	if(!fin.is_open()){
-		cout << "Error at open Course.txt" << endl;
-		return;
-	}else{
-		system("cls");
-		cout << ">>Course: " << endl;
-		int n;
-		fin >> n;
-		for(int i = 0; i < n; i++){
-			char tcourse[20];
-			fin.ignore(100, '\n');
-			fin.get(tcourse, 20, '\n');
-			cout << "[" << i+1 << "] " << tcourse << endl;
-		}
-		cout << "Please input a course: ";
-		char mycourse[20];
-		cin.ignore(100, '\n');
-		cin.get(mycourse, 20, '\n'); 
-	}
-	fin.close();
-	*/
-	
+	char dirOut[] = { "C:\\Github\\Final-project-of-group-6\\DataProject\\" };	
 	char dc[201] = "";
 	strcat(dc, courseName);
 	strcat(dc, ".txt");
@@ -1743,6 +1708,7 @@ bool LogIn(int t, char *& UN)
 	cursorLocation pos;
 	pos.x = 38;
 	pos.y = 15;
+	gotoXY(pos.x,pos.y);cout<<char(26);
 		char ch;
 	do
 	{
@@ -1771,6 +1737,8 @@ bool LogIn(int t, char *& UN)
 				gotoXY(40, 15);
 				cin>>Username;
 				invisibleCursor();
+				deleteArrow(pos);
+				moveDown(pos);
 				continue;
 			}
 			else if (pos.y == 20)
@@ -1780,6 +1748,8 @@ bool LogIn(int t, char *& UN)
 				gotoXY(40, 20);
 			cin>>Password;
 				invisibleCursor();
+				deleteArrow(pos);
+				moveDown(pos);
 				continue;
 			}
 			else if (pos.y == 25)
@@ -2345,16 +2315,67 @@ int studentScreen(Student * pStudent, char* yearName, char* className) {
 			drawBox(0,14,2);
 		gotoXY(1,15);cout<<"3";
 		gotoXY(5,15);cout<<"Scoreboard"<<endl<<endl;
-		cout<<endl<<endl<<endl;
+		cout<<endl;
+		textColor(3);
+		cout<<"LIST OF STUDENTS"<<endl;
+		textColor(7);
+		cout<<char(201);
+		for(int i=0;i<15;i++)
+		cout<<char(205);
+		cout<<char(203);
+		for(int i=0;i<40;i++)
+		cout<<char(205);
+		cout<<char(203);
+		for(int i=0;i<10;i++)
+		cout<<char(205);
+		cout<<char(203);
+		for(int i=0;i<15;i++)
+		cout<<char(205);
+		cout<<char(187);
+		cout<<endl;
 		Student * curStudent = pStudent;
+		cout<<char(186)<<setw(15)<<left<<"ID";
+		cout<<char(186)<<setw(40)<<left<<"NAME";
+		cout<<char(186)<<setw(10)<<left<<"GENDER";
+		cout<<char(186)<<setw(15)<<"DATE OF BIRTH";
+		cout<<char(186)<<endl;
+		cout<<char(204);
+		for(int i=0;i<15;i++)
+		cout<<char(205);
+		cout<<char(206);
+		for(int i=0;i<40;i++)
+		cout<<char(205);
+		cout<<char(206);
+		for(int i=0;i<10;i++)
+		cout<<char(205);
+		cout<<char(206);
+		for(int i=0;i<15;i++)
+		cout<<char(205);
+		cout<<char(185);
+		cout<<endl;
+		
 		while (curStudent != nullptr) {
-	        cout << setw(12) << left << curStudent->studentID;
-	        cout << setw(25) << left << curStudent->Name;
-	        cout << setw(8) << left << ((curStudent->gender) ? "FEMALE" : "MALE");
-	        cout << curStudent->DOB.day << "/" << curStudent->DOB.month << "/"  << curStudent->DOB.year << '\n';
+	        cout << char(186)<< setw(15) << left <<curStudent->studentID;
+	        cout <<char(186)<< setw(40) << left << curStudent->Name;
+	        cout <<char(186)<< setw(10) << left << ((curStudent->gender) ? "FEMALE" : "MALE");
+	        cout << char(186)<<setw(2)<<right<<curStudent->DOB.day << "/"<<setw(2)<<right << curStudent->DOB.month<< "/"  <<setw(9)<<left << curStudent->DOB.year ;
+	        cout<<char(186)<<endl;
 			curStudent = curStudent -> studentNext;
 		}	
-	
+	cout<<char(200);
+		for(int i=0;i<15;i++)
+		cout<<char(205);
+		cout<<char(202);
+		for(int i=0;i<40;i++)
+		cout<<char(205);
+		cout<<char(202);
+		for(int i=0;i<10;i++)
+		cout<<char(205);
+		cout<<char(202);
+		for(int i=0;i<15;i++)
+		cout<<char(205);
+		cout<<char(188);
+		cout<<endl;
 		gotoXY(20,1);cout << "Your input: ";
 		char *respond = new char[101]; gotoXY(32,1);cin >> respond;
 		system("cls");
@@ -3442,22 +3463,82 @@ void viewScoreBoardOfClass(Student * pStudent, Semester * pSemester) {
 }
 void viewScoreboardOfCourse (Course *curCourse) {
     Scoreboard *pCur;
+    	cout<<char(201);
+		for(int i=0;i<30;i++)
+		cout<<char(205);
+		cout<<char(203);
+		for(int i=0;i<15;i++)
+		cout<<char(205);
+		cout<<char(203);
+		for(int i=0;i<15;i++)
+		cout<<char(205);
+		cout<<char(203);
+		for(int i=0;i<15;i++)
+		cout<<char(205);
+		cout<<char(203);
+		for(int i=0;i<15;i++)
+		cout<<char(205);
+		cout<<char(203);
+		for(int i=0;i<15;i++)
+		cout<<char(205);
+		cout<<char(187);
+		cout<<endl;
     pCur = curCourse -> pScoreboard;
-    cout << setw(30) << left << "Name";
-    cout << setw(20) << left << "ID";
-    cout << setw(20) << left << "Midterm's Mark";
-    cout << setw(20) << left << "Final's Mark";
-    cout << setw(20) << left << "Bonus's Mark";
-    cout << setw(20) << left << "Total's Mark" << '\n';
-    cout << '\n';
-
+    cout << char(186)<<setw(30) << left << "Name";
+    cout <<char(186)<< setw(15) << left << "ID";
+    cout << char(186)<<setw(15) << left << "Midterm";
+    cout << char(186)<<setw(15) << left << "Final";
+    cout << char(186)<<setw(15) << left << "Bonus";
+    cout << char(186)<<setw(15) << left << "Total";
+    cout<<char(186)<<endl;
+    	cout<<char(204);
+		for(int i=0;i<30;i++)
+		cout<<char(205);
+		cout<<char(206);
+		for(int i=0;i<15;i++)
+		cout<<char(205);
+		cout<<char(206);
+		for(int i=0;i<15;i++)
+		cout<<char(205);
+		cout<<char(206);
+		for(int i=0;i<15;i++)
+		cout<<char(205);
+		cout<<char(206);
+		for(int i=0;i<15;i++)
+		cout<<char(205);
+		cout<<char(206);
+		for(int i=0;i<15;i++)
+		cout<<char(205);
+		cout<<char(185);
+		cout<<endl;
     while (pCur) {
-        cout << setw(30) << left << pCur->stu->Name;
-        cout << setw(20) << left << pCur->stu->studentID;
-        cout << setw(20) << left << pCur->midterm;
-        cout << setw(20) << left << pCur->final;
-        cout << setw(20) << left << pCur->bonus;
-        cout << setw(20) << left << pCur->total << '\n';
+        cout <<char(186)<< setw(30) << left << pCur->stu->Name;
+        cout << char(186)<<setw(15) << left << pCur->stu->studentID;
+        cout <<char(186)<< setw(15) << left << pCur->midterm;
+        cout <<char(186)<< setw(15) << left << pCur->final;
+        cout <<char(186)<< setw(15) << left << pCur->bonus;
+        cout << char(186)<<setw(15) << left << pCur->total;
+        cout<<char(186)<<endl;
         pCur = pCur->scoreboardNext;
     }
+    cout<<char(200);
+		for(int i=0;i<30;i++)
+		cout<<char(205);
+		cout<<char(202);
+		for(int i=0;i<15;i++)
+		cout<<char(205);
+		cout<<char(202);
+		for(int i=0;i<15;i++)
+		cout<<char(205);
+		cout<<char(202);
+			for(int i=0;i<15;i++)
+		cout<<char(205);
+		cout<<char(202);
+			for(int i=0;i<15;i++)
+		cout<<char(205);
+		cout<<char(202);
+		for(int i=0;i<15;i++)
+		cout<<char(205);
+		cout<<char(188);
+		cout<<endl;
 }
