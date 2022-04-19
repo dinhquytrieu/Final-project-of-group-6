@@ -11,8 +11,11 @@ void addStudentCSV(Student*& pStudent, char* CSV_Student_File, char* yearName, c
 	strcat(d, "Student.txt");
 
 	ofstream fOut(d);
+	if(add)
+	{
 	fstream fOut2(d2);
 	fOut2.seekg(0,fOut.end);
+	}
 	char dirIn[] = { "C:\\Github\\Final-project-of-group-6\\DataProject\\Class_csv\\" };
 	char dd[505] = "";
 	strcat(dd, dirIn);
