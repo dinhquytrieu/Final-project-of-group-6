@@ -1,11 +1,6 @@
-#include <iostream>
-#include <fstream>
-#include <string.h>
-#include "Course.h"
 
-using namespace std;
 
-void createNewYear(Year* &pYear, string yearName, int add) {
+void createNewYear(Year* &pYear, string yearName, int modd) {
 	Year* pCur = pYear;
 	while (pCur != nullptr) {
 		if (pCur -> nameYear == yearName)) {
@@ -19,14 +14,14 @@ void createNewYear(Year* &pYear, string yearName, int add) {
 	}
 
 	ofstream fout;
-	if (add)
+	if (modd)
 		fout.open("C:\\GitHub\\Final-project-of-group-6\\datafile\\Year.txt", ios_base::app);
 
 	pCur = pYear;
 	if (pYear == nullptr) {
 		pYear = new Year;
 		pYear -> nameYear = yearName;
-		if (add)
+		if (modd)
 			fout << pYear -> nameYear;
 	}
 	else {
@@ -35,15 +30,15 @@ void createNewYear(Year* &pYear, string yearName, int add) {
 				fout << pCur -> nameYear << '\n';
 			pCur = pCur -> pYearNext;
 		}
-		if (add)
+		if (modd)
 			fout << pCur -> nameYear << '\n';
 		pCur -> pYearNext = new Year;
 		pCur = pCur -> pYearNext;
 		pCur -> nameYear = yearName;
-		if (add)
+		if (modd)
 			fout << pCur -> nameYear;
 	}
-	if (add)
+	if (modd)
 		fout.close();
 
 	char dirD[] = "C:\\GitHub\\Final-project-of-group-6\\datafile\\";
