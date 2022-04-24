@@ -20,25 +20,26 @@ Many thanks!
 *
 
 # The following are the functions that the members have done during the time of completing the project:
-#Nguyen Le Tan Phuc:
+
+# Nguyen Le Tan Phuc:
 +
 +
 +
 +
 
--Đinh Qui Trieu:
+# Đinh Qui Trieu:
 +
 +
 +
 +
 
--Vo Doan Vuong Thinh:
+# Vo Doan Vuong Thinh:
 +
 +
 +
 +
 
--Phan Thai Khang:
+# Phan Thai Khang:
 +
 +
 +
