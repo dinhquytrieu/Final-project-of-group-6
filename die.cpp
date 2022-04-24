@@ -484,7 +484,7 @@ int main() {
 						}
 						if (curYear == nullptr || cntYear < respondYear) {
 							textColor(4);
-							gotoXY(32,1);cout << "Invalid, please try again";
+							gotoXY(32,1);cout << "Invalid, try again";
 							textColor(7);
 							continue;
 						}	
@@ -512,7 +512,7 @@ int main() {
      									}
      									if (curSemester == nullptr || cntSemester < respondSemester) {
      										textColor(4);
-											gotoXY(32,1);cout << "Invalid, please try again";
+											gotoXY(32,1);cout << "Invalid, try again";
 											textColor(7);
      										continue; 
      									}
@@ -543,7 +543,7 @@ int main() {
 												if (curCourse == nullptr || cntCourse < respondCourse) {
      												textColor(4);
 			gotoXY(40,1);
-			cout << "Invalid, please try again\n\n";
+			cout << "Invalid, try again\n\n";
 			textColor(7);
 		     										continue;
 												}
@@ -570,7 +570,7 @@ int main() {
 	     												{
 	     														gotoXY(62,1);
 			textColor(4);
-			cout << "Invalid, please try again\n\n";
+			cout << "Invalid, try again\n\n";
 			textColor(7);
 														 }
 												}
@@ -592,7 +592,7 @@ int main() {
 								}
 								if (curClass == nullptr || cntClass < respondClass) {
 									textColor(4);
-						gotoXY(45,1);cout << "Invalid, please try again\n\n";
+						gotoXY(45,1);cout << "Invalid, try again\n\n";
 						textColor(7);
 									continue;
 								}
@@ -614,7 +614,7 @@ int main() {
 										{
 												gotoXY(37,1);
 			textColor(4);
-			cout << "Invalid, please try again\n\n";
+			cout << "Invalid, try again\n\n";
 			textColor(7);
 										}
 								}
@@ -678,7 +678,7 @@ int main() {
        					if (curSemester == nullptr || cntSemester < respondSemester) {
        							gotoXY(62,1);
        							textColor(4);
-       							cout<<"Invalid, please try again";
+       							cout<<"Invalid, try again";
        							textColor(7);
        						continue; 
        					}
