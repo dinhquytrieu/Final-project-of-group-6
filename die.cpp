@@ -1264,7 +1264,7 @@ void changePassword(int t, char * userName) {
 					char userOut[101], passOut[101];
 					while (fIn >> userOut && fIn >> passOut) {
 						fOut << userOut << ' ';
-						if (strcmp(pass, passOut) == 0)
+						if (strcmp(pass, passOut) == 0 && strcmp(userName, userOut) == 0)
 							fOut << new_pass_1 << '\n';							
 						else
 							fOut << passOut << '\n';
