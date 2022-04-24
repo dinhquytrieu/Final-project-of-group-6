@@ -20,7 +20,7 @@ Many thanks!
 *
 
 # The following are the functions that the members have done during the time of completing the project:
--Nguyen Le Tan Phuc:
+#Nguyen Le Tan Phuc:
 +
 +
 +
@@ -45,7 +45,7 @@ Many thanks!
 +
 
 # Reference
-1[]
-2[]
-3[]
-4p]
+-
+-
+-
+-
