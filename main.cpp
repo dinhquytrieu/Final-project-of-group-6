@@ -1162,9 +1162,11 @@ void courseRegistration(Semester*& pSemester, Semester* totSemester, char* yearN
 			cout << "0: No\n";
 			textColor(7);
 			cout << "Your input: ";
-			char* respond = new char[101]; cin >> respond;
+
+			int* respond= new int[10]; cin >> respond[0];
 			system("cls");
-			if (strlen(respond) > 1 || (respond[0] < '0' || '1' < respond[0])) {
+			if(respond[0] <0 || respond[0] >1 ){
+			
 				gotoXY(62, 1);
 				textColor(4);
 				cout << "Invalid, try again\n\n";
@@ -1172,7 +1174,8 @@ void courseRegistration(Semester*& pSemester, Semester* totSemester, char* yearN
 				continue;
 			}
 			system("cls");
-			int x = respond[0] - '0';
+			
+			int x=respond[0];
 			delete[] respond;
 			if (x == 0) return;
 			else break;
@@ -1296,31 +1299,6 @@ void changePassword(int t, char* userName) {
 	}
 }
 void deleteCourse(Year* pYear, Course*& pCourse, char* yearName, char* semesterName, char* courseID) {
-	while (1) {
-		cout << "Are you sure you want to delete this course?\n\n";
-		textColor(4);
-		cout << "0: No\n";
-		textColor(10);
-		cout << "1: Yes\n\n";
-		textColor(7);
-		cout << "Your input: ";
-		char* respond = new char[101]; cin >> respond;
-		system("cls");
-		if (strlen(respond) > 1 || (respond[0] < '0' || '1' < respond[0])) {
-			textColor(4);
-			cout << "Invalid, try again\n\n";
-			textColor(7);
-			continue;
-		}
-		int x = respond[0] - '0';
-		delete[] respond;
-		if (!x)
-			return;
-		break;
-	}
-
-	// Then we simply delete this course
-
 	if (strcmp(pCourse->id, courseID) == 0) {
 		Course* pDel = pCourse;
 		pCourse = pCourse->courseNext;
@@ -2003,32 +1981,6 @@ void createNewSemester(Semester*& pSemester, char* semesterName, char* yearName,
 	system(d);
 }
 void removeCourseInEnrollList(Course*& pCourse, Student*& pStudent, char* yearName, char* semesterName, char* CourseID, char* studentID) {
-	while (1) {
-		textColor(14);
-		cout << "Are you sure you want to unenroll from this course?\n\n";
-		textColor(4);
-		cout << "0: No\n";
-		textColor(10);
-		cout << "1: Yes\n";
-		textColor(7);
-		cout << '\n';
-
-		cout << "Your input: ";
-		char* respond = new char[101]; cin >> respond;
-		system("cls");
-		if (strlen(respond) > 1 || (respond[0] < '0' || '1' < respond[0])) {
-			textColor(4);
-			cout << "Invalid, try again\n\n";
-			textColor(7);
-			continue;
-		}
-		int x = respond[0] - '0';
-		delete[] respond;
-		if (!x)
-			return;
-		break;
-	}
-
 	int d1, d2, s1, s2;
 
 	if (strcmp(pCourse->date.d1, "MON") == 0) d1 = 2;
@@ -2243,20 +2195,17 @@ int yearScreen() {
 		delete[] s;
 		cout << endl;
 		gotoXY(12, 1); cout << "Your input: ";
-		char* respond = new char[101]; gotoXY(24, 1); cin >> respond;
+		int* respond= new int[10];; gotoXY(24, 1); cin >> respond[0];
 		system("cls");
-		if (strlen(respond) > 2 || (respond[0] < '0' || '9' < respond[0]) || (strlen(respond) == 2 && (respond[1] < '0' || '9' < respond[1]))) {
+		//if (strlen(respond) > 2 || (respond[0] < '0' || '9' < respond[0]) || (strlen(respond) == 2 && (respond[1] < '0' || '9' < respond[1]))) {
+		if(respond[0] <0 || respond[0] > 20){
+		
 			textColor(4);
 			gotoXY(32, 1); cout << "Invalid, try again";
 			textColor(7);
 			continue;
 		}
-		int x;
-
-		if (strlen(respond) == 1)
-			x = respond[0] - '0';
-		else
-			x = (respond[0] - '0') * 10 + (respond[1] - '0');
+		int x = respond[0];
 		delete[] respond;
 		return x;
 	}
@@ -2313,19 +2262,17 @@ int classScreen(char* yearName) {
 		delete[] s;
 
 		gotoXY(25, 1); cout << "Your input: ";
-		char* respond = new char[101]; gotoXY(37, 1); cin >> respond;
+		int* respond= new int[10];; gotoXY(37, 1); cin >> respond[0];
 		system("cls");
-		if (strlen(respond) > 2 || (respond[0] < '0' || '9' < respond[0]) || (strlen(respond) == 2 && (respond[1] < '0' || '9' < respond[1]))) {
+		//if (strlen(respond) > 2 || (respond[0] < '0' || '9' < respond[0]) || (strlen(respond) == 2 && (respond[1] < '0' || '9' < respond[1]))) {
+		if(respond[0] <0 || respond[0] > 20){
+		
 			textColor(4);
 			gotoXY(45, 1); cout << "Invalid, try again\n\n";
 			textColor(7);
 			continue;
 		}
-		int x;
-		if (strlen(respond) == 1)
-			x = respond[0] - '0';
-		else
-			x = (respond[0] - '0') * 10 + (respond[1] - '0');
+		int x = respond[0];
 		delete[] respond;
 		return x;
 	}
@@ -2422,20 +2369,19 @@ int studentScreen(Student* pStudent, char* yearName, char* className) {
 		cout << char(188);
 		cout << endl;
 		gotoXY(20, 1); cout << "Your input: ";
-		char* respond = new char[101]; gotoXY(32, 1); cin >> respond;
+		int* respond= new int[10]; gotoXY(32, 1); cin >> respond[0];
 		system("cls");
-		if (strlen(respond) > 2 || (respond[0] < '0' || '9' < respond[0]) || (strlen(respond) == 2 && (respond[1] < '0' || '9' < respond[1]))) {
+		//if (strlen(respond) > 2 || (respond[0] < '0' || '9' < respond[0]) || (strlen(respond) == 2 && (respond[1] < '0' || '9' < respond[1]))) {
+		if( respond[0] <0 || respond[0] >20 ){
+		
 			gotoXY(37, 1);
 			textColor(4);
 			cout << "Invalid, try again\n\n";
 			textColor(7);
 			continue;
 		}
-		int x;
-		if (strlen(respond) == 1)
-			x = respond[0] - '0';
-		else
-			x = (respond[0] - '0') * 10 + (respond[1] - '0');
+		int x = respond[0];
+		
 		delete[] respond;
 		return x;
 	}
@@ -2489,19 +2435,17 @@ int semesterScreen(Semester*& pSemester) {
 		}
 		cout << endl;
 		gotoXY(12, 1); cout << "Your input: ";
-		char* respond = new char[101]; gotoXY(24, 1); cin >> respond;
+		int* respond= new int[10]; gotoXY(24, 1); cin >> respond[0];
 		system("cls");
-		if (strlen(respond) > 2 || (respond[0] < '0' || '9' < respond[0]) || (strlen(respond) == 2 && (respond[1] < '0' || '9' < respond[1]))) {
+		//if (strlen(respond) > 2 || (respond[0] < '0' || '9' < respond[0]) || (strlen(respond) == 2 && (respond[1] < '0' || '9' < respond[1]))) {
+		if( respond[0] <0 || respond[0] >20 ){
 			textColor(4);
 			gotoXY(32, 1);	cout << "Invalid, try again\n\n";
 			textColor(7);
 			continue;
 		}
-		int x;
-		if (strlen(respond) == 1)
-			x = respond[0] - '0';
-		else
-			x = (respond[0] - '0') * 10 + (respond[1] - '0');
+		int x  = respond[0];
+		
 		delete[] respond;
 		return x;
 	}
@@ -2568,20 +2512,18 @@ int courseScreen(Course*& pCourse, char* semesterName) {
 		}
 
 		gotoXY(18, 1); cout << "Your input: ";
-		char* respond = new char[101]; gotoXY(30, 1); cin >> respond;
+		int* respond= new int[10]; gotoXY(30, 1); cin >> respond[0];
 		system("cls");
-		if (strlen(respond) > 2 || (respond[0] < '0' || '9' < respond[0]) || (strlen(respond) == 2 && (respond[1] < '0' || '9' < respond[1]))) {
+		//if (strlen(respond) > 2 || (respond[0] < '0' || '9' < respond[0]) || (strlen(respond) == 2 && (respond[1] < '0' || '9' < respond[1]))) {
+				if( respond[0] <0 || respond[0] >20 ){
 			textColor(4);
 			gotoXY(40, 1);
 			cout << "Invalid, try again\n\n";
 			textColor(7);
 			continue;
 		}
-		int x;
-		if (strlen(respond) == 1)
-			x = respond[0] - '0';
-		else
-			x = (respond[0] - '0') * 10 + (respond[1] - '0');
+		int x = respond[0];
+		
 		delete[] respond;
 		return x;
 	}
@@ -2687,20 +2629,18 @@ int editCourseScreen(Course*& curCourse) {
 		gotoXY(5, 23); cout << "Delete";
 		cout << endl << endl;
 		gotoXY(47, 1); cout << "Your input: ";
-		char* respond = new char[101]; gotoXY(59, 1); cin >> respond;
+		int* respond= new int[10]; gotoXY(59, 1); cin >> respond[0];
 		system("cls");
-		if (strlen(respond) > 2 || (respond[0] < '0' || '9' < respond[0]) || (strlen(respond) == 2 && (respond[1] < '0' || '9' < respond[1]))) {
+		//if (strlen(respond) > 2 || (respond[0] < '0' || '9' < respond[0]) || (strlen(respond) == 2 && (respond[1] < '0' || '9' < respond[1]))) {
+		if( respond[0] <0 || respond[0] >20 ){
 			gotoXY(62, 1);
 			textColor(4);
 			cout << "Invalid, try again\n\n";
 			textColor(7);
 			continue;
 		}
-		int x;
-		if (strlen(respond) == 1)
-			x = respond[0] - '0';
-		else
-			x = (respond[0] - '0') * 10 + (respond[1] - '0');
+		int x= respond[0];
+		
 		delete[] respond;
 		return x;
 	}
@@ -2749,19 +2689,17 @@ int enrollSemesterScreen(Year*& pYear, char* studentID) {
 		}
 
 		gotoXY(45, 1); cout << "Your input: ";
-		char* respond = new char[101]; gotoXY(57, 1); cin >> respond;
+		int* respond= new int[10]; gotoXY(57, 1); cin >> respond[0];
 		system("cls");
-		if (strlen(respond) > 2 || (respond[0] < '0' || '9' < respond[0]) || (strlen(respond) == 2 && (respond[1] < '0' || '9' < respond[1]))) {
+		//if (strlen(respond) > 2 || (respond[0] < '0' || '9' < respond[0]) || (strlen(respond) == 2 && (respond[1] < '0' || '9' < respond[1]))) {
+		if( respond[0] <0 || respond[0] >20 ){
 			textColor(4);
 			gotoXY(62, 1);	cout << "Invalid, try again\n\n";
 			textColor(7);
 			continue;
 		}
-		int x;
-		if (strlen(respond) == 1)
-			x = respond[0] - '0';
-		else
-			x = (respond[0] - '0') * 10 + (respond[1] - '0');
+		int x =  respond[0];
+		
 		delete[] respond;
 		return x;
 	}
@@ -2789,20 +2727,18 @@ int enrollCourseScreen(char* semesterName) {
 		gotoXY(5, 15); cout << "Scoreboard";
 
 		gotoXY(17, 1);	cout << "Your input: ";
-		char* respond = new char[101]; gotoXY(29, 1); cin >> respond;
+		int* respond= new int[10]; gotoXY(29, 1); cin >> respond[0];
 		system("cls");
-		if (strlen(respond) > 2 || (respond[0] < '0' || '9' < respond[0]) || (strlen(respond) == 2 && (respond[1] < '0' || '9' < respond[1]))) {
+		//if (strlen(respond) > 2 || (respond[0] < '0' || '9' < respond[0]) || (strlen(respond) == 2 && (respond[1] < '0' || '9' < respond[1]))) {
+		if( respond[0] <0 || respond[0] >20 ){
 			gotoXY(34, 1);
 			textColor(4);
 			cout << "Invalid, try again\n\n";
 			textColor(7);
 			continue;
 		}
-		int x;
-		if (strlen(respond) == 1)
-			x = respond[0] - '0';
-		else
-			x = (respond[0] - '0') * 10 + (respond[1] - '0');
+		int x = respond[0];
+		
 		delete[] respond;
 		return x;
 	}
@@ -2868,20 +2804,18 @@ int chooseCourse(Course*& pCourse) {
 		}
 
 		gotoXY(47, 2); cout << "Your input: ";
-		char* respond = new char[101]; gotoXY(59, 2); cin >> respond;
+		int* respond= new int[10]; gotoXY(59, 2); cin >> respond[0];
 		system("cls");
-		if (strlen(respond) > 2 || (respond[0] < '0' || '9' < respond[0]) || (strlen(respond) == 2 && (respond[1] < '0' || '9' < respond[1]))) {
+		//if (strlen(respond) > 2 || (respond[0] < '0' || '9' < respond[0]) || (strlen(respond) == 2 && (respond[1] < '0' || '9' < respond[1]))) {
+		if( respond[0] <0 || respond[0] >20 ){
 			gotoXY(62, 2);
 			textColor(4);
 			cout << "Invalid, try again\n\n";
 			textColor(7);
 			continue;
 		}
-		int x;
-		if (strlen(respond) == 1)
-			x = respond[0] - '0';
-		else
-			x = (respond[0] - '0') * 10 + (respond[1] - '0');
+		int x = respond[0];
+		
 		delete[] respond;
 		return x;
 	}
@@ -2902,20 +2836,18 @@ int viewAndDeleteCourseScreen(Course*& pCourse, char* semesterName) {
 		gotoXY(54, 7); cout << "Unenroll course";
 		gotoXY(49, 9);
 		cout << "Your input: ";
-		char* respond = new char[101]; gotoXY(61, 9); cin >> respond;
+		int* respond= new int[10]; gotoXY(61, 9); cin >> respond[0];
 		system("cls");
-		if (strlen(respond) > 2 || (respond[0] < '0' || '9' < respond[0]) || (strlen(respond) == 2 && (respond[1] < '0' || '9' < respond[1]))) {
+		//if (strlen(respond) > 2 || (respond[0] < '0' || '9' < respond[0]) || (strlen(respond) == 2 && (respond[1] < '0' || '9' < respond[1]))) {
+		if( respond[0] <0 || respond[0] >20 ){
 			gotoXY(66, 8);
 			textColor(4);
 			cout << "Invalid, try again\n\n";
 			textColor(7);
 			continue;
 		}
-		int x;
-		if (strlen(respond) == 1)
-			x = respond[0] - '0';
-		else
-			x = (respond[0] - '0') * 10 + (respond[1] - '0');
+		int x = respond[0];
+		
 		delete[] respond;
 		return x;
 	}
@@ -2964,20 +2896,18 @@ void viewOrAddScoreBoard(Course* curCourse, char* yearName, char* semesterName) 
 			cout << "1: Yes\n";
 			textColor(7);
 			cout << "Your input: ";
-			char* respond = new char[101]; cin >> respond;
+				int* respond= new int[10]; cin >> respond[0];
 			system("cls");
-			if (strlen(respond) > 2 || (respond[0] < '0' || '9' < respond[0]) || (strlen(respond) == 2 && (respond[1] < '0' || '9' < respond[1]))) {
+			//if (strlen(respond) > 2 || (respond[0] < '0' || '9' < respond[0]) || (strlen(respond) == 2 && (respond[1] < '0' || '9' < respond[1]))) {
+			if( respond[0] <0 || respond[0] >20 ){
 				textColor(4);
 				cout << "Invalid, try again\n\n";
 				textColor(7);
 				continue;
 			}
 
-			int x;
-			if (strlen(respond) == 1)
-				x = respond[0] - '0';
-			else
-				x = (respond[0] - '0') * 10 + (respond[1] - '0');
+			int x = respond[0];
+			
 			delete[] respond;
 			if (x != 0 && x != 1) {
 				textColor(4);
@@ -3009,20 +2939,18 @@ void viewOrAddScoreBoard(Course* curCourse, char* yearName, char* semesterName) 
 		gotoXY(5, 9); cout << "Update Student Result" << endl << endl;
 		viewScoreboardOfCourse(curCourse);
 		gotoXY(16, 1); cout << "Your input: ";
-		char* respond = new char[101]; gotoXY(28, 1); cin >> respond;
+		int* respond= new int[10]; gotoXY(28, 1); cin >> respond[0];
 		system("cls");
-		if (strlen(respond) > 2 || (respond[0] < '0' || '9' < respond[0]) || (strlen(respond) == 2 && (respond[1] < '0' || '9' < respond[1]))) {
+		//if (strlen(respond) > 2 || (respond[0] < '0' || '9' < respond[0]) || (strlen(respond) == 2 && (respond[1] < '0' || '9' < respond[1]))) {
+		if( respond[0] <0 || respond[0] >20 ){
 			textColor(4);
 			gotoXY(33, 1); cout << "Invalid, try again\n\n";
 			textColor(7);
 			continue;
 		}
 
-		int x;
-		if (strlen(respond) == 1)
-			x = respond[0] - '0';
-		else
-			x = (respond[0] - '0') * 10 + (respond[1] - '0');
+		int x = respond[0];
+		
 		delete[] respond;
 
 		if (x != 0 && x != 1) {
@@ -3235,16 +3163,17 @@ void updateCourse(Course*& pCourse, char* yearName, char* semesterName, char* co
 		gotoXY(5, 24); cout << "Session and shifts" << endl << endl;
 
 		gotoXY(18, 1); cout << "Your input: ";
-		char* respond = new char[101]; gotoXY(30, 1); cin >> respond;
+		int* respond= new int[10]; gotoXY(30, 1); cin >> respond[0];
 		system("cls");
-		if (strlen(respond) > 1 || (respond[0] < '0' || '9' < respond[0])) {
+		//if (strlen(respond) > 1 || (respond[0] < '0' || '9' < respond[0])) {
+		if( respond[0] <0 || respond[0] >20 ){
 			textColor(4);
 			gotoXY(35, 1);
 			cout << "Invalid, try again\n\n";
 			textColor(7);
 			continue;
 		}
-		x = respond[0] - '0';
+		x = respond[0];
 		break;
 	}
 
@@ -3454,13 +3383,14 @@ void viewListOfStudentsInCourse(Student* pStudent, char* courseID) {
 		cout << "1: Yes\n\n";
 		textColor(7);
 		cout << "Your input: ";
-		char* respond = new char[101]; cin >> respond;
+		int* respond= new int[10]; cin >> respond[0];
 		system("cls");
-		if (strlen(respond) > 1 || (respond[0] < '0' || '1' < respond[0])) {
+		//if (strlen(respond) > 1 || (respond[0] < '0' || '1' < respond[0])) {
+		if( respond[0] <0 || respond[0] >1 ){
 			cout << "Invalid, try again\n\n";
 			continue;
 		}
-		if (respond[0] - '0')
+		if (respond[0])
 			exportStudentToCsv(pStudent, courseID);
 		return;
 	}
