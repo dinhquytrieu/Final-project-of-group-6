@@ -3323,7 +3323,6 @@ void viewListOfCourse(Course* pCourse) {
 		gotoXY(xb + 1, yb + 2); textColor(5); cout << "Course Name: "; textColor(7); cout << pCur->name << '\n';
 		gotoXY(xb + 1, yb + 3); textColor(9); cout << "Teacher Name: "; textColor(7); cout << pCur->lecturerName << '\n';
 		gotoXY(xb + 1, yb + 4); textColor(10); cout << "Number of Credit: "; textColor(7); cout << pCur->numberOfCredits << '\n';
-	//	gotoXY(xb + 1, yb + 5); textColor(14); cout << "Occur in: "; textColor(7); cout << pCur->date.d1 << " " << pCur->date.s1 << " & " << pCur->date.d2 << " " << pCur->date.s2 << '\n'; textColor(7);
 	
 		gotoXY(xb+1,yb+5); textColor(14);cout << "Occur in: ";textColor(7);cout  << pCur -> date.d1;
 		if(pCur -> date.s1[0] == '1') cout << " 7h30-9h30 ";
@@ -3529,8 +3528,11 @@ void viewScoreBoardOfClass(Student* pStudent, Semester* pSemester) {
 		curSem = curSem->semesterNext;
 	}
 
-	cout << char(186) << setw(20) << left << "GPA this semester";
-	cout << char(186) << setw(20) << left << "Overall GPA";
+	char tmp[300]="GPA semester ";
+	strcat(tmp,semesterName);
+	cout << char(186) << setw(20) << left << tmp;
+	
+	cout << char(186) << setw(20) << left << "Final GPA";
 	cout << char(186);
 	cout << '\n';
 	cout << char(204);
