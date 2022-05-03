@@ -1,4 +1,6 @@
 #include "header.h"
+#include "function.cpp"
+
 int main() {
 	//Input interface
 
@@ -20,7 +22,15 @@ int main() {
 				while (true) { // Edit Year screen
 					int respondYear = yearScreen();
 					if (respondYear == 0) // Logout 
-						return 0;
+					{
+						Year* pYear = nullptr;
+					loadData(pYear);
+					system("cls");
+					time_t cur_t = time(0);
+					tm* now = localtime(&cur_t);
+					break;
+					}		
+						//return 0;
 					else if (respondYear == 1) { // Change password
 						changePassword(1, userName);
 					}
@@ -112,8 +122,8 @@ int main() {
 													else if (respondEditCourse == 2) { // View list of students in this course
 														viewListOfStudentsInCourse(curCourse->pStudent, curCourse->id);
 													}
-													else if (respondEditCourse == 3) { // View the scoreboard of this course
-														viewOrAddScoreBoard(curCourse, curYear->YearName, curSemester->SemesterName);
+													else if (respondEditCourse == 3) { // View the Score of this course
+														viewOrAddScore(curCourse, curYear->YearName, curSemester->SemesterName);
 													}
 													else if (respondEditCourse == 4) { // Delete the current course
 														deleteCourse(curYear, curSemester->pCourse, curYear->YearName, curSemester->SemesterName, curCourse->id);
@@ -121,7 +131,7 @@ int main() {
 													}
 													else
 													{
-														gotoXY(62, 1);
+														gotoXY(82, 1);
 														textColor(4);
 														cout << "Invalid, try again\n\n";
 														textColor(7);
@@ -160,8 +170,8 @@ int main() {
 									else if (respondStudent == 2) { // Add students through .csv file
 										Menu_createStudent_toCSV(curClass->pStudent, curYear->YearName, curClass->ClassName);
 									}
-									else if (respondStudent == 3) {	// View scoreboard of a class
-										viewScoreBoardOfClass(curClass->pStudent, curYear->pSemester);
+									else if (respondStudent == 3) {	// View Score of a class
+										viewScoreOfClass(curClass->pStudent, curYear->pSemester);
 									}
 									else
 									{
@@ -216,7 +226,16 @@ int main() {
 
 					int respondSemester = enrollSemesterScreen(curYear, studentID);
 					if (respondSemester == 0) // Logout
-						return 0;
+					{
+						Year* pYear = nullptr;
+						loadData(pYear);
+						system("cls");
+						time_t cur_t = time(0);
+						tm* now = localtime(&cur_t);
+						break;
+					}
+					
+					//	return 0;
 					else if (respondSemester == 1) {// Change password
 						changePassword(2, studentID);
 					}
@@ -272,7 +291,7 @@ int main() {
 											curCourse = curCourse->courseNext;
 										}
 										if (curCourse == nullptr || cntCourse < respondChooseCourse) {
-											gotoXY(62, 2);
+											gotoXY(82, 2);
 											textColor(4);
 											cout << "Invalid, try again";
 											textColor(7);
@@ -291,8 +310,8 @@ int main() {
 										deleteCourseScreen(curSemester->pCourse, curStudent, curYear->YearName, curSemester->SemesterName, curStudent->studentID);
 								}
 							}
-							else if (respondCourse == 3) { // View scoreboard in this semester
-								viewScoreBoard(curSemester->pCourse, curStudent->studentID);
+							else if (respondCourse == 3) { // View Score in this semester
+								viewScore(curSemester->pCourse, curStudent->studentID);
 							}
 							else
 							{
@@ -310,7 +329,6 @@ int main() {
 	}
 
 }
-
 
 
 
