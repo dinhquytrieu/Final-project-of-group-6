@@ -318,7 +318,7 @@ void addNewCourse(Course*& pCourse, char* semesterName, char* yearName, Course*&
 		while (pCur != nullptr) {
 			fout << pCur->id << '\n';
 			fout << pCur->name << '\n';
-			fout << pCur->lecturerName << '\n';
+			fout << pCur->teacherName << '\n';
 			fout << pCur->numberOfCredits << '\n';
 			fout << pCur->maxStudent << '\n';
 			fout << pCur->date.d1 << '\n' << pCur->date.s1 << '\n';
@@ -331,7 +331,7 @@ void addNewCourse(Course*& pCourse, char* semesterName, char* yearName, Course*&
 		fout.close();
 }
 
-void inputScoreboardCSV(Scoreboard*& newScr, char* s) {
+void inputScoreCSV(Score*& newScr, char* s) {
 	int t = 0, n = strlen(s);
 	char* cur = new char[505];
 	int pos = 0;
@@ -458,7 +458,7 @@ void addStudent(Student*& pStudent, char* yearName, char* className, Student*& n
 	}
 
 }
-void addScoreBoardCSV(Scoreboard*& pScore, char* yearName, char* semesterName, char* courseName) {
+void addScoreCSV(Score*& pScore, char* yearName, char* semesterName, char* courseName) {
 	char dirOut[] = { "C:\\Github\\Final-project-of-group-6\\DataProject\\" };
 	char dc[201] = "";
 	strcat(dc, courseName);
@@ -476,7 +476,7 @@ void addScoreBoardCSV(Scoreboard*& pScore, char* yearName, char* semesterName, c
 
 	ofstream fOut(ddd);
 
-	char dirIn[] = { "C:\\Github\\Final-project-of-group-6\\DataProject\\Scoreboard_csv\\" };
+	char dirIn[] = { "C:\\Github\\Final-project-of-group-6\\DataProject\\CSV_OfScore\\" };
 	char dd[505] = "";
 	strcat(dd, dirIn);
 	strcat(dd, courseName);
@@ -494,24 +494,24 @@ void addScoreBoardCSV(Scoreboard*& pScore, char* yearName, char* semesterName, c
 
 	char* s = new char[505];
 	while (fIn.getline(s, 505)) {
-		Scoreboard* newScr = new Scoreboard;
-		inputScoreboardCSV(newScr, s);
+		Score* newScr = new Score;
+		inputScoreCSV(newScr, s);
 
 		if (pScore == nullptr)
 			pScore = newScr;
 		else {
-			Scoreboard* pCur = pScore;
-			while (pCur->scoreboardNext != nullptr)
-				pCur = pCur->scoreboardNext;
-			pCur->scoreboardNext = newScr;
+			Score* pCur = pScore;
+			while (pCur->ScoreNext != nullptr)
+				pCur = pCur->ScoreNext;
+			pCur->ScoreNext = newScr;
 		}
 	}
 
-	Scoreboard* pCur = pScore;
+	Score* pCur = pScore;
 	int cnt = 0;
 	while (pCur != nullptr) {
 		fOut << ++cnt << ',' << pCur->stu->studentID << ',' << pCur->stu->Name << ',' << pCur->midterm << ',' << pCur->final << ',' << pCur->bonus << ',' << pCur->total << '\n';
-		pCur = pCur->scoreboardNext;
+		pCur = pCur->ScoreNext;
 	}
 	fOut.close();
 	delete[] s;
@@ -601,7 +601,7 @@ void addStudentCSV(Student*& pStudent, char* CSV_Student_File, char* yearName, c
 	ofstream fOut(d);
 	fstream fOut2(d2);
 	fOut2.seekg(0, fOut.end);
-	char dirIn[] = { "C:\\Github\\Final-project-of-group-6\\DataProject\\Class_csv\\" };
+	char dirIn[] = { "C:\\Github\\Final-project-of-group-6\\DataProject\\CSV_OfClass\\" };
 	char dd[505] = "";
 	strcat(dd, dirIn);
 	strcat(dd, CSV_Student_File);
@@ -833,7 +833,7 @@ void deleteCourse(Year* pYear, Course*& pCourse, char* yearName, char* semesterN
 	while (pCur != nullptr) {
 		fout << pCur->id << '\n';
 		fout << pCur->name << '\n';
-		fout << pCur->lecturerName << '\n';
+		fout << pCur->teacherName << '\n';
 		fout << pCur->numberOfCredits << '\n';
 		fout << pCur->maxStudent << '\n';
 		fout << pCur->date.d1 << '\n' << pCur->date.s1 << '\n';
@@ -843,7 +843,7 @@ void deleteCourse(Year* pYear, Course*& pCourse, char* yearName, char* semesterN
 	fout.close();
 }
 void exportStudentToCsv(Student* pStuInCourse, char* courseID) {
-	char dirD[] = "C:\\Github\\Final-project-of-group-6\\DataProject\\Student_csv\\";
+	char dirD[] = "C:\\Github\\Final-project-of-group-6\\DataProject\\Export_StuCSV\\";
 	char c[505];
 	strcat(c, dirD);
 	strcat(c, courseID);
@@ -860,7 +860,7 @@ void exportStudentToCsv(Student* pStuInCourse, char* courseID) {
 			pStu = pStu->studentNext;
 		}
 		textColor(10);
-		cout << "The list of students has been exported into the file Final-project-of-group-6\\DataProject\\Student_csv\\" << courseID << ".csv\n\n";
+		cout << "The list of students has been exported into the file Final-project-of-group-6\\DataProject\\Export_StuCSV\\" << courseID << ".csv\n\n";
 		textColor(7);
 		system("pause");
 		system("cls");
@@ -973,22 +973,22 @@ void loadData(Year*& pYear) {
 			istringstream iss(semesterStr);
 			char* semesterName = new char[51];
 			Date startDate, endDate;
-			for (int _ = 0; _ < 7; _++) {
+			for (int v = 0; v < 7; v++) {
 				char* tmp = new char[51];
 				iss >> tmp;
-				if (_ == 0)
+				if (v == 0)
 					semesterName = tmp;
-				else if (_ == 1)
+				else if (v == 1)
 					startDate.year = atoi(tmp);
-				else if (_ == 2)
+				else if (v == 2)
 					startDate.month = atoi(tmp);
-				else if (_ == 3)
+				else if (v == 3)
 					startDate.day = atoi(tmp);
-				else if (_ == 4)
+				else if (v == 4)
 					endDate.year = atoi(tmp);
-				else if (_ == 5)
+				else if (v == 5)
 					endDate.month = atoi(tmp);
-				else if (_ == 6)
+				else if (v == 6)
 					endDate.day = atoi(tmp);
 			}
 			createSemester(curYear->pSemester, semesterName, yearName, startDate, endDate, 0);
@@ -997,20 +997,20 @@ void loadData(Year*& pYear) {
 			while (strcmp(curSemester->SemesterName, semesterName) != 0)
 				curSemester = curSemester->semesterNext;
 
-			for (int _ = 7; _ < 13; _++) {
+			for (int v = 7; v < 13; v++) {
 				char* tmp = new char[51];
 				iss >> tmp;
-				if (_ == 7)
+				if (v == 7)
 					curSemester->startReg.year = atoi(tmp);
-				else if (_ == 8)
+				else if (v == 8)
 					curSemester->startReg.month = atoi(tmp);
-				else if (_ == 9)
+				else if (v == 9)
 					curSemester->startReg.day = atoi(tmp);
-				else if (_ == 10)
+				else if (v == 10)
 					curSemester->endReg.year = atoi(tmp);
-				else if (_ == 11)
+				else if (v == 11)
 					curSemester->endReg.month = atoi(tmp);
-				else if (_ == 12)
+				else if (v == 12)
 					curSemester->endReg.day = atoi(tmp);
 			}
 
@@ -1023,37 +1023,37 @@ void loadData(Year*& pYear) {
 			ifstream courseIn(dir);
 
 			char* courseStr = new char[505];
-			int _ = 0;
+			int v = 0;
 			Course* newCourse;
 			while (courseIn.getline(courseStr, 500)) { // Load course
-				if (_ == 0)
+				if (v == 0)
 					newCourse = new Course;
 
 				char* tmp = new char[501];
 				strcpy(tmp, courseStr);
 
-				if (_ == 0)
+				if (v == 0)
 					newCourse->id = tmp;
-				else if (_ == 1)
+				else if (v == 1)
 					newCourse->name = tmp;
-				else if (_ == 2)
-					newCourse->lecturerName = tmp;
-				else if (_ == 3)
+				else if (v == 2)
+					newCourse->teacherName = tmp;
+				else if (v == 3)
 					newCourse->numberOfCredits = atoi(tmp);
-				else if (_ == 4)
+				else if (v == 4)
 					newCourse->maxStudent = atoi(tmp);
-				else if (_ == 5)
+				else if (v == 5)
 					newCourse->date.d1 = tmp;
-				else if (_ == 6)
+				else if (v == 6)
 					newCourse->date.s1 = tmp;
-				else if (_ == 7)
+				else if (v == 7)
 					newCourse->date.d2 = tmp;
-				else if (_ == 8)
+				else if (v == 8)
 					newCourse->date.s2 = tmp;
 
-				_ = (_ + 1) % 9;
+				v = (v + 1) % 9;
 
-				if (_ == 0) {
+				if (v == 0) {
 					addNewCourse(curSemester->pCourse, semesterName, yearName, newCourse, 0);
 
 					Course* curCourse = curSemester->pCourse;
@@ -1101,15 +1101,15 @@ void loadData(Year*& pYear) {
 					fIn.open(dir_sco);
 					char* s = new char[505];
 					while (fIn.getline(s, 505)) {
-						Scoreboard* newScr = new Scoreboard;
-						inputScoreboardCSV(newScr, s);
-						if (curCourse->pScoreboard == nullptr)
-							curCourse->pScoreboard = newScr;
+						Score* newScr = new Score;
+						inputScoreCSV(newScr, s);
+						if (curCourse->pScore == nullptr)
+							curCourse->pScore = newScr;
 						else {
-							Scoreboard* pCur = curCourse->pScoreboard;
-							while (pCur->scoreboardNext != nullptr)
-								pCur = pCur->scoreboardNext;
-							pCur->scoreboardNext = newScr;
+							Score* pCur = curCourse->pScore;
+							while (pCur->ScoreNext != nullptr)
+								pCur = pCur->ScoreNext;
+							pCur->ScoreNext = newScr;
 						}
 					}
 					delete[] s;
@@ -1488,20 +1488,20 @@ void createSemester(Semester*& pSemester, char* semesterName, char* yearName, Da
 void removeCourseInEnrollList(Course*& pCourse, Student*& pStudent, char* yearName, char* semesterName, char* CourseID, char* studentID) {
 	int d1, d2, s1, s2;
 
-	if (strcmp(pCourse->date.d1, "MON") == 0) d1 = 2;
-	else if (strcmp(pCourse->date.d1, "TUE") == 0) d1 = 3;
-	else if (strcmp(pCourse->date.d1, "WED") == 0) d1 = 4;
-	else if (strcmp(pCourse->date.d1, "THU") == 0) d1 = 5;
-	else if (strcmp(pCourse->date.d1, "FRI") == 0) d1 = 6;
-	else if (strcmp(pCourse->date.d1, "SAT") == 0) d1 = 7;
+	if (strcmp(pCourse->date.d1, "monday") == 0) d1 = 2;
+	else if (strcmp(pCourse->date.d1, "tueday") == 0) d1 = 3;
+	else if (strcmp(pCourse->date.d1, "wednesday") == 0) d1 = 4;
+	else if (strcmp(pCourse->date.d1, "thursday") == 0) d1 = 5;
+	else if (strcmp(pCourse->date.d1, "friday") == 0) d1 = 6;
+	else if (strcmp(pCourse->date.d1, "saturday") == 0) d1 = 7;
 	s1 = (pCourse->date.s1)[1] - '0';
 
-	if (strcmp(pCourse->date.d2, "MON") == 0) d2 = 2;
-	else if (strcmp(pCourse->date.d2, "TUE") == 0) d2 = 3;
-	else if (strcmp(pCourse->date.d2, "WED") == 0) d2 = 4;
-	else if (strcmp(pCourse->date.d2, "THU") == 0) d2 = 5;
-	else if (strcmp(pCourse->date.d2, "FRI") == 0) d2 = 6;
-	else if (strcmp(pCourse->date.d2, "SAT") == 0) d2 = 7;
+	if (strcmp(pCourse->date.d2, "monday") == 0) d2 = 2;
+	else if (strcmp(pCourse->date.d2, "tueday") == 0) d2 = 3;
+	else if (strcmp(pCourse->date.d2, "wednesday") == 0) d2 = 4;
+	else if (strcmp(pCourse->date.d2, "thursday") == 0) d2 = 5;
+	else if (strcmp(pCourse->date.d2, "friday") == 0) d2 = 6;
+	else if (strcmp(pCourse->date.d2, "saturday") == 0) d2 = 7;
 	s2 = (pCourse->date.s2)[1] - '0';
 
 	pStudent->enrolledSession[d1][s1] = false;
@@ -1899,7 +1899,7 @@ void Menu_createStudent(Student*& pStudent, char* yearName, char* className) {
 }
 
 void Menu_createStudent_toCSV(Student*& pStudent, char* yearName, char* className) {
-	cout << "Drag the .csv file into the directory Final-project-of-group-6\\DataProject\\Class_csv\n";
+	cout << "Drag the .csv file into the directory Final-project-of-group-6\\DataProject\\CSV_OfClass\n";
 	cout << "Input the name of the file (Example: 21CLC10_Student.csv): ";
 	char* csvFile = new char[101];
 	cin >> csvFile;
@@ -2050,8 +2050,8 @@ void Menu_addCourse(Course*& pCourse, char* yearName, char* semesterName) {
 	cin.getline(newCourse->name, 50);
 
 	cout << "Teacher name: ";
-	newCourse->lecturerName = new char[101];
-	cin.getline(newCourse->lecturerName, 50);
+	newCourse->teacherName = new char[101];
+	cin.getline(newCourse->teacherName, 50);
 
 	cout << "Number of credits: ";
 	cin >> newCourse->numberOfCredits;
@@ -2068,31 +2068,31 @@ void Menu_addCourse(Course*& pCourse, char* yearName, char* semesterName) {
   	cout << "4. 15h30-17h30" << endl;
 	
 	cout << "Input 2 sessions :" << endl;
-	newCourse->date.d1 = new char[5];
+	newCourse->date.d1 = new char[20];
 	newCourse->date.s1 = new char[5];
-	newCourse->date.d2 = new char[5];
+	newCourse->date.d2 = new char[20];
 	newCourse->date.s2 = new char[5];
 	cout << "Day 1: ";
-	cin.getline(newCourse->date.d1, 5);
-	cout << "Shift 1: "; newCourse->date.s1;
+	cin.getline(newCourse->date.d1, 20);
+	cout << "Time 1: "; newCourse->date.s1;
 	cin.getline(newCourse->date.s1, 5);
 	cout << "Day 2: ";
-	cin.getline(newCourse->date.d2, 5);
-	cout << "Shift 2: "; newCourse->date.s1;
+	cin.getline(newCourse->date.d2, 20);
+	cout << "Time 2: "; newCourse->date.s1;
 	cin.getline(newCourse->date.s2, 5);
 	addNewCourse(pCourse, semesterName, yearName, newCourse, 1);
 	system("cls");
 }
 
 int editCourseScreen(Course*& curCourse) {
-	int xb = 0, yb = 0, kb = 44, nb = 6;
+	int xb = 0, yb = 0, kb = 51, nb = 6;
 	while (true) {
 		drawBox(xb, yb, kb, nb);
 		gotoXY(xb + 1, yb + 1); textColor(3); cout << "Course ID: "; textColor(7); cout << curCourse->id << '\n';
 		gotoXY(xb + 1, yb + 2); textColor(5); cout << "Course Name: "; textColor(7); cout << curCourse->name << '\n';
-		gotoXY(xb + 1, yb + 3); textColor(9); cout << "Lecturer Name: "; textColor(7); cout << curCourse->lecturerName << '\n';
+		gotoXY(xb + 1, yb + 3); textColor(9); cout << "Lecturer Name: "; textColor(7); cout << curCourse->teacherName << '\n';
 		gotoXY(xb + 1, yb + 4); textColor(10); cout << "Number of Credit: "; textColor(7); cout << curCourse->numberOfCredits << '\n';
-	//	gotoXY(xb + 1, yb + 5); textColor(14); cout << "Occur in: "; textColor(7); cout << curCourse->date.d1 << " " << curCourse->date.s1 << " & " << curCourse->date.d2 << " " << curCourse->date.s2 << '\n'; textColor(7);
+		
 		gotoXY(xb+1,yb+5); textColor(14);cout << "Occur in: ";textColor(7);cout  << curCourse -> date.d1;
 		if(curCourse -> date.s1[0] == '1') cout << " 7h30-9h30 ";
 		if(curCourse -> date.s1[0] == '2') cout << " 9h30-11h30 ";
@@ -2128,17 +2128,17 @@ int editCourseScreen(Course*& curCourse) {
 		gotoXY(5, 17); cout << "List of students";
 		drawBox(0, 19, 2);
 		gotoXY(1, 20); cout << "3";
-		gotoXY(5, 20); cout << "Scoreboard";
+		gotoXY(5, 20); cout << "Score";
 		drawBox(0, 22, 2);
 		gotoXY(1, 23); cout << "4";
 		gotoXY(5, 23); cout << "Delete";
 		cout << endl << endl;
-		gotoXY(47, 1); cout << "Your input: ";
-		int* respond= new int[10]; gotoXY(59, 1); cin >> respond[0];
+		gotoXY(60, 1); cout << "Your input: ";
+		int* respond= new int[10]; gotoXY(72, 1); cin >> respond[0];
 		system("cls");
 		//if (strlen(respond) > 2 || (respond[0] < '0' || '9' < respond[0]) || (strlen(respond) == 2 && (respond[1] < '0' || '9' < respond[1]))) {
 		if( respond[0] <0 || respond[0] >20 ){
-			gotoXY(62, 1);
+			gotoXY(70, 1);
 			textColor(4);
 			cout << "Invalid, try again\n\n";
 			textColor(7);
@@ -2252,12 +2252,12 @@ int enrollCourseScreen(char* semesterName) {
 int chooseCourse(Course*& pCourse) {
 	while (1) {
 		Course* pCur = pCourse;
-		int xb = 0, yb = 1, kb = 44, nb = 6;
+		int xb = 0, yb = 1, kb = 51, nb = 6;
 		while (pCur != nullptr) {
 			drawBox(xb, yb, kb, nb);
 			gotoXY(xb + 1, yb + 1); textColor(3); cout << "Course ID: "; textColor(7); cout << pCur->id << '\n';
 			gotoXY(xb + 1, yb + 2); textColor(5); cout << "Course Name: "; textColor(7); cout << pCur->name << '\n';
-			gotoXY(xb + 1, yb + 3); textColor(9); cout << "Lecturer Name: "; textColor(7); cout << pCur->lecturerName << '\n';
+			gotoXY(xb + 1, yb + 3); textColor(9); cout << "Lecturer Name: "; textColor(7); cout << pCur->teacherName << '\n';
 			gotoXY(xb + 1, yb + 4); textColor(10); cout << "Number of Credit: "; textColor(7); cout << pCur->numberOfCredits << '\n';
 		//	gotoXY(xb + 1, yb + 5); textColor(14); cout << "Occur in: "; textColor(7); cout << pCur->date.d1 << " " << pCur->date.s1 << " & " << pCur->date.d2 << " " << pCur->date.s2 << '\n'; textColor(7);
 			
@@ -2308,12 +2308,11 @@ int chooseCourse(Course*& pCourse) {
 			yb += 3;
 		}
 
-		gotoXY(47, 2); cout << "Your input: ";
-		int* respond= new int[10]; gotoXY(59, 2); cin >> respond[0];
+		gotoXY(60, 2); cout << "Your input: ";
+		int* respond= new int[10]; gotoXY(72, 2); cin >> respond[0];
 		system("cls");
-		//if (strlen(respond) > 2 || (respond[0] < '0' || '9' < respond[0]) || (strlen(respond) == 2 && (respond[1] < '0' || '9' < respond[1]))) {
 		if( respond[0] <0 || respond[0] >20 ){
-			gotoXY(62, 2);
+			gotoXY(70, 2);
 			textColor(4);
 			cout << "Invalid, try again\n\n";
 			textColor(7);
@@ -2331,24 +2330,24 @@ int viewAndDeleteCourseScreen(Course*& pCourse, char* semesterName) {
 		viewEnrollList(pCourse, semesterName);
 		cout << endl;
 		textColor(3);
-		gotoXY(50, 1); cout << " MENU";
+		gotoXY(60, 1); cout << " MENU";
 		textColor(7);
-		drawBox(49, 3, 2);
-		gotoXY(50, 4); cout << "0";
-		gotoXY(54, 4); cout << "Back";
-		drawBox(49, 6, 2);
-		gotoXY(50, 7); cout << "1";
-		gotoXY(54, 7); cout << "Unenroll course";
-		gotoXY(49, 9);
+		drawBox(55, 3, 2);
+		gotoXY(56, 4); cout << "0";
+		gotoXY(60, 4); cout << "Back";
+		drawBox(55, 6, 2);
+		gotoXY(56, 7); cout << "1";
+		gotoXY(60, 7); cout << "Unenroll course";
+		gotoXY(55, 9);
 		cout << "Your input: ";
-		int* respond= new int[10]; gotoXY(61, 9); cin >> respond[0];
+		int* respond= new int[10]; gotoXY(67, 9); cin >> respond[0];
 		system("cls");
 		//if (strlen(respond) > 2 || (respond[0] < '0' || '9' < respond[0]) || (strlen(respond) == 2 && (respond[1] < '0' || '9' < respond[1]))) {
 		if( respond[0] <0 || respond[0] >20 ){
-			gotoXY(66, 8);
+			gotoXY(72, 8);
 			textColor(4);
 			cout << "Invalid, try again\n\n";
-			textColor(7);
+			textColor(7);//chooseCourse
 			continue;
 		}
 		int x = respond[0];
@@ -2386,8 +2385,8 @@ void deleteCourseScreen(Course* pCourse, Student* pStudent, char* yearName, char
 	removeCourseInEnrollList(pCourse, pStudent, yearName, semesterName, courseID, studentID);
 }
 
-void viewOrAddScoreBoard(Course* curCourse, char* yearName, char* semesterName) {
-	if (!curCourse->pScoreboard) {
+void viewOrAddScore(Course* curCourse, char* yearName, char* semesterName) {
+	if (!curCourse->pScore) {
 		while (1) {
 			textColor(4);
 			cout << "There is no scoreboard in this course yet.\n";
@@ -2421,10 +2420,10 @@ void viewOrAddScoreBoard(Course* curCourse, char* yearName, char* semesterName) 
 				continue;
 			}
 			if (x == 0) return;
-			cout << "Drag the scoreboard of the course in the format " << curCourse->id << ".csv file into the folder C:\\Github\\Final-project-of-group-6\\DataProject\\Scoreboard_csv\\ \n\n";
+			cout << "Drag the Score of the course in the format " << curCourse->id << ".csv file into the folder C:\\Github\\Final-project-of-group-6\\DataProject\\CSV_OfScore\\ \n\n";
 			system("pause");
 			system("cls");
-			addScoreBoardCSV(curCourse->pScoreboard, yearName, semesterName, curCourse->id);
+			addScoreCSV(curCourse->pScore, yearName, semesterName, curCourse->id);
 			break;
 		}
 	}
@@ -2442,7 +2441,7 @@ void viewOrAddScoreBoard(Course* curCourse, char* yearName, char* semesterName) 
 		drawBox(0, 8, 2);
 		gotoXY(1, 9); cout << "1";
 		gotoXY(5, 9); cout << "Update Student Result" << endl << endl;
-		viewScoreboardOfCourse(curCourse);
+		viewScoreOfCourse(curCourse);
 		gotoXY(16, 1); cout << "Your input: ";
 		int* respond= new int[10]; gotoXY(28, 1); cin >> respond[0];
 		system("cls");
@@ -2471,7 +2470,7 @@ void viewOrAddScoreBoard(Course* curCourse, char* yearName, char* semesterName) 
 			char* studentID = new char[51];
 			cout << "Student's ID: ";
 			cin >> studentID;
-			updateScoreBoardStudent(curCourse->pScoreboard, yearName, semesterName, curCourse->id, studentID);
+			updateScoreStudent(curCourse->pScore, yearName, semesterName, curCourse->id, studentID);
 			delete[] studentID;
 		}
 	}
@@ -2500,20 +2499,20 @@ void enrollStudent(Course*& pCourse, Student*& pStudent, char* CourseID, char* S
 
 	int d1, d2, s1, s2;
 
-	if (strcmp(curCourse->date.d1, "MON") == 0) d1 = 2;
-	else if (strcmp(curCourse->date.d1, "TUE") == 0) d1 = 3;
-	else if (strcmp(curCourse->date.d1, "WED") == 0) d1 = 4;
-	else if (strcmp(curCourse->date.d1, "THU") == 0) d1 = 5;
-	else if (strcmp(curCourse->date.d1, "FRI") == 0) d1 = 6;
-	else if (strcmp(curCourse->date.d1, "SAT") == 0) d1 = 7;
+	if (strcmp(curCourse->date.d1, "monday") == 0) d1 = 2;
+	else if (strcmp(curCourse->date.d1, "tuesday") == 0) d1 = 3;
+	else if (strcmp(curCourse->date.d1, "wednesday") == 0) d1 = 4;
+	else if (strcmp(curCourse->date.d1, "thursday") == 0) d1 = 5;
+	else if (strcmp(curCourse->date.d1, "friday") == 0) d1 = 6;
+	else if (strcmp(curCourse->date.d1, "saturday") == 0) d1 = 7;
 	s1 = (curCourse->date.s1)[1] - '0';
 
-	if (strcmp(curCourse->date.d2, "MON") == 0) d2 = 2;
-	else if (strcmp(curCourse->date.d2, "TUE") == 0) d2 = 3;
-	else if (strcmp(curCourse->date.d2, "WED") == 0) d2 = 4;
-	else if (strcmp(curCourse->date.d2, "THU") == 0) d2 = 5;
-	else if (strcmp(curCourse->date.d2, "FRI") == 0) d2 = 6;
-	else if (strcmp(curCourse->date.d2, "SAT") == 0) d2 = 7;
+	if (strcmp(curCourse->date.d2, "monday") == 0) d2 = 2;
+	else if (strcmp(curCourse->date.d2, "tuesday") == 0) d2 = 3;
+	else if (strcmp(curCourse->date.d2, "wednesday") == 0) d2 = 4;
+	else if (strcmp(curCourse->date.d2, "thursday") == 0) d2 = 5;
+	else if (strcmp(curCourse->date.d2, "friday") == 0) d2 = 6;
+	else if (strcmp(curCourse->date.d2, "saturday") == 0) d2 = 7;
 	s2 = (curCourse->date.s2)[1] - '0';
 
 	if (curStudent->enrolledSession[d1][s1] || curStudent->enrolledSession[d2][s2]) {
@@ -2569,8 +2568,8 @@ void enrollStudent(Course*& pCourse, Student*& pStudent, char* CourseID, char* S
 	strcpy(enrollCourse->id, curCourse->id);
 	enrollCourse->name = new char[51];
 	strcpy(enrollCourse->name, curCourse->name);
-	enrollCourse->lecturerName = new char[51];
-	strcpy(enrollCourse->lecturerName, curCourse->lecturerName);
+	enrollCourse->teacherName = new char[51];
+	strcpy(enrollCourse->teacherName, curCourse->teacherName);
 	enrollCourse->numberOfCredits = curCourse->numberOfCredits;
 	enrollCourse->maxStudent = curCourse->maxStudent;
 	enrollCourse->date.d1 = new char[51];
@@ -2656,7 +2655,7 @@ void updateCourse(Course*& pCourse, char* yearName, char* semesterName, char* co
 		gotoXY(5, 12); cout << "Course name" << endl << endl;
 		drawBox(0, 14, 2);
 		gotoXY(1, 15); cout << "3";
-		gotoXY(5, 15); cout << "Lecturer name" << endl << endl;
+		gotoXY(5, 15); cout << "Teacher name" << endl << endl;
 		drawBox(0, 17, 2);
 		gotoXY(1, 18); cout << "4";
 		gotoXY(5, 18); cout << "Number of credits" << endl << endl;
@@ -2665,7 +2664,7 @@ void updateCourse(Course*& pCourse, char* yearName, char* semesterName, char* co
 		gotoXY(5, 21); cout << "Maximum student" << endl << endl;
 		drawBox(0, 23, 2);
 		gotoXY(1, 24); cout << "6";
-		gotoXY(5, 24); cout << "Session and shifts" << endl << endl;
+		gotoXY(5, 24); cout << "Session and time" << endl << endl;
 
 		gotoXY(18, 1); cout << "Your input: ";
 		int* respond= new int[10]; gotoXY(30, 1); cin >> respond[0];
@@ -2696,9 +2695,9 @@ void updateCourse(Course*& pCourse, char* yearName, char* semesterName, char* co
 		cin.get(pCur->name, 101, '\n');
 	}
 	else if (x == 3) {
-		cout << "New lecturer's name: ";
+		cout << "New teacher's name: ";
 		cin.ignore(1001, '\n');
-		cin.get(pCur->lecturerName, 101, '\n');
+		cin.get(pCur->teacherName, 101, '\n');
 	}
 	else if (x == 4) {
 		cout << "New number of credits: ";
@@ -2709,9 +2708,9 @@ void updateCourse(Course*& pCourse, char* yearName, char* semesterName, char* co
 		cin >> pCur->maxStudent;
 	}
 	else {
-		cout << "New day 1 and shift 1: ";
+		cout << "New day 1 and time 1: ";
 		cin >> pCur->date.d1 >> pCur->date.s1;
-		cout << "New day 2 and shift 2: ";
+		cout << "New day 2 and time 2: ";
 		cin >> pCur->date.d2 >> pCur->date.s2;
 	}
 	textColor(10);
@@ -2734,7 +2733,7 @@ void updateCourse(Course*& pCourse, char* yearName, char* semesterName, char* co
 	while (pCur != nullptr) {
 		fout << pCur->id << '\n';
 		fout << pCur->name << '\n';
-		fout << pCur->lecturerName << '\n';
+		fout << pCur->teacherName << '\n';
 		fout << pCur->numberOfCredits << '\n';
 		fout << pCur->maxStudent << '\n';
 		fout << pCur->date.d1 << '\n' << pCur->date.s1 << '\n';
@@ -2743,10 +2742,10 @@ void updateCourse(Course*& pCourse, char* yearName, char* semesterName, char* co
 	}
 	fout.close();
 }
-void updateScoreBoardStudent(Scoreboard*& pScr, char* yearName, char* semesterName, char* courseID, char* studentID) {
-	Scoreboard* pCur = pScr;
+void updateScoreStudent(Score*& pScr, char* yearName, char* semesterName, char* courseID, char* studentID) {
+	Score* pCur = pScr;
 	while (pCur != nullptr && strcmp(pCur->stu->studentID, studentID) != 0) {
-		pCur = pCur->scoreboardNext;
+		pCur = pCur->ScoreNext;
 	}
 
 	if (pCur != nullptr) {
@@ -2784,21 +2783,20 @@ void updateScoreBoardStudent(Scoreboard*& pScr, char* yearName, char* semesterNa
 	int cnt = 0;
 	while (pCur != nullptr) {
 		fOut << ++cnt << ',' << pCur->stu->studentID << ',' << pCur->stu->Name << ',' << pCur->midterm << ',' << pCur->final << ',' << pCur->bonus << ',' << pCur->total << '\n';
-		pCur = pCur->scoreboardNext;
+		pCur = pCur->ScoreNext;
 	}
 	fOut.close();
 }
 void viewEnrollList(Course* pEnrollCourse, char* semesterName) {
 	Course* pCur = pEnrollCourse;
-	int xb = 0, yb = 0, kb = 44, nb = 5;
+	int xb = 0, yb = 0, kb = 51, nb = 5;
 	while (pCur != nullptr) {
 		if (strcmp(semesterName, pCur->sSemester) == 0) {
 			drawBox(xb, yb, kb, nb);
 			gotoXY(xb + 1, yb + 1); textColor(3); cout << "Course ID: "; textColor(7); cout << pCur->id << '\n';
 			gotoXY(xb + 1, yb + 2); textColor(5); cout << "Course Name: "; textColor(7); cout << pCur->name << '\n';
-			gotoXY(xb + 1, yb + 3); textColor(9); cout << "Teacher Name: "; textColor(7); cout << pCur->lecturerName << '\n';
+			gotoXY(xb + 1, yb + 3); textColor(9); cout << "Teacher Name: "; textColor(7); cout << pCur->teacherName << '\n';
 			gotoXY(xb + 1, yb + 4); textColor(10); cout << "Number of Credit: "; textColor(7); cout << pCur->numberOfCredits << '\n';
-		//	gotoXY(xb + 1, yb + 5); textColor(14); cout << "Occur in: "; textColor(7); cout << pCur->date.d1 << " " << pCur->date.s1 << " & " << pCur->date.d2 << " " << pCur->date.s2 << '\n'; textColor(7);
 		
 			gotoXY(xb+1,yb+5); textColor(14);cout << "Occur in: ";textColor(7);cout  << pCur -> date.d1;
 		if(pCur -> date.s1[0] == '1') cout << " 7h30-9h30 ";
@@ -2830,12 +2828,12 @@ void viewListOfCLasses(Year* pYear) {
 }
 void viewListOfCourse(Course* pCourse) {
 	Course* pCur = pCourse;
-	int xb = 0, yb = 0, kb = 44, nb = 6;
+	int xb = 0, yb = 0, kb = 51, nb = 6;
 	while (pCur != nullptr) {
 		drawBox(xb, yb, kb, nb);
 		gotoXY(xb + 1, yb + 1); textColor(3); cout << "Course ID: "; textColor(7); cout << pCur->id << '\n';
 		gotoXY(xb + 1, yb + 2); textColor(5); cout << "Course Name: "; textColor(7); cout << pCur->name << '\n';
-		gotoXY(xb + 1, yb + 3); textColor(9); cout << "Teacher Name: "; textColor(7); cout << pCur->lecturerName << '\n';
+		gotoXY(xb + 1, yb + 3); textColor(9); cout << "Teacher Name: "; textColor(7); cout << pCur->teacherName << '\n';
 		gotoXY(xb + 1, yb + 4); textColor(10); cout << "Number of Credit: "; textColor(7); cout << pCur->numberOfCredits << '\n';
 	
 		gotoXY(xb+1,yb+5); textColor(14);cout << "Occur in: ";textColor(7);cout  << pCur -> date.d1;
@@ -2899,7 +2897,7 @@ void viewListOfStudentsInCourse(Student* pStudent, char* courseID) {
 		return;
 	}
 }
-void viewScoreBoard(Course* pCourse, char* studentID) {
+void viewScore(Course* pCourse, char* studentID) {
 	cout << char(201);
 	for (int i = 0; i < 15; i++)
 		cout << char(205);
@@ -2943,7 +2941,7 @@ void viewScoreBoard(Course* pCourse, char* studentID) {
 	cout << endl;
 
 	while (pCourse != nullptr) {
-		Scoreboard* pCur = pCourse->pScoreboard;
+		Score* pCur = pCourse->pScore;
 		while (pCur != nullptr) {
 			if (strcmp(pCur->stu->studentID, studentID) == 0) {
 				cout << char(186) << setw(15) << left << pCourse->id;
@@ -2954,7 +2952,7 @@ void viewScoreBoard(Course* pCourse, char* studentID) {
 				cout << char(186) << endl;
 				break;
 			}
-			pCur = pCur->scoreboardNext;
+			pCur = pCur->ScoreNext;
 		}
 		pCourse = pCourse->courseNext;
 	}
@@ -2979,7 +2977,7 @@ void viewScoreBoard(Course* pCourse, char* studentID) {
 	system("pause");
 	system("cls");
 }
-void viewScoreBoardOfClass(Student* pStudent, Semester* pSemester) {
+void viewScoreOfClass(Student* pStudent, Semester* pSemester) {
 
 	char* semesterName = new char[11];
 	while (1) {
@@ -3083,7 +3081,7 @@ void viewScoreBoardOfClass(Student* pStudent, Semester* pSemester) {
 		while (curSem) {
 			Course* curCourse = curSem->pCourse;
 			while (curCourse) {
-				Scoreboard* curScr = curCourse->pScoreboard;
+				Score* curScr = curCourse->pScore;
 				while (curScr) {
 					if (strcmp(curScr->stu->studentID, curStu->studentID) == 0) {
 						if (strcmp(curSem->SemesterName, semesterName) == 0) {
@@ -3094,7 +3092,7 @@ void viewScoreBoardOfClass(Student* pStudent, Semester* pSemester) {
 						cntCourse++;
 						totCourse += curScr->total;
 					}
-					curScr = curScr->scoreboardNext;
+					curScr = curScr->ScoreNext;
 				}
 				curCourse = curCourse->courseNext;
 			}
@@ -3132,8 +3130,8 @@ void viewScoreBoardOfClass(Student* pStudent, Semester* pSemester) {
 	system("cls");
 	delete[] semesterName;
 }
-void viewScoreboardOfCourse(Course* curCourse) {
-	Scoreboard* pCur;
+void viewScoreOfCourse(Course* curCourse) {
+	Score* pCur;
 	cout << char(201);
 	for (int i = 0; i < 30; i++)
 		cout << char(205);
@@ -3154,7 +3152,7 @@ void viewScoreboardOfCourse(Course* curCourse) {
 		cout << char(205);
 	cout << char(187);
 	cout << endl;
-	pCur = curCourse->pScoreboard;
+	pCur = curCourse->pScore;
 	cout << char(186) << setw(30) << left << "Name";
 	cout << char(186) << setw(15) << left << "ID";
 	cout << char(186) << setw(15) << left << "Midterm";
@@ -3190,7 +3188,7 @@ void viewScoreboardOfCourse(Course* curCourse) {
 		cout << char(186) << setw(15) << left << pCur->bonus;
 		cout << char(186) << setw(15) << left << pCur->total;
 		cout << char(186) << endl;
-		pCur = pCur->scoreboardNext;
+		pCur = pCur->ScoreNext;
 	}
 	cout << char(200);
 	for (int i = 0; i < 30; i++)
@@ -3213,4 +3211,3 @@ void viewScoreboardOfCourse(Course* curCourse) {
 	cout << char(188);
 	cout << endl;
 }
-
