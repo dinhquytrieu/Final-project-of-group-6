@@ -1,0 +1,18 @@
+CSC102
+KY THUAT LAP TRINH
+DINH BA TIEN
+4
+50
+wednesday
+1
+wednesday
+2
+PHY005
+VAT LI DAI CUONG
+VU THI HANH THU
+4
+50
+monday
+1
+monday
+2

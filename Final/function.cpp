@@ -860,7 +860,7 @@ void exportStudentToCsv(Student* pStuInCourse, char* courseID) {
 			pStu = pStu->studentNext;
 		}
 		textColor(10);
-		cout << "The list of students has been exported into the file Final-project-of-group-6\\DataProject\\Export_StuCSV\\" << courseID << ".csv\n\n";
+		cout << "List of students has been exported into the file Final-project-of-group-6\\DataProject\\Export_StuCSV\\" << courseID << ".csv\n\n";
 		textColor(7);
 		system("pause");
 		system("cls");
