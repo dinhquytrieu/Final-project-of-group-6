@@ -2330,21 +2330,21 @@ int viewAndDeleteCourseScreen(Course*& pCourse, char* semesterName) {
 		viewEnrollList(pCourse, semesterName);
 		cout << endl;
 		textColor(3);
-		gotoXY(60, 1); cout << " MENU";
+		gotoXY(80, 1); cout << " MENU";
 		textColor(7);
-		drawBox(55, 3, 2);
-		gotoXY(56, 4); cout << "0";
-		gotoXY(60, 4); cout << "Back";
-		drawBox(55, 6, 2);
-		gotoXY(56, 7); cout << "1";
-		gotoXY(60, 7); cout << "Unenroll course";
-		gotoXY(55, 9);
+		drawBox(75, 3, 2);
+		gotoXY(76, 4); cout << "0";
+		gotoXY(80, 4); cout << "Back";
+		drawBox(75, 6, 2);
+		gotoXY(76, 7); cout << "1";
+		gotoXY(80, 7); cout << "Unenroll course";
+		gotoXY(75, 9);
 		cout << "Your input: ";
-		int* respond= new int[10]; gotoXY(67, 9); cin >> respond[0];
+		int* respond= new int[10]; gotoXY(87, 9); cin >> respond[0];
 		system("cls");
 		//if (strlen(respond) > 2 || (respond[0] < '0' || '9' < respond[0]) || (strlen(respond) == 2 && (respond[1] < '0' || '9' < respond[1]))) {
 		if( respond[0] <0 || respond[0] >20 ){
-			gotoXY(72, 8);
+			gotoXY(92, 8);
 			textColor(4);
 			cout << "Invalid, try again\n\n";
 			textColor(7);//chooseCourse
