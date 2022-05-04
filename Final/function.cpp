@@ -2085,7 +2085,7 @@ void Menu_addCourse(Course*& pCourse, char* yearName, char* semesterName) {
 }
 
 int editCourseScreen(Course*& curCourse) {
-	int xb = 0, yb = 0, kb = 51, nb = 6;
+	int xb = 0, yb = 0, kb = 60, nb = 6;
 	while (true) {
 		drawBox(xb, yb, kb, nb);
 		gotoXY(xb + 1, yb + 1); textColor(3); cout << "Course ID: "; textColor(7); cout << curCourse->id << '\n';
@@ -2133,12 +2133,12 @@ int editCourseScreen(Course*& curCourse) {
 		gotoXY(1, 23); cout << "4";
 		gotoXY(5, 23); cout << "Delete";
 		cout << endl << endl;
-		gotoXY(60, 1); cout << "Your input: ";
-		int* respond= new int[10]; gotoXY(72, 1); cin >> respond[0];
+		gotoXY(65, 1); cout << "Your input: ";
+		int* respond= new int[10]; gotoXY(77, 1); cin >> respond[0];
 		system("cls");
 		//if (strlen(respond) > 2 || (respond[0] < '0' || '9' < respond[0]) || (strlen(respond) == 2 && (respond[1] < '0' || '9' < respond[1]))) {
 		if( respond[0] <0 || respond[0] >20 ){
-			gotoXY(70, 1);
+			gotoXY(82, 1);
 			textColor(4);
 			cout << "Invalid, try again\n\n";
 			textColor(7);
@@ -2252,7 +2252,7 @@ int enrollCourseScreen(char* semesterName) {
 int chooseCourse(Course*& pCourse) {
 	while (1) {
 		Course* pCur = pCourse;
-		int xb = 0, yb = 1, kb = 51, nb = 6;
+		int xb = 0, yb = 1, kb = 60, nb = 6;
 		while (pCur != nullptr) {
 			drawBox(xb, yb, kb, nb);
 			gotoXY(xb + 1, yb + 1); textColor(3); cout << "Course ID: "; textColor(7); cout << pCur->id << '\n';
@@ -2308,11 +2308,11 @@ int chooseCourse(Course*& pCourse) {
 			yb += 3;
 		}
 
-		gotoXY(60, 2); cout << "Your input: ";
-		int* respond= new int[10]; gotoXY(72, 2); cin >> respond[0];
+		gotoXY(65, 2); cout << "Your input: ";
+		int* respond= new int[10]; gotoXY(77, 2); cin >> respond[0];
 		system("cls");
 		if( respond[0] <0 || respond[0] >20 ){
-			gotoXY(70, 2);
+			gotoXY(82, 2);
 			textColor(4);
 			cout << "Invalid, try again\n\n";
 			textColor(7);
@@ -2789,7 +2789,7 @@ void updateScoreStudent(Score*& pScr, char* yearName, char* semesterName, char* 
 }
 void viewEnrollList(Course* pEnrollCourse, char* semesterName) {
 	Course* pCur = pEnrollCourse;
-	int xb = 0, yb = 0, kb = 51, nb = 5;
+	int xb = 0, yb = 0, kb = 60, nb = 5;
 	while (pCur != nullptr) {
 		if (strcmp(semesterName, pCur->sSemester) == 0) {
 			drawBox(xb, yb, kb, nb);
@@ -2828,7 +2828,7 @@ void viewListOfCLasses(Year* pYear) {
 }
 void viewListOfCourse(Course* pCourse) {
 	Course* pCur = pCourse;
-	int xb = 0, yb = 0, kb = 51, nb = 6;
+	int xb = 0, yb = 0, kb = 60, nb = 6;
 	while (pCur != nullptr) {
 		drawBox(xb, yb, kb, nb);
 		gotoXY(xb + 1, yb + 1); textColor(3); cout << "Course ID: "; textColor(7); cout << pCur->id << '\n';
