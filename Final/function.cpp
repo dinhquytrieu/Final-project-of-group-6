@@ -665,7 +665,7 @@ void courseRegistration(Semester*& pSemester, Semester* totSemester, char* yearN
 			textColor(4);
 			cout << "0: No\n";
 			textColor(7);
-			cout << "Your input: ";
+			cout << "Your choice:";
 
 			int* respond= new int[10]; cin >> respond[0];
 			system("cls");
@@ -1699,7 +1699,7 @@ int yearScreen() {
 		}
 		delete[] s;
 		cout << endl;
-		gotoXY(12, 1); cout << "Your input: ";
+		gotoXY(12, 1); cout << "Your choice:";
 		int* respond= new int[10];; gotoXY(24, 1); cin >> respond[0];
 		system("cls");
 		//if (strlen(respond) > 2 || (respond[0] < '0' || '9' < respond[0]) || (strlen(respond) == 2 && (respond[1] < '0' || '9' < respond[1]))) {
@@ -1766,7 +1766,7 @@ int classScreen(char* yearName) {
 		}
 		delete[] s;
 
-		gotoXY(25, 1); cout << "Your input: ";
+		gotoXY(25, 1); cout << "Your choice:";
 		int* respond= new int[10];; gotoXY(37, 1); cin >> respond[0];
 		system("cls");
 		//if (strlen(respond) > 2 || (respond[0] < '0' || '9' < respond[0]) || (strlen(respond) == 2 && (respond[1] < '0' || '9' < respond[1]))) {
@@ -1873,7 +1873,7 @@ int studentScreen(Student* pStudent, char* yearName, char* className) {
 			cout << char(205);
 		cout << char(188);
 		cout << endl;
-		gotoXY(20, 1); cout << "Your input: ";
+		gotoXY(20, 1); cout << "Your choice:";
 		int* respond= new int[10]; gotoXY(32, 1); cin >> respond[0];
 		system("cls");
 		//if (strlen(respond) > 2 || (respond[0] < '0' || '9' < respond[0]) || (strlen(respond) == 2 && (respond[1] < '0' || '9' < respond[1]))) {
@@ -1939,7 +1939,7 @@ int semesterScreen(Semester*& pSemester) {
 			yb += 3;
 		}
 		cout << endl;
-		gotoXY(12, 1); cout << "Your input: ";
+		gotoXY(12, 1); cout << "Your choice:";
 		int* respond= new int[10]; gotoXY(24, 1); cin >> respond[0];
 		system("cls");
 		//if (strlen(respond) > 2 || (respond[0] < '0' || '9' < respond[0]) || (strlen(respond) == 2 && (respond[1] < '0' || '9' < respond[1]))) {
@@ -2016,7 +2016,7 @@ int courseScreen(Course*& pCourse, char* semesterName) {
 			pCur = pCur->courseNext;
 		}
 
-		gotoXY(18, 1); cout << "Your input: ";
+		gotoXY(18, 1); cout << "Your choice:";
 		int* respond= new int[10]; gotoXY(30, 1); cin >> respond[0];
 		system("cls");
 		//if (strlen(respond) > 2 || (respond[0] < '0' || '9' < respond[0]) || (strlen(respond) == 2 && (respond[1] < '0' || '9' < respond[1]))) {
@@ -2133,7 +2133,7 @@ int editCourseScreen(Course*& curCourse) {
 		gotoXY(1, 23); cout << "4";
 		gotoXY(5, 23); cout << "Delete";
 		cout << endl << endl;
-		gotoXY(65, 1); cout << "Your input: ";
+		gotoXY(65, 1); cout << "Your choice:";
 		int* respond= new int[10]; gotoXY(77, 1); cin >> respond[0];
 		system("cls");
 		//if (strlen(respond) > 2 || (respond[0] < '0' || '9' < respond[0]) || (strlen(respond) == 2 && (respond[1] < '0' || '9' < respond[1]))) {
@@ -2193,7 +2193,7 @@ int enrollSemesterScreen(Year*& pYear, char* studentID) {
 			yb += 3;
 		}
 
-		gotoXY(45, 1); cout << "Your input: ";
+		gotoXY(45, 1); cout << "Your choice:";
 		int* respond= new int[10]; gotoXY(57, 1); cin >> respond[0];
 		system("cls");
 		//if (strlen(respond) > 2 || (respond[0] < '0' || '9' < respond[0]) || (strlen(respond) == 2 && (respond[1] < '0' || '9' < respond[1]))) {
@@ -2231,7 +2231,7 @@ int enrollCourseScreen(char* semesterName) {
 		gotoXY(1, 15); cout << "3";
 		gotoXY(5, 15); cout << "Scoreboard";
 
-		gotoXY(17, 1);	cout << "Your input: ";
+		gotoXY(17, 1);	cout << "Your choice:";
 		int* respond= new int[10]; gotoXY(29, 1); cin >> respond[0];
 		system("cls");
 		//if (strlen(respond) > 2 || (respond[0] < '0' || '9' < respond[0]) || (strlen(respond) == 2 && (respond[1] < '0' || '9' < respond[1]))) {
@@ -2308,7 +2308,7 @@ int chooseCourse(Course*& pCourse) {
 			yb += 3;
 		}
 
-		gotoXY(65, 2); cout << "Your input: ";
+		gotoXY(65, 2); cout << "Your choice:";
 		int* respond= new int[10]; gotoXY(77, 2); cin >> respond[0];
 		system("cls");
 		if( respond[0] <0 || respond[0] >20 ){
@@ -2339,7 +2339,7 @@ int viewAndDeleteCourseScreen(Course*& pCourse, char* semesterName) {
 		gotoXY(76, 7); cout << "1";
 		gotoXY(80, 7); cout << "Unenroll course";
 		gotoXY(75, 9);
-		cout << "Your input: ";
+		cout << "Your choice:";
 		int* respond= new int[10]; gotoXY(87, 9); cin >> respond[0];
 		system("cls");
 		//if (strlen(respond) > 2 || (respond[0] < '0' || '9' < respond[0]) || (strlen(respond) == 2 && (respond[1] < '0' || '9' < respond[1]))) {
@@ -2399,7 +2399,7 @@ void viewOrAddScore(Course* curCourse, char* yearName, char* semesterName) {
 			textColor(10);
 			cout << "1: Yes\n";
 			textColor(7);
-			cout << "Your input: ";
+			cout << "Your choice:";
 				int* respond= new int[10]; cin >> respond[0];
 			system("cls");
 			//if (strlen(respond) > 2 || (respond[0] < '0' || '9' < respond[0]) || (strlen(respond) == 2 && (respond[1] < '0' || '9' < respond[1]))) {
@@ -2442,7 +2442,7 @@ void viewOrAddScore(Course* curCourse, char* yearName, char* semesterName) {
 		gotoXY(1, 9); cout << "1";
 		gotoXY(5, 9); cout << "Update Student Result" << endl << endl;
 		viewScoreOfCourse(curCourse);
-		gotoXY(16, 1); cout << "Your input: ";
+		gotoXY(16, 1); cout << "Your choice:";
 		int* respond= new int[10]; gotoXY(28, 1); cin >> respond[0];
 		system("cls");
 		//if (strlen(respond) > 2 || (respond[0] < '0' || '9' < respond[0]) || (strlen(respond) == 2 && (respond[1] < '0' || '9' < respond[1]))) {
@@ -2666,7 +2666,7 @@ void updateCourse(Course*& pCourse, char* yearName, char* semesterName, char* co
 		gotoXY(1, 24); cout << "6";
 		gotoXY(5, 24); cout << "Session and time" << endl << endl;
 
-		gotoXY(18, 1); cout << "Your input: ";
+		gotoXY(18, 1); cout << "Your choice:";
 		int* respond= new int[10]; gotoXY(30, 1); cin >> respond[0];
 		system("cls");
 		//if (strlen(respond) > 1 || (respond[0] < '0' || '9' < respond[0])) {
@@ -2884,7 +2884,7 @@ void viewListOfStudentsInCourse(Student* pStudent, char* courseID) {
 		textColor(10);
 		cout << "1: Yes\n\n";
 		textColor(7);
-		cout << "Your input: ";
+		cout << "Your choice:";
 		int* respond= new int[10]; cin >> respond[0];
 		system("cls");
 		//if (strlen(respond) > 1 || (respond[0] < '0' || '1' < respond[0])) {
