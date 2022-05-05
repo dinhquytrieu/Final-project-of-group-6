@@ -15,38 +15,7 @@
 + Vo Doan Vuong Thinh 21127172
 + Phan Thai Khang 21127069
 
-*My group would like to thank the teachers for creating conditions for us to work on this project. That has partly helped us gain more knowledge and experience to prepare for the following years in basic subjects. During the process of working on the project, although we encountered many difficulties in some parts, we together fixed and perfected the program so that the program could run according to the requirements of the project.
+*My group would like to thank the teachers for creating conditions for us to work on this project. Thanks to the teachers' help throughout the week, along with the advice and guidance of ideas from the previous classmates, we were able to complete the project at this level. That has partly helped us gain more knowledge and experience to prepare for the following years in basic subjects. During the process of working on the project, although we encountered many difficulties in some parts, we together fixed and perfected the program so that the program could run according to the requirements of the project.
 Many thanks!
 *
 
-# The following are the functions that the members have done during the time of completing the project:
-
-# Nguyen Le Tan Phuc:
-+
-+
-+
-+
-
-# Đinh Qui Trieu:
-+
-+
-+
-+
-
-# Vo Doan Vuong Thinh:
-+
-+
-+
-+
-
-# Phan Thai Khang:
-+
-+
-+
-+
-
-# Reference
--
--
--
--
